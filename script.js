@@ -1,31 +1,35 @@
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-/* ================= ADD TO CART ================= */
-function buyNow(product, price) {
-  let item = {
-    name: product,
-    price: price,
-    id: Date.now()
-  };
-
-  cart.push(item);
-  saveCart();
-
-  alert(product + " added to cart 🛒");
-
-  updateCartCount();
-}
-
 /* ================= SAVE CART ================= */
 function saveCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
 }
 
+/* ================= ADD TO CART ================= */
+function buyNow(product, price) {
+  let existing = cart.find(item => item.name === product);
+
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    cart.push({
+      name: product,
+      price: price,
+      qty: 1,
+      id: Date.now()
+    });
+  }
+
+  saveCart();
+  updateCartCount();
+
+  alert(product + " added to cart 🛒");
+}
+
 /* ================= CART COUNT ================= */
 function updateCartCount() {
-  let count = cart.length;
+  let count = cart.reduce((sum, item) => sum + item.qty, 0);
 
-  // If cart icon exists
   let cartBox = document.querySelector(".cart-box a");
   if (cartBox) {
     cartBox.innerText = `🛒 Cart (${count})`;
@@ -39,16 +43,7 @@ function removeFromCart(index) {
   cart.splice(index, 1);
   saveCart();
   updateCartCount();
-
-  // refresh cart page if exists
-  if (typeof renderCart === "function") {
-    renderCart();
-  }
-}
-
-/* ================= GET CART ================= */
-function getCart() {
-  return cart;
+  renderCart();
 }
 
 /* ================= CLEAR CART ================= */
@@ -56,13 +51,15 @@ function clearCart() {
   cart = [];
   saveCart();
   updateCartCount();
-
-  if (typeof renderCart === "function") {
-    renderCart();
-  }
+  renderCart();
 }
 
-/* ================= CART RENDER (FOR cart.html) ================= */
+/* ================= GET CART ================= */
+function getCart() {
+  return cart;
+}
+
+/* ================= CART RENDER ================= */
 function renderCart() {
   let container = document.getElementById("cart-items");
   let totalBox = document.getElementById("total");
@@ -74,12 +71,19 @@ function renderCart() {
   let total = 0;
 
   cart.forEach((item, index) => {
-    total += item.price;
+    let itemTotal = item.price * item.qty;
+    total += itemTotal;
 
     container.innerHTML += `
       <div class="cart-item">
-        <span>${item.name} - ₹${item.price}</span>
-        <button onclick="removeFromCart(${index})">Remove</button>
+        <div>
+          <strong>${item.name}</strong><br>
+          ₹${item.price} × ${item.qty} = ₹${itemTotal}
+        </div>
+
+        <div>
+          <button onclick="removeFromCart(${index})">Remove</button>
+        </div>
       </div>
     `;
   });
