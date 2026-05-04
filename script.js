@@ -1,40 +1,93 @@
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// ADD TO CART / BUY NOW
+/* ================= ADD TO CART ================= */
 function buyNow(product, price) {
   let item = {
     name: product,
-    price: price
+    price: price,
+    id: Date.now()
   };
 
   cart.push(item);
-  localStorage.setItem("cart", JSON.stringify(cart));
+  saveCart();
 
   alert(product + " added to cart 🛒");
 
   updateCartCount();
 }
 
-// OPTIONAL: CART COUNT (agar tu icon use kare)
-function updateCartCount() {
-  console.log("Cart Items:", cart.length);
+/* ================= SAVE CART ================= */
+function saveCart() {
+  localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-// REMOVE ITEM (cart page ke liye)
+/* ================= CART COUNT ================= */
+function updateCartCount() {
+  let count = cart.length;
+
+  // If cart icon exists
+  let cartBox = document.querySelector(".cart-box a");
+  if (cartBox) {
+    cartBox.innerText = `🛒 Cart (${count})`;
+  }
+
+  console.log("Cart Items:", count);
+}
+
+/* ================= REMOVE ITEM ================= */
 function removeFromCart(index) {
   cart.splice(index, 1);
-  localStorage.setItem("cart", JSON.stringify(cart));
+  saveCart();
   updateCartCount();
+
+  // refresh cart page if exists
+  if (typeof renderCart === "function") {
+    renderCart();
+  }
 }
 
-// GET CART ITEMS (cart page use karega)
+/* ================= GET CART ================= */
 function getCart() {
-  return JSON.parse(localStorage.getItem("cart")) || [];
+  return cart;
 }
 
-// CLEAR CART (checkout ke baad use ho sakta hai)
+/* ================= CLEAR CART ================= */
 function clearCart() {
   cart = [];
-  localStorage.setItem("cart", JSON.stringify(cart));
+  saveCart();
   updateCartCount();
+
+  if (typeof renderCart === "function") {
+    renderCart();
+  }
 }
+
+/* ================= CART RENDER (FOR cart.html) ================= */
+function renderCart() {
+  let container = document.getElementById("cart-items");
+  let totalBox = document.getElementById("total");
+
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    total += item.price;
+
+    container.innerHTML += `
+      <div class="cart-item">
+        <span>${item.name} - ₹${item.price}</span>
+        <button onclick="removeFromCart(${index})">Remove</button>
+      </div>
+    `;
+  });
+
+  if (totalBox) {
+    totalBox.innerText = "Total: ₹" + total;
+  }
+}
+
+/* ================= INIT ================= */
+updateCartCount();
