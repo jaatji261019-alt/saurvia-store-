@@ -1,11 +1,12 @@
+// ================= LOAD CART =================
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-/* ================= SAVE CART ================= */
+// ================= SAVE CART =================
 function saveCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-/* ================= ADD TO CART ================= */
+// ================= ADD TO CART =================
 function buyNow(product, price) {
   let existing = cart.find(item => item.name === product);
 
@@ -13,10 +14,10 @@ function buyNow(product, price) {
     existing.qty += 1;
   } else {
     cart.push({
+      id: Date.now(),
       name: product,
       price: price,
-      qty: 1,
-      id: Date.now()
+      qty: 1
     });
   }
 
@@ -26,19 +27,18 @@ function buyNow(product, price) {
   alert(product + " added to cart 🛒");
 }
 
-/* ================= CART COUNT ================= */
+// ================= CART COUNT =================
 function updateCartCount() {
   let count = cart.reduce((sum, item) => sum + item.qty, 0);
 
   let cartBox = document.querySelector(".cart-box a");
+
   if (cartBox) {
     cartBox.innerText = `🛒 Cart (${count})`;
   }
-
-  console.log("Cart Items:", count);
 }
 
-/* ================= REMOVE ITEM ================= */
+// ================= REMOVE ITEM =================
 function removeFromCart(index) {
   cart.splice(index, 1);
   saveCart();
@@ -46,7 +46,7 @@ function removeFromCart(index) {
   renderCart();
 }
 
-/* ================= CLEAR CART ================= */
+// ================= CLEAR CART =================
 function clearCart() {
   cart = [];
   saveCart();
@@ -54,12 +54,27 @@ function clearCart() {
   renderCart();
 }
 
-/* ================= GET CART ================= */
+// ================= CHANGE QUANTITY =================
+function changeQty(index, type) {
+  if (type === "inc") {
+    cart[index].qty++;
+  } else if (type === "dec") {
+    if (cart[index].qty > 1) {
+      cart[index].qty--;
+    }
+  }
+
+  saveCart();
+  updateCartCount();
+  renderCart();
+}
+
+// ================= GET CART =================
 function getCart() {
   return cart;
 }
 
-/* ================= CART RENDER ================= */
+// ================= RENDER CART =================
 function renderCart() {
   let container = document.getElementById("cart-items");
   let totalBox = document.getElementById("total");
@@ -67,8 +82,13 @@ function renderCart() {
   if (!container) return;
 
   container.innerHTML = "";
-
   let total = 0;
+
+  if (cart.length === 0) {
+    container.innerHTML = "<p>Your cart is empty 🛒</p>";
+    if (totalBox) totalBox.innerText = "";
+    return;
+  }
 
   cart.forEach((item, index) => {
     let itemTotal = item.price * item.qty;
@@ -82,6 +102,8 @@ function renderCart() {
         </div>
 
         <div>
+          <button onclick="changeQty(${index}, 'dec')">-</button>
+          <button onclick="changeQty(${index}, 'inc')">+</button>
           <button onclick="removeFromCart(${index})">Remove</button>
         </div>
       </div>
@@ -93,5 +115,8 @@ function renderCart() {
   }
 }
 
-/* ================= INIT ================= */
-updateCartCount();
+// ================= INIT =================
+document.addEventListener("DOMContentLoaded", () => {
+  updateCartCount();
+  renderCart();
+});
