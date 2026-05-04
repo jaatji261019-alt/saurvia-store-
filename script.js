@@ -10,6 +10,8 @@ function saveCart() {
 function buyNow(product, price) {
   price = Number(price);
 
+  if (!product || isNaN(price)) return;
+
   let existing = cart.find(
     item => item.name.toLowerCase() === product.toLowerCase()
   );
@@ -138,9 +140,11 @@ function startSlider() {
 
   let index = 0;
 
-  // First slide ensure active
-  slides.forEach(s => s.classList.remove("active"));
-  slides[0].classList.add("active");
+  // Ensure only first slide active
+  slides.forEach((s, i) => {
+    s.classList.remove("active");
+    if (i === 0) s.classList.add("active");
+  });
 
   setInterval(() => {
     slides[index].classList.remove("active");
