@@ -8,7 +8,11 @@ function saveCart() {
 
 // ================= ADD TO CART =================
 function buyNow(product, price) {
-  let existing = cart.find(item => item.name === product);
+  price = Number(price);
+
+  let existing = cart.find(
+    item => item.name.toLowerCase() === product.toLowerCase()
+  );
 
   if (existing) {
     existing.qty += 1;
@@ -40,6 +44,8 @@ function updateCartCount() {
 
 // ================= REMOVE ITEM =================
 function removeFromCart(index) {
+  if (index < 0 || index >= cart.length) return;
+
   cart.splice(index, 1);
   saveCart();
   updateCartCount();
@@ -48,19 +54,26 @@ function removeFromCart(index) {
 
 // ================= CLEAR CART =================
 function clearCart() {
-  cart = [];
-  saveCart();
-  updateCartCount();
-  renderCart();
+  if (confirm("Clear entire cart?")) {
+    cart = [];
+    saveCart();
+    updateCartCount();
+    renderCart();
+  }
 }
 
 // ================= CHANGE QUANTITY =================
 function changeQty(index, type) {
+  if (!cart[index]) return;
+
   if (type === "inc") {
     cart[index].qty++;
   } else if (type === "dec") {
     if (cart[index].qty > 1) {
       cart[index].qty--;
+    } else {
+      removeFromCart(index);
+      return;
     }
   }
 
@@ -94,20 +107,23 @@ function renderCart() {
     let itemTotal = item.price * item.qty;
     total += itemTotal;
 
-    container.innerHTML += `
-      <div class="cart-item">
-        <div>
-          <strong>${item.name}</strong><br>
-          ₹${item.price} × ${item.qty} = ₹${itemTotal}
-        </div>
+    let div = document.createElement("div");
+    div.className = "cart-item";
 
-        <div>
-          <button onclick="changeQty(${index}, 'dec')">-</button>
-          <button onclick="changeQty(${index}, 'inc')">+</button>
-          <button onclick="removeFromCart(${index})">Remove</button>
-        </div>
+    div.innerHTML = `
+      <div>
+        <strong>${item.name}</strong><br>
+        ₹${item.price} × ${item.qty} = ₹${itemTotal}
+      </div>
+
+      <div>
+        <button onclick="changeQty(${index}, 'dec')">-</button>
+        <button onclick="changeQty(${index}, 'inc')">+</button>
+        <button onclick="removeFromCart(${index})">Remove</button>
       </div>
     `;
+
+    container.appendChild(div);
   });
 
   if (totalBox) {
@@ -115,8 +131,23 @@ function renderCart() {
   }
 }
 
+// ================= AUTO SLIDER =================
+function startSlider() {
+  let slides = document.querySelectorAll(".slide");
+  if (!slides.length) return;
+
+  let index = 0;
+
+  setInterval(() => {
+    slides[index].classList.remove("active");
+    index = (index + 1) % slides.length;
+    slides[index].classList.add("active");
+  }, 3000);
+}
+
 // ================= INIT =================
 document.addEventListener("DOMContentLoaded", () => {
   updateCartCount();
   renderCart();
+  startSlider(); // 🔥 slider auto start
 });
