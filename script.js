@@ -138,6 +138,10 @@ function startSlider() {
 
   let index = 0;
 
+  // First slide ensure active
+  slides.forEach(s => s.classList.remove("active"));
+  slides[0].classList.add("active");
+
   setInterval(() => {
     slides[index].classList.remove("active");
     index = (index + 1) % slides.length;
@@ -149,5 +153,5 @@ function startSlider() {
 document.addEventListener("DOMContentLoaded", () => {
   updateCartCount();
   renderCart();
-  startSlider(); // 🔥 slider auto start
+  startSlider();
 });
