@@ -1,120 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Saurvia Store</title>
+  <meta charset="UTF-8">
+  <title>Sauravia Store</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- TOP HEADER -->
-<header class="top-header">
-  <h1 class="logo">SAURAVIA</h1>
+<!-- 🔥 SIDEBAR -->
+<div class="sidebar">
+  <h2>SAURAVIA</h2>
+  <a href="#">Home</a>
+  <a href="shop.html">Shop</a>
+  <a href="cart.html">Cart</a>
+  <a href="#">Checkout</a>
+  <a href="#">Contact</a>
+  <a href="#">About</a>
+</div>
 
-  <div class="search-box">
-    <input type="text" placeholder="Search skincare, perfumes, haircare...">
-  </div>
+<!-- 🔥 MAIN CONTENT -->
+<div class="main">
 
-  <div class="cart-box">
-    <a href="cart.html">🛒 Cart</a>
-  </div>
-</header>
-
-<!-- HERO SLIDER -->
-<section class="slider">
-
-  <div class="slide active" style="background-image:url('images/skincare.jpg')">
-    <div class="overlay"></div>
-    <div class="content">
-      <h2>Glow With Premium Skincare ✨</h2>
-      <p>Best products for your daily skincare routine</p>
-      <a href="shop.html" class="btn">Shop Now</a>
+  <!-- 🔥 HEADER -->
+  <header class="top-header">
+    <div class="center-box">
+      <h1 class="logo">SAURAVIA</h1>
+      <input type="text" placeholder="Search skincare, perfumes, haircare...">
     </div>
-  </div>
+  </header>
 
-  <div class="slide" style="background-image:url('images/perfume.jpg')">
-    <div class="overlay"></div>
-    <div class="content">
-      <h2>Luxury Perfumes 💎</h2>
-      <p>Smell elegant & feel confident</p>
-      <a href="shop.html" class="btn">Shop Now</a>
+  <!-- 🔥 SLIDER -->
+  <section class="slider">
+
+    <div class="slide active" style="background-image:url('images/skincare.jpg')">
+      <div class="overlay"></div>
+      <div class="content">
+        <h2>Glow With Premium Skincare ✨</h2>
+        <p>Best products for your daily routine</p>
+        <a href="shop.html" class="btn">Shop Now</a>
+      </div>
     </div>
-  </div>
 
-  <div class="slide" style="background-image:url('images/haircare.jpg')">
-    <div class="overlay"></div>
-    <div class="content">
-      <h2>Strong & Healthy Hair 💇‍♀️</h2>
-      <p>Best haircare products for shine & strength</p>
-      <a href="shop.html" class="btn">Shop Now</a>
+    <div class="slide" style="background-image:url('images/perfume.jpg')">
+      <div class="overlay"></div>
+      <div class="content">
+        <h2>Luxury Perfumes 💎</h2>
+        <p>Smell elegant & feel confident</p>
+        <a href="shop.html" class="btn">Shop Now</a>
+      </div>
     </div>
-  </div>
 
-</section>
+    <div class="slide" style="background-image:url('images/haircare.jpg')">
+      <div class="overlay"></div>
+      <div class="content">
+        <h2>Strong & Healthy Hair 💇‍♀️</h2>
+        <p>Shine & strength products</p>
+        <a href="shop.html" class="btn">Shop Now</a>
+      </div>
+    </div>
 
-<!-- CATEGORY SECTION -->
-<section class="categories">
+  </section>
 
-  <div class="cat-card">
-    <img src="images/skincare.jpg">
-    <h3>Skincare</h3>
-    <a href="shop.html">Explore</a>
-  </div>
-
-  <div class="cat-card">
-    <img src="images/perfume.jpg">
-    <h3>Perfumes</h3>
-    <a href="shop.html">Explore</a>
-  </div>
-
-  <div class="cat-card">
-    <img src="images/haircare.jpg">
-    <h3>Hair Care</h3>
-    <a href="shop.html">Explore</a>
-  </div>
-
-</section>
-
-<!-- FEATURE PRODUCTS -->
-<section class="products">
-
-  <div class="product">
-    <img src="images/serum.jpg">
-    <h2>Face Serum</h2>
-    <p>₹299</p>
-    <button onclick="buyNow('Face Serum', 299)">Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <img src="images/perfume.jpg">
-    <h2>Perfume</h2>
-    <p>₹499</p>
-    <button onclick="buyNow('Perfume', 499)">Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <img src="images/cream.jpg">
-    <h2>Skin Cream</h2>
-    <p>₹199</p>
-    <button onclick="buyNow('Skin Cream', 199)">Add to Cart</button>
-  </div>
-
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-
-  <div class="footer-links">
-    <a href="index.html">Home</a>
-    <a href="shop.html">Shop</a>
-    <a href="cart.html">Cart</a>
-    <a href="#">Contact</a>
-    <a href="#">About</a>
-  </div>
-
-  <p>© 2026 Saurvia Store | All Rights Reserved</p>
-
-</footer>
+</div>
 
 <script src="script.js"></script>
 
