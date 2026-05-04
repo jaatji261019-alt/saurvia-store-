@@ -7,15 +7,39 @@
 
 <body>
 
-<h1>Saurvia Store</h1>
-
-<div class="product">
-  <img src="images/serum.jpg">
-  <h2>Face Serum</h2>
-  <p>₹299</p>
-  <button onclick="buyNow('Face Serum', 299)">Buy Now</button>
+<!-- Navbar -->
+<div class="navbar">
+  <h2>Saurvia</h2>
+  <input type="text" placeholder="Search for products...">
 </div>
 
+<!-- Products Section -->
+<div class="products">
+
+  <div class="product">
+    <img src="images/serum.jpg">
+    <h2>Face Serum</h2>
+    <p>₹299</p>
+    <button onclick="buyNow('Face Serum', 299)">Buy Now</button>
+  </div>
+
+  <div class="product">
+    <img src="images/perfume.jpg">
+    <h2>Perfume</h2>
+    <p>₹499</p>
+    <button onclick="buyNow('Perfume', 499)">Buy Now</button>
+  </div>
+
+  <div class="product">
+    <img src="images/cream.jpg">
+    <h2>Skin Cream</h2>
+    <p>₹199</p>
+    <button onclick="buyNow('Skin Cream', 199)">Buy Now</button>
+  </div>
+
+</div>
+
+<!-- Script -->
 <script src="script.js"></script>
 
 </body>
