@@ -12,70 +12,70 @@
   <h1 class="logo">SAURAVIA</h1>
 
   <div class="search-box">
-    <input type="text" placeholder="Search for products...">
+    <input type="text" placeholder="Search skincare, perfumes, haircare...">
+  </div>
+
+  <div class="cart-box">
+    <a href="cart.html">🛒 Cart</a>
   </div>
 </div>
 
-<!-- HERO / HOME SECTION -->
-<div class="hero">
-  <h2>Welcome to Saurvia Store</h2>
-  <p>Skincare • Perfumes • Hair Care • Makeup</p>
+<!-- HERO SLIDER -->
+<div class="slider">
 
-  <a href="#categories" class="shop-btn">Shop Now</a>
-</div>
-
-<!-- MAIN SECTION -->
-<div class="main">
-
-  <!-- SIDEBAR MENU -->
-  <div class="sidebar">
-    <h3>Menu</h3>
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#categories">Shop</a></li>
-      <li><a href="cart.html">Cart</a></li>
-      <li>Wishlist</li>
-      <li>Checkout</li>
-      <li>Contact</li>
-      <li>About</li>
-      <li>Blog</li>
-    </ul>
-
-    <h3>Categories</h3>
-    <ul>
-      <li><a href="#skincare">Skincare</a></li>
-      <li><a href="#perfume">Perfumes</a></li>
-      <li><a href="#haircare">Hair Care</a></li>
-      <li>Makeup</li>
-    </ul>
+  <div class="slide active" style="background-image:url('images/skincare.jpg')">
+    <div class="overlay"></div>
+    <div class="content">
+      <h2>Premium Skincare Collection</h2>
+      <p>Glow your skin with best products</p>
+      <a href="shop.html" class="btn">Shop Now</a>
+    </div>
   </div>
 
-  <!-- PRODUCTS -->
-  <div class="products" id="categories">
-
-    <div class="category-card" id="skincare">
-      <img src="images/skincare.jpg">
-      <h2>Skincare</h2>
-      <a href="shop.html">Shop Now</a>
+  <div class="slide" style="background-image:url('images/perfume.jpg')">
+    <div class="overlay"></div>
+    <div class="content">
+      <h2>Luxury Perfumes</h2>
+      <p>Smell rich, feel confident</p>
+      <a href="shop.html" class="btn">Shop Now</a>
     </div>
+  </div>
 
-    <div class="category-card" id="perfume">
-      <img src="images/perfume.jpg">
-      <h2>Perfumes</h2>
-      <a href="shop.html">Shop Now</a>
+  <div class="slide" style="background-image:url('images/haircare.jpg')">
+    <div class="overlay"></div>
+    <div class="content">
+      <h2>Hair Care Essentials</h2>
+      <p>Strong & healthy hair products</p>
+      <a href="shop.html" class="btn">Shop Now</a>
     </div>
-
-    <div class="category-card" id="haircare">
-      <img src="images/haircare.jpg">
-      <h2>Hair Care</h2>
-      <a href="shop.html">Shop Now</a>
-    </div>
-
   </div>
 
 </div>
 
-<!-- PRODUCT SECTION (optional same page products) -->
+<!-- CATEGORY SECTION -->
+<div class="categories">
+
+  <div class="cat-card">
+    <img src="images/skincare.jpg">
+    <h3>Skincare</h3>
+    <a href="shop.html">Shop Now</a>
+  </div>
+
+  <div class="cat-card">
+    <img src="images/perfume.jpg">
+    <h3>Perfumes</h3>
+    <a href="shop.html">Shop Now</a>
+  </div>
+
+  <div class="cat-card">
+    <img src="images/haircare.jpg">
+    <h3>Hair Care</h3>
+    <a href="shop.html">Shop Now</a>
+  </div>
+
+</div>
+
+<!-- FEATURE PRODUCTS -->
 <div class="products">
 
   <div class="product">
@@ -105,13 +105,10 @@
 <div class="footer">
   <div class="footer-links">
     <a href="#">Home</a>
-    <a href="#categories">Shop</a>
+    <a href="shop.html">Shop</a>
     <a href="cart.html">Cart</a>
-    <a href="#">Wishlist</a>
-    <a href="#">Checkout</a>
     <a href="#">Contact</a>
     <a href="#">About</a>
-    <a href="#">Blog</a>
   </div>
 
   <p>© 2026 Saurvia Store | All Rights Reserved</p>
