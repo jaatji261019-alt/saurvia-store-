@@ -14,11 +14,14 @@
   <div class="search-box">
     <input type="text" placeholder="Search for products...">
   </div>
+</div>
 
-  <!-- CART BUTTON -->
-  <div class="cart-box">
-    <a href="cart.html">🛒 Cart (<span id="cart-count">0</span>)</a>
-  </div>
+<!-- HERO / HOME SECTION -->
+<div class="hero">
+  <h2>Welcome to Saurvia Store</h2>
+  <p>Skincare • Perfumes • Hair Care • Makeup</p>
+
+  <a href="#categories" class="shop-btn">Shop Now</a>
 </div>
 
 <!-- MAIN SECTION -->
@@ -28,9 +31,9 @@
   <div class="sidebar">
     <h3>Menu</h3>
     <ul>
-      <li>Home</li>
-      <li>Shop</li>
-      <li>Cart</li>
+      <li><a href="#">Home</a></li>
+      <li><a href="#categories">Shop</a></li>
+      <li><a href="cart.html">Cart</a></li>
       <li>Wishlist</li>
       <li>Checkout</li>
       <li>Contact</li>
@@ -40,37 +43,60 @@
 
     <h3>Categories</h3>
     <ul>
-      <li>Skincare</li>
-      <li>Perfumes</li>
-      <li>Hair Care</li>
+      <li><a href="#skincare">Skincare</a></li>
+      <li><a href="#perfume">Perfumes</a></li>
+      <li><a href="#haircare">Hair Care</a></li>
       <li>Makeup</li>
     </ul>
   </div>
 
   <!-- PRODUCTS -->
-  <div class="products">
+  <div class="products" id="categories">
 
-    <div class="product">
-      <img src="images/serum.jpg">
-      <h2>Face Serum</h2>
-      <p>₹299</p>
-      <button onclick="buyNow('Face Serum', 299)">Add to Cart</button>
+    <div class="category-card" id="skincare">
+      <img src="images/skincare.jpg">
+      <h2>Skincare</h2>
+      <a href="shop.html">Shop Now</a>
     </div>
 
-    <div class="product">
+    <div class="category-card" id="perfume">
       <img src="images/perfume.jpg">
-      <h2>Perfume</h2>
-      <p>₹499</p>
-      <button onclick="buyNow('Perfume', 499)">Add to Cart</button>
+      <h2>Perfumes</h2>
+      <a href="shop.html">Shop Now</a>
     </div>
 
-    <div class="product">
-      <img src="images/cream.jpg">
-      <h2>Skin Cream</h2>
-      <p>₹199</p>
-      <button onclick="buyNow('Skin Cream', 199)">Add to Cart</button>
+    <div class="category-card" id="haircare">
+      <img src="images/haircare.jpg">
+      <h2>Hair Care</h2>
+      <a href="shop.html">Shop Now</a>
     </div>
 
+  </div>
+
+</div>
+
+<!-- PRODUCT SECTION (optional same page products) -->
+<div class="products">
+
+  <div class="product">
+    <img src="images/serum.jpg">
+    <h2>Face Serum</h2>
+    <p>₹299</p>
+    <button onclick="buyNow('Face Serum', 299)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="images/perfume.jpg">
+    <h2>Perfume</h2>
+    <p>₹499</p>
+    <button onclick="buyNow('Perfume', 499)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="images/cream.jpg">
+    <h2>Skin Cream</h2>
+    <p>₹199</p>
+    <button onclick="buyNow('Skin Cream', 199)">Add to Cart</button>
   </div>
 
 </div>
@@ -79,7 +105,7 @@
 <div class="footer">
   <div class="footer-links">
     <a href="#">Home</a>
-    <a href="#">Shop</a>
+    <a href="#categories">Shop</a>
     <a href="cart.html">Cart</a>
     <a href="#">Wishlist</a>
     <a href="#">Checkout</a>
