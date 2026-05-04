@@ -1,0 +1,15 @@
+body {
+  font-family: Arial;
+  text-align: center;
+}
+
+.product {
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 200px;
+  margin: auto;
+}
+
+img {
+  width: 100%;
+}
