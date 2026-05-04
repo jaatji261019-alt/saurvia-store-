@@ -5,36 +5,89 @@ body {
   background: #f1f3f6;
 }
 
-/* Navbar */
+/* NAVBAR */
 .navbar {
   background: #2874f0;
   color: white;
-  padding: 15px 20px;
+  padding: 12px 20px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .navbar h2 {
   margin: 0;
 }
 
-.navbar input {
-  width: 50%;
-  padding: 8px;
-  border: none;
-  border-radius: 3px;
+/* Nav Links */
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-/* Product Grid */
+.nav-links a {
+  color: white;
+  margin: 5px 10px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+/* Search */
+.navbar input {
+  padding: 7px;
+  border-radius: 3px;
+  border: none;
+  width: 250px;
+}
+
+/* MAIN LAYOUT */
+.main {
+  display: flex;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 200px;
+  background: white;
+  padding: 15px;
+  border-right: 1px solid #ddd;
+  min-height: 100vh;
+}
+
+.sidebar h3 {
+  margin-top: 0;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 10px 0;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.sidebar li:hover {
+  color: #2874f0;
+}
+
+/* PRODUCTS AREA */
 .products {
+  flex: 1;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 15px;
   padding: 20px;
 }
 
-/* Product Card */
+/* PRODUCT CARD */
 .product {
   background: white;
   border-radius: 5px;
@@ -44,29 +97,29 @@ body {
 }
 
 .product:hover {
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  box-shadow: 0 0 12px rgba(0,0,0,0.15);
 }
 
-/* Image */
+/* IMAGE */
 .product img {
   width: 100%;
   height: 200px;
   object-fit: cover;
 }
 
-/* Product Name */
+/* NAME */
 .product h2 {
-  font-size: 18px;
+  font-size: 16px;
   margin: 10px 0;
 }
 
-/* Price */
+/* PRICE */
 .product p {
   color: green;
   font-weight: bold;
 }
 
-/* Button */
+/* BUTTON */
 .product button {
   background: orange;
   border: none;
@@ -79,4 +132,30 @@ body {
 
 .product button:hover {
   background: darkorange;
+}
+
+/* FOOTER */
+.footer {
+  background: #172337;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .main {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+  }
+
+  .navbar input {
+    width: 100%;
+    margin-top: 10px;
+  }
 }
