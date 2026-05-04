@@ -14,6 +14,11 @@
   <div class="search-box">
     <input type="text" placeholder="Search for products...">
   </div>
+
+  <!-- CART BUTTON -->
+  <div class="cart-box">
+    <a href="cart.html">🛒 Cart (<span id="cart-count">0</span>)</a>
+  </div>
 </div>
 
 <!-- MAIN SECTION -->
@@ -49,21 +54,21 @@
       <img src="images/serum.jpg">
       <h2>Face Serum</h2>
       <p>₹299</p>
-      <button onclick="buyNow('Face Serum', 299)">Buy Now</button>
+      <button onclick="buyNow('Face Serum', 299)">Add to Cart</button>
     </div>
 
     <div class="product">
       <img src="images/perfume.jpg">
       <h2>Perfume</h2>
       <p>₹499</p>
-      <button onclick="buyNow('Perfume', 499)">Buy Now</button>
+      <button onclick="buyNow('Perfume', 499)">Add to Cart</button>
     </div>
 
     <div class="product">
       <img src="images/cream.jpg">
       <h2>Skin Cream</h2>
       <p>₹199</p>
-      <button onclick="buyNow('Skin Cream', 199)">Buy Now</button>
+      <button onclick="buyNow('Skin Cream', 199)">Add to Cart</button>
     </div>
 
   </div>
@@ -75,7 +80,7 @@
   <div class="footer-links">
     <a href="#">Home</a>
     <a href="#">Shop</a>
-    <a href="#">Cart</a>
+    <a href="cart.html">Cart</a>
     <a href="#">Wishlist</a>
     <a href="#">Checkout</a>
     <a href="#">Contact</a>
