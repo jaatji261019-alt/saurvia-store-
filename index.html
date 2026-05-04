@@ -2,25 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sauravia Store</title>
+
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <!-- 🔥 SIDEBAR -->
-<div class="sidebar">
+<aside class="sidebar">
   <h2>SAURAVIA</h2>
-  <a href="#">Home</a>
-  <a href="shop.html">Shop</a>
-  <a href="cart.html">Cart</a>
-  <a href="#">Checkout</a>
-  <a href="#">Contact</a>
-  <a href="#">About</a>
-</div>
+  <nav>
+    <a href="#">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="cart.html">Cart</a>
+    <a href="#">Checkout</a>
+    <a href="#">Contact</a>
+    <a href="#">About</a>
+  </nav>
+</aside>
 
-<!-- 🔥 MAIN CONTENT -->
-<div class="main">
+<!-- 🔥 MAIN -->
+<main class="main">
 
   <!-- 🔥 HEADER -->
   <header class="top-header">
@@ -33,7 +38,8 @@
   <!-- 🔥 SLIDER -->
   <section class="slider">
 
-    <div class="slide active" style="background-image:url('images/skincare.jpg')">
+    <!-- Slide 1 -->
+    <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9')">
       <div class="overlay"></div>
       <div class="content">
         <h2>Glow With Premium Skincare ✨</h2>
@@ -42,7 +48,8 @@
       </div>
     </div>
 
-    <div class="slide" style="background-image:url('images/perfume.jpg')">
+    <!-- Slide 2 -->
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1596462502278-27bfdc403348')">
       <div class="overlay"></div>
       <div class="content">
         <h2>Luxury Perfumes 💎</h2>
@@ -51,7 +58,8 @@
       </div>
     </div>
 
-    <div class="slide" style="background-image:url('images/haircare.jpg')">
+    <!-- Slide 3 -->
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1585238342028-78d387f4a707')">
       <div class="overlay"></div>
       <div class="content">
         <h2>Strong & Healthy Hair 💇‍♀️</h2>
@@ -62,8 +70,9 @@
 
   </section>
 
-</div>
+</main>
 
+<!-- JS -->
 <script src="script.js"></script>
 
 </body>
