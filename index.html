@@ -13,7 +13,7 @@
 <div class="menu-btn" onclick="toggleSidebar()">☰</div>
 
 <!-- 🔥 SIDEBAR -->
-<aside class="sidebar" id="sidebar">
+<aside class="sidebar">
   <h2>SAURVIA</h2>
 
   <!-- NAV -->
@@ -32,25 +32,25 @@
   </div>
 
   <!-- SIDEBAR CATEGORIES -->
-  <div class="sidebar-categories" id="catMenu">
+  <div class="sidebar-categories">
 
     <div class="side-cat" onclick="location.href='shop.html'">
-      <img src="images/skincare.jpg">
+      <img src="images/skincare.jpg" alt="Skincare">
       <span>Skincare</span>
     </div>
 
     <div class="side-cat" onclick="location.href='shop.html'">
-      <img src="images/perfume.jpg">
+      <img src="images/perfume.jpg" alt="Perfume">
       <span>Perfume</span>
     </div>
 
     <div class="side-cat" onclick="location.href='shop.html'">
-      <img src="images/haircare.jpg">
+      <img src="images/haircare.jpg" alt="Haircare">
       <span>Haircare</span>
     </div>
 
     <div class="side-cat" onclick="location.href='shop.html'">
-      <img src="images/beauty.jpg">
+      <img src="images/beauty.jpg" alt="Beauty">
       <span>Beauty</span>
     </div>
 
@@ -83,7 +83,7 @@
 
     <img 
       src="images/skincare-main.jpg" 
-      alt="Skincare"
+      alt="Skincare Product"
       onerror="this.src='https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9';"
     >
 
@@ -99,34 +99,35 @@
   <section class="categories">
     <div class="cat-track">
 
+      <!-- ORIGINAL -->
       <div class="category">
-        <img src="images/skincare.jpg">
+        <img src="images/skincare.jpg" alt="Skincare">
         <p>Skincare</p>
       </div>
 
       <div class="category">
-        <img src="images/perfume.jpg">
+        <img src="images/perfume.jpg" alt="Perfume">
         <p>Perfume</p>
       </div>
 
       <div class="category">
-        <img src="images/haircare.jpg">
+        <img src="images/haircare.jpg" alt="Haircare">
         <p>Haircare</p>
       </div>
 
       <div class="category">
-        <img src="images/beauty.jpg">
+        <img src="images/beauty.jpg" alt="Beauty">
         <p>Beauty</p>
       </div>
 
-      <!-- Duplicate for smooth scroll -->
+      <!-- DUPLICATE (smooth infinite scroll ke liye) -->
       <div class="category">
-        <img src="images/skincare.jpg">
+        <img src="images/skincare.jpg" alt="">
         <p>Skincare</p>
       </div>
 
       <div class="category">
-        <img src="images/perfume.jpg">
+        <img src="images/perfume.jpg" alt="">
         <p>Perfume</p>
       </div>
 
@@ -167,6 +168,7 @@
 
     <div class="product">
       <img src="images/serum.jpg"
+        alt="Face Serum"
         onerror="this.src='https://via.placeholder.com/300x200?text=Serum';">
       <h3>Face Serum</h3>
       <p>₹299</p>
@@ -175,6 +177,7 @@
 
     <div class="product">
       <img src="images/perfume.jpg"
+        alt="Perfume"
         onerror="this.src='https://via.placeholder.com/300x200?text=Perfume';">
       <h3>Perfume</h3>
       <p>₹499</p>
@@ -183,6 +186,7 @@
 
     <div class="product">
       <img src="images/cream.jpg"
+        alt="Skin Cream"
         onerror="this.src='https://via.placeholder.com/300x200?text=Cream';">
       <h3>Skin Cream</h3>
       <p>₹199</p>
