@@ -13,11 +13,25 @@ body {
   overflow-x: hidden;
 }
 
+/* ================= MENU BUTTON ================= */
+.menu-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 26px;
+  cursor: pointer;
+  z-index: 2000;
+  background: #ff5722;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
 /* ================= SIDEBAR ================= */
 .sidebar {
   position: fixed;
   top: 0;
-  left: 0;
+  left: -260px;
   width: 230px;
   height: 100vh;
   background: linear-gradient(180deg, #ff9800, #ff5722);
@@ -25,6 +39,12 @@ body {
   color: white;
   z-index: 1000;
   overflow-y: auto;
+  transition: 0.3s;
+}
+
+/* OPEN SIDEBAR */
+.sidebar.active {
+  left: 0;
 }
 
 .sidebar h2 {
@@ -59,11 +79,6 @@ body {
   text-align: center;
   cursor: pointer;
   font-weight: bold;
-  transition: 0.3s;
-}
-
-.cat-toggle:hover {
-  background: rgba(255,255,255,0.3);
 }
 
 /* SIDEBAR CATEGORIES */
@@ -72,7 +87,6 @@ body {
   margin-top: 10px;
 }
 
-/* JS toggle ke liye */
 .sidebar-categories.active {
   display: block;
 }
@@ -82,7 +96,6 @@ body {
   align-items: center;
   margin: 12px 0;
   cursor: pointer;
-  transition: 0.3s;
 }
 
 .side-cat img {
@@ -91,20 +104,11 @@ body {
   border-radius: 50%;
   object-fit: cover;
   margin-right: 10px;
-  border: 2px solid rgba(255,255,255,0.5);
-}
-
-.side-cat span {
-  font-size: 14px;
-}
-
-.side-cat:hover {
-  transform: translateX(5px);
 }
 
 /* ================= MAIN ================= */
 .main {
-  margin-left: 230px;
+  transition: 0.3s;
 }
 
 /* ================= HEADER ================= */
@@ -120,7 +124,7 @@ body {
 
 /* LOGO */
 .logo {
-  font-size: 40px;
+  font-size: 42px;
   letter-spacing: 6px;
   font-weight: bold;
   text-align: center;
@@ -129,19 +133,13 @@ body {
 /* SEARCH */
 .center-box input {
   margin-top: 10px;
-  padding: 12px 20px;
-  width: 400px;
+  padding: 14px 25px;
+  width: 420px;
   max-width: 90%;
   border-radius: 30px;
   border: 1px solid #ccc;
   outline: none;
   font-size: 16px;
-  transition: 0.3s;
-}
-
-.center-box input:focus {
-  border-color: #ff5722;
-  box-shadow: 0 0 5px rgba(255,87,34,0.4);
 }
 
 /* CART */
@@ -168,7 +166,6 @@ body {
   width: 100%;
   height: 360px;
   object-fit: cover;
-  display: block;
 }
 
 .hero-text {
@@ -187,10 +184,6 @@ body {
   font-size: 34px;
 }
 
-.hero-text p {
-  margin-top: 10px;
-}
-
 /* BUTTON */
 .btn {
   display: inline-block;
@@ -200,12 +193,6 @@ body {
   border-radius: 30px;
   color: white;
   text-decoration: none;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.btn:hover {
-  transform: scale(1.08);
 }
 
 /* ================= CATEGORY SLIDER ================= */
@@ -227,25 +214,12 @@ body {
 .category {
   min-width: 100px;
   text-align: center;
-  cursor: pointer;
-  transition: 0.3s;
 }
 
 .category img {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #eee;
-}
-
-.category p {
-  margin-top: 8px;
-  font-size: 14px;
-}
-
-.category:hover {
-  transform: scale(1.1);
 }
 
 /* ANIMATION */
@@ -294,36 +268,12 @@ body {
   background: #fff;
   padding: 15px;
   border-radius: 10px;
-  transition: 0.3s;
-}
-
-.product:hover {
-  box-shadow: 0 0 10px rgba(0,0,0,0.15);
 }
 
 .product img {
   width: 100%;
   height: 180px;
   object-fit: cover;
-}
-
-.product h3 {
-  margin-top: 10px;
-}
-
-.product p {
-  color: green;
-  font-weight: bold;
-}
-
-.product button {
-  margin-top: 10px;
-  background: orange;
-  border: none;
-  padding: 10px;
-  width: 100%;
-  cursor: pointer;
-  border-radius: 5px;
 }
 
 /* ================= TOAST ================= */
@@ -337,7 +287,6 @@ body {
   border-radius: 8px;
   opacity: 0;
   transition: 0.3s;
-  z-index: 9999;
 }
 
 .toast.show {
@@ -347,22 +296,8 @@ body {
 /* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
 
-  .sidebar {
-    position: relative;
-    width: 100%;
-    height: auto;
-  }
-
-  .main {
-    margin-left: 0;
-  }
-
   .logo {
     font-size: 26px;
-  }
-
-  .center-box input {
-    width: 90%;
   }
 
   .slider {
