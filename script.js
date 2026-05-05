@@ -131,18 +131,24 @@ function renderCart() {
 }
 
 // ================= AUTO SLIDER =================
+let sliderInterval;
+
 function startSlider() {
   let slides = document.querySelectorAll(".slide");
   if (!slides.length) return;
 
   let index = 0;
 
+  // Reset slides
   slides.forEach((s, i) => {
     s.classList.remove("active");
     if (i === 0) s.classList.add("active");
   });
 
-  setInterval(() => {
+  // Clear old interval (important fix)
+  if (sliderInterval) clearInterval(sliderInterval);
+
+  sliderInterval = setInterval(() => {
     slides[index].classList.remove("active");
     index = (index + 1) % slides.length;
     slides[index].classList.add("active");
@@ -151,7 +157,7 @@ function startSlider() {
 
 // ================= SIDEBAR TOGGLE =================
 function toggleSidebar() {
-  let sidebar = document.getElementById("sidebar");
+  let sidebar = document.querySelector(".sidebar");
   if (sidebar) {
     sidebar.classList.toggle("active");
   }
@@ -166,26 +172,31 @@ function toggleCategories() {
 }
 
 // ================= TOAST MESSAGE =================
+let currentToast = null;
+
 function showToast(message) {
+  // Remove old toast
+  if (currentToast) currentToast.remove();
+
   let toast = document.createElement("div");
   toast.className = "toast";
   toast.innerText = message;
 
   document.body.appendChild(toast);
+  currentToast = toast;
 
-  setTimeout(() => {
-    toast.classList.add("show");
-  }, 100);
+  setTimeout(() => toast.classList.add("show"), 100);
 
   setTimeout(() => {
     toast.classList.remove("show");
     setTimeout(() => toast.remove(), 300);
+    currentToast = null;
   }, 2000);
 }
 
 // ================= CLOSE SIDEBAR ON OUTSIDE CLICK =================
 document.addEventListener("click", function (e) {
-  let sidebar = document.getElementById("sidebar");
+  let sidebar = document.querySelector(".sidebar");
   let menuBtn = document.querySelector(".menu-btn");
 
   if (!sidebar || !menuBtn) return;
