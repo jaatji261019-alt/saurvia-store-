@@ -160,17 +160,20 @@ body {
   border-radius: 10px;
 }
 
-/* ================= TOP CATEGORIES ================= */
+/* ================= CATEGORY SLIDER ================= */
 .categories {
+  overflow: hidden;
+  margin: 20px;
+}
+
+.cat-track {
   display: flex;
-  justify-content: space-around;
-  padding: 20px;
-  background: #fff;
-  margin: 0 20px;
-  border-radius: 10px;
+  gap: 25px;
+  animation: scrollCat 15s linear infinite;
 }
 
 .category {
+  min-width: 100px;
   text-align: center;
   cursor: pointer;
   transition: 0.3s;
@@ -191,6 +194,21 @@ body {
 
 .category:hover {
   transform: scale(1.1);
+}
+
+/* 🔥 SCROLL ANIMATION */
+@keyframes scrollCat {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* hover pe stop */
+.cat-track:hover {
+  animation-play-state: paused;
 }
 
 /* ================= SLIDER ================= */
@@ -297,7 +315,6 @@ body {
   font-weight: bold;
 }
 
-/* BUTTON */
 .product button {
   background: orange;
   border: none;
@@ -331,10 +348,5 @@ body {
 
   .hero-banner img {
     height: 250px;
-  }
-
-  .categories {
-    flex-wrap: wrap;
-    gap: 15px;
   }
 }
