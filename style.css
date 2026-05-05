@@ -30,6 +30,8 @@ body {
 .sidebar h2 {
   text-align: center;
   margin-bottom: 20px;
+  font-size: 24px;
+  letter-spacing: 3px;
 }
 
 .sidebar a {
@@ -46,9 +48,21 @@ body {
   background: rgba(255,255,255,0.2);
 }
 
-/* ================= SIDEBAR CATEGORY ================= */
+/* ================= CATEGORY TOGGLE ================= */
+.cat-toggle {
+  margin-top: 15px;
+  padding: 10px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* SIDEBAR CATEGORIES */
 .sidebar-categories {
-  margin-top: 20px;
+  display: none;
+  margin-top: 10px;
 }
 
 .side-cat {
@@ -56,6 +70,7 @@ body {
   align-items: center;
   margin: 12px 0;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 .side-cat img {
@@ -66,6 +81,10 @@ body {
   margin-right: 10px;
 }
 
+.side-cat:hover {
+  transform: translateX(5px);
+}
+
 /* ================= MAIN ================= */
 .main {
   margin-left: 230px;
@@ -73,7 +92,7 @@ body {
 
 /* ================= HEADER ================= */
 .top-header {
-  height: 110px;
+  height: 120px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -81,9 +100,29 @@ body {
   border-bottom: 1px solid #eee;
 }
 
+/* LOGO */
 .logo {
-  font-size: 28px;
-  margin-bottom: 10px;
+  font-size: 38px;
+  letter-spacing: 6px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* SEARCH */
+.center-box input {
+  margin-top: 10px;
+  padding: 12px 20px;
+  width: 400px;
+  max-width: 90%;
+  border-radius: 30px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 16px;
+}
+
+.center-box input:focus {
+  border-color: #ff5722;
+  box-shadow: 0 0 5px rgba(255,87,34,0.4);
 }
 
 /* CART */
@@ -108,7 +147,7 @@ body {
 
 .hero-banner img {
   width: 100%;
-  height: 350px;
+  height: 360px;
   object-fit: cover;
 }
 
@@ -117,10 +156,36 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.5);
   color: white;
-  padding: 20px;
-  border-radius: 10px;
+  padding: 25px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.hero-text h1 {
+  font-size: 34px;
+}
+
+.hero-text p {
+  margin-top: 10px;
+}
+
+/* BUTTON */
+.btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 12px 25px;
+  background: linear-gradient(45deg, #ff9800, #ff5722);
+  border-radius: 30px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.08);
 }
 
 /* ================= CATEGORY SLIDER ================= */
@@ -136,13 +201,13 @@ body {
   display: flex;
   gap: 30px;
   width: max-content;
-  animation: scrollCat 20s linear infinite;
+  animation: scrollCat 18s linear infinite;
 }
 
-/* CATEGORY ITEM */
 .category {
   min-width: 100px;
   text-align: center;
+  cursor: pointer;
 }
 
 .category img {
@@ -158,17 +223,12 @@ body {
   font-size: 14px;
 }
 
-/* 🔥 SMOOTH LOOP ANIMATION */
+/* ANIMATION */
 @keyframes scrollCat {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
-/* HOVER = STOP */
 .cat-track:hover {
   animation-play-state: paused;
 }
@@ -200,7 +260,7 @@ body {
 .products {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 15px;
+  gap: 20px;
   padding: 20px;
 }
 
@@ -209,6 +269,11 @@ body {
   background: #fff;
   padding: 15px;
   border-radius: 10px;
+  transition: 0.3s;
+}
+
+.product:hover {
+  box-shadow: 0 0 10px rgba(0,0,0,0.15);
 }
 
 .product img {
@@ -224,6 +289,7 @@ body {
   padding: 10px;
   width: 100%;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 /* ================= RESPONSIVE ================= */
@@ -239,11 +305,23 @@ body {
     margin-left: 0;
   }
 
+  .logo {
+    font-size: 26px;
+  }
+
+  .center-box input {
+    width: 90%;
+  }
+
   .slider {
     height: 250px;
   }
 
   .hero-banner img {
     height: 220px;
+  }
+
+  .hero-text h1 {
+    font-size: 22px;
   }
 }
