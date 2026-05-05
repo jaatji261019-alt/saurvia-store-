@@ -4,14 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Saurvia Store</title>
-
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+<!-- ☰ MENU BUTTON -->
+<div class="menu-btn" onclick="toggleSidebar()">☰</div>
+
 <!-- 🔥 SIDEBAR -->
-<aside class="sidebar">
+<aside class="sidebar" id="sidebar">
   <h2>SAURVIA</h2>
 
   <!-- NAV -->
@@ -24,31 +26,31 @@
     <a href="#">About</a>
   </nav>
 
-  <!-- 🔥 CATEGORY TOGGLE -->
+  <!-- CATEGORY BUTTON -->
   <div class="cat-toggle" onclick="toggleCategories()">
     📂 Categories
   </div>
 
-  <!-- 🔥 SIDEBAR CATEGORIES -->
+  <!-- SIDEBAR CATEGORIES -->
   <div class="sidebar-categories" id="catMenu">
 
     <div class="side-cat" onclick="location.href='shop.html'">
-      <img src="images/skincare.jpg" alt="Skincare">
+      <img src="images/skincare.jpg">
       <span>Skincare</span>
     </div>
 
     <div class="side-cat" onclick="location.href='shop.html'">
-      <img src="images/perfume.jpg" alt="Perfume">
+      <img src="images/perfume.jpg">
       <span>Perfume</span>
     </div>
 
     <div class="side-cat" onclick="location.href='shop.html'">
-      <img src="images/haircare.jpg" alt="Haircare">
+      <img src="images/haircare.jpg">
       <span>Haircare</span>
     </div>
 
     <div class="side-cat" onclick="location.href='shop.html'">
-      <img src="images/beauty.jpg" alt="Beauty">
+      <img src="images/beauty.jpg">
       <span>Beauty</span>
     </div>
 
@@ -58,7 +60,7 @@
 <!-- 🔥 MAIN -->
 <main class="main">
 
-  <!-- 🔥 HEADER -->
+  <!-- HEADER -->
   <header class="top-header">
 
     <div class="center-box">
@@ -76,12 +78,12 @@
 
   </header>
 
-  <!-- 🔥 HERO -->
+  <!-- HERO -->
   <section class="hero-banner">
 
     <img 
       src="images/skincare-main.jpg" 
-      alt="Skincare Product"
+      alt="Skincare"
       onerror="this.src='https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9';"
     >
 
@@ -93,32 +95,31 @@
 
   </section>
 
-  <!-- 🔥 CATEGORY SLIDER -->
+  <!-- CATEGORY SLIDER -->
   <section class="categories">
-
     <div class="cat-track">
 
       <div class="category">
-        <img src="images/skincare.jpg" alt="Skincare">
+        <img src="images/skincare.jpg">
         <p>Skincare</p>
       </div>
 
       <div class="category">
-        <img src="images/perfume.jpg" alt="Perfume">
+        <img src="images/perfume.jpg">
         <p>Perfume</p>
       </div>
 
       <div class="category">
-        <img src="images/haircare.jpg" alt="Haircare">
+        <img src="images/haircare.jpg">
         <p>Haircare</p>
       </div>
 
       <div class="category">
-        <img src="images/beauty.jpg" alt="Beauty">
+        <img src="images/beauty.jpg">
         <p>Beauty</p>
       </div>
 
-      <!-- duplicate for smooth infinite scroll -->
+      <!-- Duplicate for smooth scroll -->
       <div class="category">
         <img src="images/skincare.jpg">
         <p>Skincare</p>
@@ -130,10 +131,9 @@
       </div>
 
     </div>
-
   </section>
 
-  <!-- 🔥 SLIDER -->
+  <!-- SLIDER -->
   <section class="slider">
 
     <div class="slide active" style="background-image:url('images/skincare.jpg')">
@@ -141,7 +141,6 @@
       <div class="content">
         <h2>Glow With Premium Skincare ✨</h2>
         <p>Best products for your daily routine</p>
-        <a href="shop.html" class="btn">Shop Now</a>
       </div>
     </div>
 
@@ -150,7 +149,6 @@
       <div class="content">
         <h2>Luxury Perfumes 💎</h2>
         <p>Smell elegant & feel confident</p>
-        <a href="shop.html" class="btn">Shop Now</a>
       </div>
     </div>
 
@@ -159,17 +157,16 @@
       <div class="content">
         <h2>Strong & Healthy Hair 💇‍♀️</h2>
         <p>Shine & strength products</p>
-        <a href="shop.html" class="btn">Shop Now</a>
       </div>
     </div>
 
   </section>
 
-  <!-- 🔥 PRODUCTS -->
+  <!-- PRODUCTS -->
   <section class="products">
 
     <div class="product">
-      <img src="images/serum.jpg" alt="Face Serum"
+      <img src="images/serum.jpg"
         onerror="this.src='https://via.placeholder.com/300x200?text=Serum';">
       <h3>Face Serum</h3>
       <p>₹299</p>
@@ -177,7 +174,7 @@
     </div>
 
     <div class="product">
-      <img src="images/perfume.jpg" alt="Perfume"
+      <img src="images/perfume.jpg"
         onerror="this.src='https://via.placeholder.com/300x200?text=Perfume';">
       <h3>Perfume</h3>
       <p>₹499</p>
@@ -185,7 +182,7 @@
     </div>
 
     <div class="product">
-      <img src="images/cream.jpg" alt="Skin Cream"
+      <img src="images/cream.jpg"
         onerror="this.src='https://via.placeholder.com/300x200?text=Cream';">
       <h3>Skin Cream</h3>
       <p>₹199</p>
