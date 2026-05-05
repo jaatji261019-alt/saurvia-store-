@@ -30,7 +30,8 @@ function buyNow(product, price) {
   saveCart();
   updateCartCount();
 
-  alert(product + " added to cart 🛒");
+  // 🔥 better alert UX
+  showToast(product + " added to cart 🛒");
 }
 
 // ================= CART COUNT =================
@@ -140,7 +141,6 @@ function startSlider() {
 
   let index = 0;
 
-  // Ensure only first slide active
   slides.forEach((s, i) => {
     s.classList.remove("active");
     if (i === 0) s.classList.add("active");
@@ -150,7 +150,33 @@ function startSlider() {
     slides[index].classList.remove("active");
     index = (index + 1) % slides.length;
     slides[index].classList.add("active");
-  }, 3000);
+  }, 4000); // smooth timing
+}
+
+// ================= SIDEBAR CATEGORY TOGGLE =================
+function toggleCategories() {
+  let catBox = document.querySelector(".sidebar-categories");
+  if (catBox) {
+    catBox.classList.toggle("active");
+  }
+}
+
+// ================= TOAST MESSAGE (NEW 🔥) =================
+function showToast(message) {
+  let toast = document.createElement("div");
+  toast.className = "toast";
+  toast.innerText = message;
+
+  document.body.appendChild(toast);
+
+  setTimeout(() => {
+    toast.classList.add("show");
+  }, 100);
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => toast.remove(), 300);
+  }, 2000);
 }
 
 // ================= INIT =================
