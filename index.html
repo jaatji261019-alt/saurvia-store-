@@ -14,6 +14,7 @@
 <aside class="sidebar">
   <h2>SAURVIA</h2>
 
+  <!-- NAV -->
   <nav>
     <a href="#">Home</a>
     <a href="shop.html">Shop</a>
@@ -23,8 +24,13 @@
     <a href="#">About</a>
   </nav>
 
-  <!-- SIDEBAR CATEGORIES -->
-  <div class="sidebar-categories">
+  <!-- 🔥 CATEGORY TOGGLE -->
+  <div class="cat-toggle" onclick="toggleCategories()">
+    📂 Categories
+  </div>
+
+  <!-- 🔥 SIDEBAR CATEGORIES -->
+  <div class="sidebar-categories" id="catMenu">
 
     <div class="side-cat" onclick="location.href='shop.html'">
       <img src="images/skincare.jpg" alt="Skincare">
@@ -52,23 +58,30 @@
 <!-- 🔥 MAIN -->
 <main class="main">
 
-  <!-- HEADER -->
+  <!-- 🔥 HEADER -->
   <header class="top-header">
+
     <div class="center-box">
       <h1 class="logo">SAURVIA</h1>
-      <input type="text" placeholder="Search skincare, perfumes, haircare...">
+
+      <input 
+        type="text" 
+        placeholder="Search skincare, perfumes, haircare..."
+      >
     </div>
 
     <div class="cart-box">
       <a href="cart.html">🛒 Cart (0)</a>
     </div>
+
   </header>
 
-  <!-- HERO -->
+  <!-- 🔥 HERO -->
   <section class="hero-banner">
+
     <img 
       src="images/skincare-main.jpg" 
-      alt="Premium skincare product"
+      alt="Skincare Product"
       onerror="this.src='https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9';"
     >
 
@@ -77,10 +90,12 @@
       <p>Premium skincare for radiant skin</p>
       <a href="shop.html" class="btn">Shop Now</a>
     </div>
+
   </section>
 
-  <!-- 🔥 CATEGORY SLIDER (FIXED) -->
+  <!-- 🔥 CATEGORY SLIDER -->
   <section class="categories">
+
     <div class="cat-track">
 
       <div class="category">
@@ -103,10 +118,22 @@
         <p>Beauty</p>
       </div>
 
+      <!-- duplicate for smooth infinite scroll -->
+      <div class="category">
+        <img src="images/skincare.jpg">
+        <p>Skincare</p>
+      </div>
+
+      <div class="category">
+        <img src="images/perfume.jpg">
+        <p>Perfume</p>
+      </div>
+
     </div>
+
   </section>
 
-  <!-- SLIDER -->
+  <!-- 🔥 SLIDER -->
   <section class="slider">
 
     <div class="slide active" style="background-image:url('images/skincare.jpg')">
@@ -138,12 +165,12 @@
 
   </section>
 
-  <!-- PRODUCTS -->
+  <!-- 🔥 PRODUCTS -->
   <section class="products">
 
     <div class="product">
       <img src="images/serum.jpg" alt="Face Serum"
-           onerror="this.src='https://via.placeholder.com/300x200?text=Serum';">
+        onerror="this.src='https://via.placeholder.com/300x200?text=Serum';">
       <h3>Face Serum</h3>
       <p>₹299</p>
       <button onclick="buyNow('Face Serum', 299)">Add to Cart</button>
@@ -151,7 +178,7 @@
 
     <div class="product">
       <img src="images/perfume.jpg" alt="Perfume"
-           onerror="this.src='https://via.placeholder.com/300x200?text=Perfume';">
+        onerror="this.src='https://via.placeholder.com/300x200?text=Perfume';">
       <h3>Perfume</h3>
       <p>₹499</p>
       <button onclick="buyNow('Perfume', 499)">Add to Cart</button>
@@ -159,7 +186,7 @@
 
     <div class="product">
       <img src="images/cream.jpg" alt="Skin Cream"
-           onerror="this.src='https://via.placeholder.com/300x200?text=Cream';">
+        onerror="this.src='https://via.placeholder.com/300x200?text=Cream';">
       <h3>Skin Cream</h3>
       <p>₹199</p>
       <button onclick="buyNow('Skin Cream', 199)">Add to Cart</button>
