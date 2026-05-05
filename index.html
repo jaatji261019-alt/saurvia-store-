@@ -4,15 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Saurvia Store</title>
+
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- SIDEBAR -->
+<!-- 🔥 SIDEBAR -->
 <aside class="sidebar">
   <h2>SAURVIA</h2>
 
+  <!-- NAV -->
   <nav>
     <a href="#">Home</a>
     <a href="shop.html">Shop</a>
@@ -22,74 +24,150 @@
     <a href="#">About</a>
   </nav>
 
+  <!-- 🔥 SIDEBAR CATEGORIES -->
   <div class="sidebar-categories">
 
-    <div class="side-cat">
-      <img src="images/skincare.jpg">
+    <div class="side-cat" onclick="location.href='shop.html'">
+      <img src="images/skincare.jpg" alt="Skincare">
       <span>Skincare</span>
     </div>
 
-    <div class="side-cat">
-      <img src="images/perfume.jpg">
+    <div class="side-cat" onclick="location.href='shop.html'">
+      <img src="images/perfume.jpg" alt="Perfume">
       <span>Perfume</span>
     </div>
 
-    <div class="side-cat">
-      <img src="images/haircare.jpg">
+    <div class="side-cat" onclick="location.href='shop.html'">
+      <img src="images/haircare.jpg" alt="Haircare">
       <span>Haircare</span>
     </div>
 
-    <div class="side-cat">
-      <img src="images/beauty.jpg">
+    <!-- 🔥 FIXED HERE -->
+    <div class="side-cat" onclick="location.href='shop.html'">
+      <img src="images/beauty.jpg" alt="Beauty">
       <span>Beauty</span>
     </div>
 
   </div>
+
 </aside>
 
-<!-- MAIN -->
+<!-- 🔥 MAIN -->
 <main class="main">
 
-<header class="top-header">
-  <div class="center-box">
-    <h1 class="logo">SAURVIA</h1>
-    <input type="text" placeholder="Search...">
-  </div>
+  <!-- 🔥 HEADER -->
+  <header class="top-header">
+    <div class="center-box">
+      <h1 class="logo">SAURVIA</h1>
+      <input type="text" placeholder="Search skincare, perfumes, haircare...">
+    </div>
 
-  <div class="cart-box">
-    <a href="cart.html">🛒 Cart (0)</a>
-  </div>
-</header>
+    <div class="cart-box">
+      <a href="cart.html">🛒 Cart (0)</a>
+    </div>
+  </header>
 
-<!-- HERO -->
-<section class="hero-banner">
-  <img src="images/skincare-main.jpg">
-</section>
+  <!-- 🔥 HERO -->
+  <section class="hero-banner">
+    <img 
+      src="images/skincare-main.jpg" 
+      alt="Premium skincare product"
+      onerror="this.src='https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9';"
+    >
 
-<!-- CATEGORIES -->
-<section class="categories">
+    <div class="hero-text">
+      <h1>Glow Naturally ✨</h1>
+      <p>Premium skincare for radiant skin</p>
+      <a href="shop.html" class="btn">Shop Now</a>
+    </div>
+  </section>
 
-  <div class="category">
-    <img src="images/skincare.jpg">
-    <p>Skincare</p>
-  </div>
+  <!-- 🔥 CATEGORIES -->
+  <section class="categories">
 
-  <div class="category">
-    <img src="images/perfume.jpg">
-    <p>Perfume</p>
-  </div>
+    <div class="category">
+      <img src="images/skincare.jpg" alt="Skincare">
+      <p>Skincare</p>
+    </div>
 
-  <div class="category">
-    <img src="images/haircare.jpg">
-    <p>Haircare</p>
-  </div>
+    <div class="category">
+      <img src="images/perfume.jpg" alt="Perfume">
+      <p>Perfume</p>
+    </div>
 
-  <div class="category">
-    <img src="images/beauty.jpg">
-    <p>Beauty</p>
-  </div>
+    <div class="category">
+      <img src="images/haircare.jpg" alt="Haircare">
+      <p>Haircare</p>
+    </div>
 
-</section>
+    <!-- 🔥 FIXED HERE -->
+    <div class="category">
+      <img src="images/beauty.jpg" alt="Beauty">
+      <p>Beauty</p>
+    </div>
+
+  </section>
+
+  <!-- 🔥 SLIDER -->
+  <section class="slider">
+
+    <div class="slide active" style="background-image:url('images/skincare.jpg')">
+      <div class="overlay"></div>
+      <div class="content">
+        <h2>Glow With Premium Skincare ✨</h2>
+        <p>Best products for your daily routine</p>
+        <a href="shop.html" class="btn">Shop Now</a>
+      </div>
+    </div>
+
+    <div class="slide" style="background-image:url('images/perfume.jpg')">
+      <div class="overlay"></div>
+      <div class="content">
+        <h2>Luxury Perfumes 💎</h2>
+        <p>Smell elegant & feel confident</p>
+        <a href="shop.html" class="btn">Shop Now</a>
+      </div>
+    </div>
+
+    <div class="slide" style="background-image:url('images/haircare.jpg')">
+      <div class="overlay"></div>
+      <div class="content">
+        <h2>Strong & Healthy Hair 💇‍♀️</h2>
+        <p>Shine & strength products</p>
+        <a href="shop.html" class="btn">Shop Now</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- 🔥 PRODUCTS -->
+  <section class="products">
+
+    <div class="product">
+      <img src="images/serum.jpg" alt="Face Serum"
+           onerror="this.src='https://via.placeholder.com/300x200?text=Serum';">
+      <h3>Face Serum</h3>
+      <p>₹299</p>
+      <button onclick="buyNow('Face Serum', 299)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <img src="images/perfume.jpg" alt="Perfume"
+           onerror="this.src='https://via.placeholder.com/300x200?text=Perfume';">
+      <h3>Perfume</h3>
+      <p>₹499</p>
+      <button onclick="buyNow('Perfume', 499)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <img src="images/cream.jpg" alt="Skin Cream"
+           onerror="this.src='https://via.placeholder.com/300x200?text=Cream';">
+      <h3>Skin Cream</h3>
+      <p>₹199</p>
+      <button onclick="buyNow('Skin Cream', 199)">Add to Cart</button>
+    </div>
+
+  </section>
 
 </main>
 
