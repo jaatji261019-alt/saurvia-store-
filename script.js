@@ -9,7 +9,6 @@ function saveCart() {
 // ================= ADD TO CART =================
 function buyNow(product, price) {
   price = Number(price);
-
   if (!product || isNaN(price)) return;
 
   let existing = cart.find(
@@ -29,8 +28,6 @@ function buyNow(product, price) {
 
   saveCart();
   updateCartCount();
-
-  // 🔥 better alert UX
   showToast(product + " added to cart 🛒");
 }
 
@@ -39,7 +36,6 @@ function updateCartCount() {
   let count = cart.reduce((sum, item) => sum + item.qty, 0);
 
   let cartBox = document.querySelector(".cart-box a");
-
   if (cartBox) {
     cartBox.innerText = `🛒 Cart (${count})`;
   }
@@ -150,10 +146,18 @@ function startSlider() {
     slides[index].classList.remove("active");
     index = (index + 1) % slides.length;
     slides[index].classList.add("active");
-  }, 4000); // smooth timing
+  }, 4000);
 }
 
-// ================= SIDEBAR CATEGORY TOGGLE =================
+// ================= SIDEBAR TOGGLE =================
+function toggleSidebar() {
+  let sidebar = document.getElementById("sidebar");
+  if (sidebar) {
+    sidebar.classList.toggle("active");
+  }
+}
+
+// ================= CATEGORY TOGGLE =================
 function toggleCategories() {
   let catBox = document.querySelector(".sidebar-categories");
   if (catBox) {
@@ -161,7 +165,7 @@ function toggleCategories() {
   }
 }
 
-// ================= TOAST MESSAGE (NEW 🔥) =================
+// ================= TOAST MESSAGE =================
 function showToast(message) {
   let toast = document.createElement("div");
   toast.className = "toast";
@@ -178,6 +182,18 @@ function showToast(message) {
     setTimeout(() => toast.remove(), 300);
   }, 2000);
 }
+
+// ================= CLOSE SIDEBAR ON OUTSIDE CLICK =================
+document.addEventListener("click", function (e) {
+  let sidebar = document.getElementById("sidebar");
+  let menuBtn = document.querySelector(".menu-btn");
+
+  if (!sidebar || !menuBtn) return;
+
+  if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
+    sidebar.classList.remove("active");
+  }
+});
 
 // ================= INIT =================
 document.addEventListener("DOMContentLoaded", () => {
