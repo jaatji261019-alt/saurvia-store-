@@ -13,7 +13,7 @@
 <div class="menu-btn" onclick="toggleSidebar()">☰</div>
 
 <!-- 🔥 SIDEBAR -->
-<aside class="sidebar">
+<aside class="sidebar" id="sidebar">
   <h2>SAURVIA</h2>
 
   <!-- NAV -->
@@ -32,7 +32,7 @@
   </div>
 
   <!-- SIDEBAR CATEGORIES -->
-  <div class="sidebar-categories">
+  <div class="sidebar-categories" id="catMenu">
 
     <div class="side-cat" onclick="location.href='shop.html'">
       <img src="images/skincare.jpg" alt="Skincare">
@@ -99,7 +99,6 @@
   <section class="categories">
     <div class="cat-track">
 
-      <!-- ORIGINAL -->
       <div class="category">
         <img src="images/skincare.jpg" alt="Skincare">
         <p>Skincare</p>
@@ -120,22 +119,28 @@
         <p>Beauty</p>
       </div>
 
-      <!-- DUPLICATE (smooth infinite scroll ke liye) -->
+      <!-- duplicate for smooth scroll -->
       <div class="category">
-        <img src="images/skincare.jpg" alt="">
+        <img src="images/skincare.jpg">
         <p>Skincare</p>
       </div>
 
       <div class="category">
-        <img src="images/perfume.jpg" alt="">
+        <img src="images/perfume.jpg">
         <p>Perfume</p>
       </div>
 
     </div>
   </section>
 
-  <!-- SLIDER -->
+  <!-- 🔥 SLIDER WITH ARROWS -->
   <section class="slider">
+
+    <!-- LEFT ARROW -->
+    <button class="prev" onclick="prevSlide()">❮</button>
+
+    <!-- RIGHT ARROW -->
+    <button class="next" onclick="nextSlide()">❯</button>
 
     <div class="slide active" style="background-image:url('images/skincare.jpg')">
       <div class="overlay"></div>
