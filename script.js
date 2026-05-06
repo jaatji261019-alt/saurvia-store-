@@ -16,7 +16,7 @@ function buyNow(product, price) {
   );
 
   if (existing) {
-    existing.qty += 1;
+    existing.qty++;
   } else {
     cart.push({
       id: Date.now(),
@@ -28,7 +28,7 @@ function buyNow(product, price) {
 
   saveCart();
   updateCartCount();
-  showToast(product + " added to cart 🛒");
+  showToast(`${product} added to cart 🛒`);
 }
 
 // ================= CART COUNT =================
@@ -130,29 +130,40 @@ function renderCart() {
   }
 }
 
-// ================= AUTO SLIDER =================
+// ================= SLIDER =================
 let sliderInterval;
+let currentSlide = 0;
+
+function showSlide(index) {
+  let slides = document.querySelectorAll(".slide");
+  if (!slides.length) return;
+
+  slides.forEach(s => s.classList.remove("active"));
+
+  currentSlide = (index + slides.length) % slides.length;
+  slides[currentSlide].classList.add("active");
+}
 
 function startSlider() {
   let slides = document.querySelectorAll(".slide");
   if (!slides.length) return;
 
-  let index = 0;
+  showSlide(0);
 
-  // Reset slides
-  slides.forEach((s, i) => {
-    s.classList.remove("active");
-    if (i === 0) s.classList.add("active");
-  });
-
-  // Clear old interval (important fix)
   if (sliderInterval) clearInterval(sliderInterval);
 
   sliderInterval = setInterval(() => {
-    slides[index].classList.remove("active");
-    index = (index + 1) % slides.length;
-    slides[index].classList.add("active");
+    showSlide(currentSlide + 1);
   }, 4000);
+}
+
+// 🔥 MANUAL CONTROL (ARROWS)
+function nextSlide() {
+  showSlide(currentSlide + 1);
+}
+
+function prevSlide() {
+  showSlide(currentSlide - 1);
 }
 
 // ================= SIDEBAR TOGGLE =================
@@ -171,11 +182,10 @@ function toggleCategories() {
   }
 }
 
-// ================= TOAST MESSAGE =================
+// ================= TOAST =================
 let currentToast = null;
 
 function showToast(message) {
-  // Remove old toast
   if (currentToast) currentToast.remove();
 
   let toast = document.createElement("div");
@@ -194,7 +204,7 @@ function showToast(message) {
   }, 2000);
 }
 
-// ================= CLOSE SIDEBAR ON OUTSIDE CLICK =================
+// ================= CLOSE SIDEBAR =================
 document.addEventListener("click", function (e) {
   let sidebar = document.querySelector(".sidebar");
   let menuBtn = document.querySelector(".menu-btn");
