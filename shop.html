@@ -1,91 +1,344 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
   <title>Shop - Saurvia Store</title>
+
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- TOP HEADER -->
-<div class="top-header">
-  <h1 class="logo">SAURAVIA</h1>
+<!-- ================= MENU BUTTON ================= -->
+<div class="menu-btn" onclick="toggleSidebar()">
+  ☰
+</div>
 
-  <div class="search-box">
-    <input type="text" placeholder="Search skincare, perfume, haircare...">
-  </div>
+<!-- ================= SIDEBAR ================= -->
+<aside class="sidebar">
 
-  <div class="cart-box">
+  <h2>SAURVIA</h2>
+
+  <!-- NAVIGATION -->
+  <nav class="sidebar-nav">
+    <a href="index.html">🏠 Home</a>
+    <a href="shop.html" class="active-link">🛍️ Shop</a>
     <a href="cart.html">🛒 Cart</a>
-  </div>
-</div>
+    <a href="#">💳 Checkout</a>
+    <a href="#">📞 Contact</a>
+    <a href="#">ℹ️ About</a>
+  </nav>
 
-<!-- NAVIGATION BAR -->
-<div class="shop-nav">
-  <a href="index.html">🏠 Home</a>
-  <a href="shop.html">🛍️ Shop</a>
-  <a href="cart.html">🛒 Cart</a>
-</div>
-
-<!-- CATEGORY FILTER -->
-<div class="category-bar">
-  <button>All</button>
-  <button>Skincare</button>
-  <button>Perfume</button>
-  <button>Haircare</button>
-</div>
-
-<!-- SHOP TITLE -->
-<div class="shop-title">
-  <h2>Premium Collection ✨</h2>
-  <p>Glow with our best skincare & beauty products</p>
-</div>
-
-<!-- PRODUCTS GRID -->
-<div class="products">
-
-  <div class="product">
-    <img src="images/serum.jpg">
-    <h2>Face Serum</h2>
-    <p>₹299</p>
-    <button onclick="buyNow('Face Serum', 299)">Add to Cart</button>
+  <!-- CATEGORY TOGGLE -->
+  <div class="cat-toggle" onclick="toggleCategories()">
+    📂 Categories
   </div>
 
-  <div class="product">
-    <img src="images/perfume.jpg">
-    <h2>Luxury Perfume</h2>
-    <p>₹499</p>
-    <button onclick="buyNow('Perfume', 499)">Add to Cart</button>
+  <!-- SIDEBAR CATEGORIES -->
+  <div class="sidebar-categories">
+
+    <div class="side-cat">
+      <img src="images/skincare.jpg" alt="Skincare">
+      <span>Skincare</span>
+    </div>
+
+    <div class="side-cat">
+      <img src="images/perfume.jpg" alt="Perfume">
+      <span>Perfume</span>
+    </div>
+
+    <div class="side-cat">
+      <img src="images/haircare.jpg" alt="Haircare">
+      <span>Haircare</span>
+    </div>
+
+    <div class="side-cat">
+      <img src="images/beauty.jpg" alt="Beauty">
+      <span>Beauty</span>
+    </div>
+
   </div>
 
-  <div class="product">
-    <img src="images/cream.jpg">
-    <h2>Skin Cream</h2>
-    <p>₹199</p>
-    <button onclick="buyNow('Skin Cream', 199)">Add to Cart</button>
-  </div>
+</aside>
 
-  <div class="product">
-    <img src="images/hair.jpg">
-    <h2>Hair Oil</h2>
-    <p>₹249</p>
-    <button onclick="buyNow('Hair Oil', 249)">Add to Cart</button>
-  </div>
+<!-- ================= MAIN ================= -->
+<main class="main">
 
-</div>
+  <!-- ================= HEADER ================= -->
+  <header class="top-header">
 
-<!-- FOOTER -->
-<div class="footer">
-  <div class="footer-links">
-    <a href="index.html">Home</a>
-    <a href="shop.html">Shop</a>
-    <a href="cart.html">Cart</a>
-    <a href="#">Contact</a>
-    <a href="#">About</a>
-  </div>
+    <div class="center-box">
 
-  <p>© 2026 Saurvia Store | All Rights Reserved</p>
-</div>
+      <h1 class="logo">SAURVIA</h1>
+
+      <!-- SEARCH -->
+      <div class="search-box">
+        <input 
+          type="text"
+          id="searchInput"
+          placeholder="Search skincare, perfume, haircare..."
+        >
+      </div>
+
+    </div>
+
+    <!-- CART -->
+    <div class="cart-box">
+      <a href="cart.html">🛒 Cart (0)</a>
+    </div>
+
+  </header>
+
+  <!-- ================= SHOP HERO ================= -->
+  <section class="shop-hero">
+
+    <img 
+      src="images/shop-banner.jpg"
+      alt="Shop Banner"
+      onerror="this.src='https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1200&auto=format&fit=crop';"
+    >
+
+    <div class="shop-hero-text">
+      <h1>Premium Beauty Collection ✨</h1>
+      <p>Discover skincare, perfumes & haircare essentials</p>
+    </div>
+
+  </section>
+
+  <!-- ================= CATEGORY FILTER ================= -->
+  <section class="category-filter">
+
+    <button class="filter-btn active-filter">
+      All
+    </button>
+
+    <button class="filter-btn">
+      Skincare
+    </button>
+
+    <button class="filter-btn">
+      Perfume
+    </button>
+
+    <button class="filter-btn">
+      Haircare
+    </button>
+
+    <button class="filter-btn">
+      Beauty
+    </button>
+
+  </section>
+
+  <!-- ================= SHOP TITLE ================= -->
+  <section class="shop-title">
+
+    <h2>Trending Products 🔥</h2>
+
+    <p>
+      Glow naturally with premium skincare & beauty essentials
+    </p>
+
+  </section>
+
+  <!-- ================= PRODUCTS ================= -->
+  <section class="products">
+
+    <!-- PRODUCT 1 -->
+    <div class="product">
+
+      <div class="product-badge">
+        Bestseller
+      </div>
+
+      <img 
+        src="images/serum.jpg"
+        alt="Face Serum"
+        onerror="this.src='https://via.placeholder.com/300x220?text=Serum';"
+      >
+
+      <h3>Face Serum</h3>
+
+      <p class="price">₹299</p>
+
+      <div class="product-rating">
+        ⭐⭐⭐⭐⭐
+      </div>
+
+      <button onclick="buyNow('Face Serum', 299)">
+        Add to Cart
+      </button>
+
+    </div>
+
+    <!-- PRODUCT 2 -->
+    <div class="product">
+
+      <div class="product-badge">
+        New
+      </div>
+
+      <img 
+        src="images/perfume.jpg"
+        alt="Luxury Perfume"
+        onerror="this.src='https://via.placeholder.com/300x220?text=Perfume';"
+      >
+
+      <h3>Luxury Perfume</h3>
+
+      <p class="price">₹499</p>
+
+      <div class="product-rating">
+        ⭐⭐⭐⭐⭐
+      </div>
+
+      <button onclick="buyNow('Luxury Perfume', 499)">
+        Add to Cart
+      </button>
+
+    </div>
+
+    <!-- PRODUCT 3 -->
+    <div class="product">
+
+      <div class="product-badge">
+        Hot
+      </div>
+
+      <img 
+        src="images/cream.jpg"
+        alt="Skin Cream"
+        onerror="this.src='https://via.placeholder.com/300x220?text=Cream';"
+      >
+
+      <h3>Skin Cream</h3>
+
+      <p class="price">₹199</p>
+
+      <div class="product-rating">
+        ⭐⭐⭐⭐☆
+      </div>
+
+      <button onclick="buyNow('Skin Cream', 199)">
+        Add to Cart
+      </button>
+
+    </div>
+
+    <!-- PRODUCT 4 -->
+    <div class="product">
+
+      <div class="product-badge">
+        Popular
+      </div>
+
+      <img 
+        src="images/hair.jpg"
+        alt="Hair Oil"
+        onerror="this.src='https://via.placeholder.com/300x220?text=Hair+Oil';"
+      >
+
+      <h3>Hair Oil</h3>
+
+      <p class="price">₹249</p>
+
+      <div class="product-rating">
+        ⭐⭐⭐⭐⭐
+      </div>
+
+      <button onclick="buyNow('Hair Oil', 249)">
+        Add to Cart
+      </button>
+
+    </div>
+
+    <!-- PRODUCT 5 -->
+    <div class="product">
+
+      <img 
+        src="images/lotion.jpg"
+        alt="Body Lotion"
+        onerror="this.src='https://via.placeholder.com/300x220?text=Body+Lotion';"
+      >
+
+      <h3>Body Lotion</h3>
+
+      <p class="price">₹349</p>
+
+      <div class="product-rating">
+        ⭐⭐⭐⭐☆
+      </div>
+
+      <button onclick="buyNow('Body Lotion', 349)">
+        Add to Cart
+      </button>
+
+    </div>
+
+    <!-- PRODUCT 6 -->
+    <div class="product">
+
+      <img 
+        src="images/shampoo.jpg"
+        alt="Herbal Shampoo"
+        onerror="this.src='https://via.placeholder.com/300x220?text=Shampoo';"
+      >
+
+      <h3>Herbal Shampoo</h3>
+
+      <p class="price">₹399</p>
+
+      <div class="product-rating">
+        ⭐⭐⭐⭐⭐
+      </div>
+
+      <button onclick="buyNow('Herbal Shampoo', 399)">
+        Add to Cart
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- ================= OFFER SECTION ================= -->
+  <section class="offer-section">
+
+    <div class="offer-box">
+
+      <h2>Special Offer 🎉</h2>
+
+      <p>
+        Get up to 40% OFF on skincare & beauty products
+      </p>
+
+      <a href="#" class="btn">
+        Shop Deals
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="cart.html">Cart</a>
+      <a href="#">Contact</a>
+      <a href="#">About</a>
+    </div>
+
+    <p>
+      © 2026 SAURVIA STORE | All Rights Reserved
+    </p>
+
+  </footer>
+
+</main>
 
 <script src="script.js"></script>
 
