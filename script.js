@@ -6,6 +6,53 @@ function saveCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
 }
 
+// ================= WISHLIST =================
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+function saveWishlist() {
+  localStorage.setItem("wishlist", JSON.stringify(wishlist));
+}
+
+// ================= ADD TO WISHLIST =================
+function toggleWishlist(btn, productName) {
+
+  let exists = wishlist.includes(productName);
+
+  if (exists) {
+
+    wishlist = wishlist.filter(item => item !== productName);
+
+    btn.classList.remove("active-wishlist");
+
+    showToast(`${productName} removed from wishlist 💔`);
+
+  } else {
+
+    wishlist.push(productName);
+
+    btn.classList.add("active-wishlist");
+
+    showToast(`${productName} added to wishlist ❤️`);
+  }
+
+  saveWishlist();
+}
+
+// ================= LOAD ACTIVE WISHLIST =================
+function loadWishlistButtons() {
+
+  let wishlistBtns = document.querySelectorAll(".wishlist-btn");
+
+  wishlistBtns.forEach(btn => {
+
+    let productName = btn.getAttribute("data-product");
+
+    if (wishlist.includes(productName)) {
+      btn.classList.add("active-wishlist");
+    }
+  });
+}
+
 // ================= ADD TO CART =================
 function buyNow(product, price) {
 
@@ -17,20 +64,37 @@ function buyNow(product, price) {
     item => item.name.toLowerCase() === product.toLowerCase()
   );
 
+  // PRODUCT IMAGE
+  let productCard = event.target.closest(".product");
+
+  let image = "";
+
+  if (productCard) {
+
+    let imgTag = productCard.querySelector("img");
+
+    if (imgTag) {
+      image = imgTag.src;
+    }
+  }
+
   if (existing) {
+
     existing.qty++;
+
   } else {
 
     cart.push({
       id: Date.now(),
       name: product,
       price: price,
+      image: image,
       qty: 1
     });
-
   }
 
   saveCart();
+
   updateCartCount();
 
   showToast(`${product} added to cart 🛒`);
@@ -58,7 +122,9 @@ function removeFromCart(index) {
   cart.splice(index, 1);
 
   saveCart();
+
   updateCartCount();
+
   renderCart();
 
   showToast("Item removed ❌");
@@ -72,7 +138,9 @@ function clearCart() {
     cart = [];
 
     saveCart();
+
     updateCartCount();
+
     renderCart();
 
     showToast("Cart cleared 🗑️");
@@ -102,7 +170,9 @@ function changeQty(index, type) {
   }
 
   saveCart();
+
   updateCartCount();
+
   renderCart();
 }
 
@@ -115,6 +185,7 @@ function getCart() {
 function renderCart() {
 
   let container = document.getElementById("cart-items");
+
   let totalBox = document.getElementById("total");
 
   if (!container) return;
@@ -127,14 +198,27 @@ function renderCart() {
   if (cart.length === 0) {
 
     container.innerHTML = `
+
       <div class="empty-cart">
+
+        <img 
+          src="https://cdn-icons-png.flaticon.com/512/2038/2038854.png"
+          width="120"
+        >
+
         <h2>Your cart is empty 🛒</h2>
+
         <p>Add products to continue shopping</p>
+
+        <a href="shop.html" class="shop-btn">
+          Continue Shopping
+        </a>
+
       </div>
     `;
 
     if (totalBox) {
-      totalBox.innerText = "";
+      totalBox.innerHTML = "";
     }
 
     return;
@@ -153,35 +237,48 @@ function renderCart() {
 
     div.innerHTML = `
 
+      <div class="cart-left">
+
+        <img 
+          src="${item.image || 'https://via.placeholder.com/100'}"
+          class="cart-img"
+        >
+
+      </div>
+
       <div class="cart-info">
 
         <h3>${item.name}</h3>
 
-        <p>
-          ₹${item.price} × ${item.qty}
+        <p class="cart-price">
+          ₹${item.price}
         </p>
+
+        <div class="cart-actions">
+
+          <button class="qty-btn"
+            onclick="changeQty(${index}, 'dec')">
+            −
+          </button>
+
+          <span class="qty-number">
+            ${item.qty}
+          </span>
+
+          <button class="qty-btn"
+            onclick="changeQty(${index}, 'inc')">
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="cart-right">
 
         <h4>
           ₹${itemTotal}
         </h4>
-
-      </div>
-
-      <div class="cart-actions">
-
-        <button class="qty-btn"
-          onclick="changeQty(${index}, 'dec')">
-          −
-        </button>
-
-        <span class="qty-number">
-          ${item.qty}
-        </span>
-
-        <button class="qty-btn"
-          onclick="changeQty(${index}, 'inc')">
-          +
-        </button>
 
         <button class="remove-btn"
           onclick="removeFromCart(${index})">
@@ -195,23 +292,35 @@ function renderCart() {
     container.appendChild(div);
   });
 
-  // TOTAL
+  // TOTAL BOX
   if (totalBox) {
 
     totalBox.innerHTML = `
-      <h2>Total: ₹${total}</h2>
+
+      <div class="total-card">
+
+        <h2>Total: ₹${total}</h2>
+
+        <button class="checkout-btn">
+          Proceed To Checkout
+        </button>
+
+      </div>
+
     `;
   }
 }
 
 // ================= SLIDER =================
 let sliderInterval;
+
 let currentSlide = 0;
 
 // SHOW SLIDE
 function showSlide(index) {
 
   let slides = document.querySelectorAll(".slide");
+
   let dots = document.querySelectorAll(".dot");
 
   if (!slides.length) return;
@@ -224,7 +333,8 @@ function showSlide(index) {
     dot.classList.remove("active-dot");
   });
 
-  currentSlide = (index + slides.length) % slides.length;
+  currentSlide =
+    (index + slides.length) % slides.length;
 
   slides[currentSlide].classList.add("active");
 
@@ -253,12 +363,12 @@ function startSlider() {
   }, 4000);
 }
 
-// NEXT SLIDE
+// NEXT
 function nextSlide() {
   showSlide(currentSlide + 1);
 }
 
-// PREVIOUS SLIDE
+// PREVIOUS
 function prevSlide() {
   showSlide(currentSlide - 1);
 }
@@ -281,14 +391,15 @@ function toggleSidebar() {
 // ================= CATEGORY TOGGLE =================
 function toggleCategories() {
 
-  let categoryBox = document.querySelector(".sidebar-categories");
+  let categoryBox =
+    document.querySelector(".sidebar-categories");
 
   if (categoryBox) {
     categoryBox.classList.toggle("active");
   }
 }
 
-// ================= SEARCH FILTER =================
+// ================= SEARCH PRODUCTS =================
 function searchProducts() {
 
   let input = document.getElementById("searchInput");
@@ -319,7 +430,7 @@ function searchProducts() {
 }
 
 // ================= CATEGORY FILTER =================
-function filterProducts(category) {
+function filterProducts(category, button) {
 
   let products = document.querySelectorAll(".product");
 
@@ -348,7 +459,70 @@ function filterProducts(category) {
     btn.classList.remove("active-filter");
   });
 
-  event.target.classList.add("active-filter");
+  if (button) {
+    button.classList.add("active-filter");
+  }
+}
+
+// ================= PRODUCT QUICK VIEW =================
+function quickView(name, price, image) {
+
+  let modal = document.getElementById("quickViewModal");
+
+  let modalContent = document.getElementById("quickViewContent");
+
+  if (!modal || !modalContent) return;
+
+  modal.style.display = "flex";
+
+  modalContent.innerHTML = `
+
+    <div class="quick-view-box">
+
+      <span class="close-modal"
+        onclick="closeQuickView()">
+        ✖
+      </span>
+
+      <img src="${image}" class="quick-view-img">
+
+      <div class="quick-view-info">
+
+        <h2>${name}</h2>
+
+        <div class="quick-rating">
+          ⭐⭐⭐⭐⭐ (4.9)
+        </div>
+
+        <p class="quick-price">
+          ₹${price}
+        </p>
+
+        <p class="quick-desc">
+          Premium beauty product with natural ingredients
+          for healthy glowing skin.
+        </p>
+
+        <button 
+          class="quick-cart-btn"
+          onclick="buyNow('${name}', ${price})">
+          Add To Cart
+        </button>
+
+      </div>
+
+    </div>
+  `;
+}
+
+// CLOSE QUICK VIEW
+function closeQuickView() {
+
+  let modal = document.getElementById("quickViewModal");
+
+  if (modal) {
+    modal.style.display = "none";
+  }
 }
 
 // ================= TOAST =================
@@ -381,6 +555,7 @@ function showToast(message) {
     setTimeout(() => {
 
       toast.remove();
+
       currentToast = null;
 
     }, 300);
@@ -406,7 +581,7 @@ document.addEventListener("click", function (e) {
   }
 });
 
-// ================= SEARCH INPUT EVENT =================
+// ================= SEARCH EVENT =================
 document.addEventListener("DOMContentLoaded", () => {
 
   let searchInput =
@@ -421,6 +596,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+// ================= CLOSE MODAL OUTSIDE CLICK =================
+window.addEventListener("click", function(e) {
+
+  let modal = document.getElementById("quickViewModal");
+
+  if (e.target === modal) {
+    closeQuickView();
+  }
+});
+
 // ================= INIT =================
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -429,4 +614,6 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCart();
 
   startSlider();
+
+  loadWishlistButtons();
 });
