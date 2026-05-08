@@ -1,204 +1,647 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Saurvia Store</title>
+
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- ICONS -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- ☰ MENU BUTTON -->
-<div class="menu-btn" onclick="toggleSidebar()">☰</div>
+<!-- ================= MENU BUTTON ================= -->
+<div class="menu-btn" onclick="toggleSidebar()">
+  <i class="fa-solid fa-bars"></i>
+</div>
 
-<!-- 🔥 SIDEBAR -->
+<!-- ================= SIDEBAR ================= -->
 <aside class="sidebar" id="sidebar">
-  <h2>SAURVIA</h2>
 
-  <!-- NAV -->
-  <nav>
-    <a href="#">Home</a>
-    <a href="shop.html">Shop</a>
-    <a href="cart.html">Cart</a>
-    <a href="#">Checkout</a>
-    <a href="#">Contact</a>
-    <a href="#">About</a>
+  <div class="sidebar-top">
+    <h2>SAURVIA</h2>
+
+    <button class="close-btn" onclick="toggleSidebar()">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav class="sidebar-nav">
+
+    <a href="index.html">
+      <i class="fa-solid fa-house"></i>
+      Home
+    </a>
+
+    <a href="shop.html" class="active-link">
+      <i class="fa-solid fa-bag-shopping"></i>
+      Shop
+    </a>
+
+    <a href="cart.html">
+      <i class="fa-solid fa-cart-shopping"></i>
+      Cart
+    </a>
+
+    <a href="#">
+      <i class="fa-solid fa-credit-card"></i>
+      Checkout
+    </a>
+
+    <a href="#">
+      <i class="fa-solid fa-phone"></i>
+      Contact
+    </a>
+
+    <a href="#">
+      <i class="fa-solid fa-circle-info"></i>
+      About
+    </a>
+
   </nav>
 
   <!-- CATEGORY BUTTON -->
   <div class="cat-toggle" onclick="toggleCategories()">
-    📂 Categories
+    <span>📂 Categories</span>
+    <i class="fa-solid fa-chevron-down"></i>
   </div>
 
   <!-- SIDEBAR CATEGORIES -->
   <div class="sidebar-categories" id="catMenu">
 
-    <div class="side-cat" onclick="location.href='shop.html'">
+    <div class="side-cat">
       <img src="images/skincare.jpg" alt="Skincare">
       <span>Skincare</span>
     </div>
 
-    <div class="side-cat" onclick="location.href='shop.html'">
+    <div class="side-cat">
       <img src="images/perfume.jpg" alt="Perfume">
       <span>Perfume</span>
     </div>
 
-    <div class="side-cat" onclick="location.href='shop.html'">
+    <div class="side-cat">
       <img src="images/haircare.jpg" alt="Haircare">
       <span>Haircare</span>
     </div>
 
-    <div class="side-cat" onclick="location.href='shop.html'">
+    <div class="side-cat">
       <img src="images/beauty.jpg" alt="Beauty">
       <span>Beauty</span>
     </div>
 
   </div>
+
 </aside>
 
-<!-- 🔥 MAIN -->
+<!-- ================= OVERLAY ================= -->
+<div class="overlay-bg" id="overlayBg" onclick="toggleSidebar()"></div>
+
+<!-- ================= MAIN ================= -->
 <main class="main">
 
-  <!-- HEADER -->
+  <!-- ================= HEADER ================= -->
   <header class="top-header">
 
-    <div class="center-box">
+    <!-- LOGO -->
+    <div class="logo-box">
       <h1 class="logo">SAURVIA</h1>
-
-      <input 
-        type="text" 
-        placeholder="Search skincare, perfumes, haircare..."
-      >
+      <p>Luxury Beauty Collection</p>
     </div>
 
-    <div class="cart-box">
-      <a href="cart.html">🛒 Cart (0)</a>
+    <!-- SEARCH -->
+    <div class="search-wrapper">
+
+      <i class="fa-solid fa-magnifying-glass"></i>
+
+      <input 
+        type="text"
+        placeholder="Search skincare, perfumes, haircare..."
+      >
+
+    </div>
+
+    <!-- HEADER ICONS -->
+    <div class="header-icons">
+
+      <div class="header-icon">
+        <i class="fa-regular fa-heart"></i>
+      </div>
+
+      <a href="cart.html" class="cart-btn">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span>Cart (0)</span>
+      </a>
+
     </div>
 
   </header>
 
-  <!-- HERO -->
+  <!-- ================= HERO SECTION ================= -->
   <section class="hero-banner">
 
     <img 
-      src="images/skincare-main.jpg" 
-      alt="Skincare Product"
+      src="images/skincare-main.jpg"
+      alt="Beauty Banner"
+
       onerror="this.src='https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9';"
     >
 
+    <div class="hero-overlay"></div>
+
     <div class="hero-text">
-      <h1>Glow Naturally ✨</h1>
-      <p>Premium skincare for radiant skin</p>
-      <a href="shop.html" class="btn">Shop Now</a>
+
+      <span class="hero-tag">
+        ✨ Premium Beauty Collection
+      </span>
+
+      <h1>Glow Naturally <br> With Saurvia</h1>
+
+      <p>
+        Luxury skincare, perfumes & beauty essentials 
+        crafted for radiant confidence.
+      </p>
+
+      <div class="hero-buttons">
+
+        <a href="shop.html" class="hero-btn">
+          Shop Now
+        </a>
+
+        <a href="#" class="hero-btn outline-btn">
+          Explore
+        </a>
+
+      </div>
+
     </div>
 
   </section>
 
-  <!-- CATEGORY SLIDER -->
-  <section class="categories">
-    <div class="cat-track">
+  <!-- ================= CATEGORY SECTION ================= -->
+  <section class="categories-section">
 
-      <div class="category">
-        <img src="images/skincare.jpg" alt="Skincare">
-        <p>Skincare</p>
+    <div class="section-head">
+
+      <h2>Shop By Categories</h2>
+
+      <p>Premium self care essentials</p>
+
+    </div>
+
+    <div class="categories">
+
+      <div class="category-card">
+
+        <div class="cat-img">
+          <img src="images/skincare.jpg" alt="Skincare">
+        </div>
+
+        <h3>Skincare</h3>
+
       </div>
 
-      <div class="category">
-        <img src="images/perfume.jpg" alt="Perfume">
-        <p>Perfume</p>
+      <div class="category-card">
+
+        <div class="cat-img">
+          <img src="images/perfume.jpg" alt="Perfume">
+        </div>
+
+        <h3>Perfume</h3>
+
       </div>
 
-      <div class="category">
-        <img src="images/haircare.jpg" alt="Haircare">
-        <p>Haircare</p>
+      <div class="category-card">
+
+        <div class="cat-img">
+          <img src="images/haircare.jpg" alt="Haircare">
+        </div>
+
+        <h3>Haircare</h3>
+
       </div>
 
-      <div class="category">
-        <img src="images/beauty.jpg" alt="Beauty">
-        <p>Beauty</p>
-      </div>
+      <div class="category-card">
 
-      <!-- duplicate for smooth scroll -->
-      <div class="category">
-        <img src="images/skincare.jpg">
-        <p>Skincare</p>
-      </div>
+        <div class="cat-img">
+          <img src="images/beauty.jpg" alt="Beauty">
+        </div>
 
-      <div class="category">
-        <img src="images/perfume.jpg">
-        <p>Perfume</p>
+        <h3>Beauty</h3>
+
       </div>
 
     </div>
+
   </section>
 
-  <!-- 🔥 SLIDER WITH ARROWS -->
+  <!-- ================= SLIDER ================= -->
   <section class="slider">
 
-    <!-- LEFT ARROW -->
-    <button class="prev" onclick="prevSlide()">❮</button>
+    <!-- LEFT -->
+    <button class="prev" onclick="prevSlide()">
+      ❮
+    </button>
 
-    <!-- RIGHT ARROW -->
-    <button class="next" onclick="nextSlide()">❯</button>
+    <!-- RIGHT -->
+    <button class="next" onclick="nextSlide()">
+      ❯
+    </button>
 
-    <div class="slide active" style="background-image:url('images/skincare.jpg')">
+    <!-- SLIDE 1 -->
+    <div class="slide active"
+      style="background-image:url('images/skincare.jpg')">
+
       <div class="overlay"></div>
+
       <div class="content">
+
+        <span>Luxury Skincare</span>
+
         <h2>Glow With Premium Skincare ✨</h2>
-        <p>Best products for your daily routine</p>
+
+        <p>
+          Best skincare products for radiant beauty.
+        </p>
+
+        <a href="shop.html" class="slide-btn">
+          Shop Collection
+        </a>
+
       </div>
+
     </div>
 
-    <div class="slide" style="background-image:url('images/perfume.jpg')">
+    <!-- SLIDE 2 -->
+    <div class="slide"
+      style="background-image:url('images/perfume.jpg')">
+
       <div class="overlay"></div>
+
       <div class="content">
-        <h2>Luxury Perfumes 💎</h2>
-        <p>Smell elegant & feel confident</p>
+
+        <span>Luxury Perfumes</span>
+
+        <h2>Smell Elegant & Feel Confident 💎</h2>
+
+        <p>
+          Premium long lasting fragrances.
+        </p>
+
+        <a href="shop.html" class="slide-btn">
+          Discover More
+        </a>
+
       </div>
+
     </div>
 
-    <div class="slide" style="background-image:url('images/haircare.jpg')">
+    <!-- SLIDE 3 -->
+    <div class="slide"
+      style="background-image:url('images/haircare.jpg')">
+
       <div class="overlay"></div>
+
       <div class="content">
+
+        <span>Haircare Essentials</span>
+
         <h2>Strong & Healthy Hair 💇‍♀️</h2>
-        <p>Shine & strength products</p>
+
+        <p>
+          Shine, strength & natural care products.
+        </p>
+
+        <a href="shop.html" class="slide-btn">
+          Explore Now
+        </a>
+
       </div>
+
     </div>
 
   </section>
 
-  <!-- PRODUCTS -->
-  <section class="products">
+  <!-- ================= PRODUCTS ================= -->
+  <section class="products-section">
 
-    <div class="product">
-      <img src="images/serum.jpg"
-        alt="Face Serum"
-        onerror="this.src='https://via.placeholder.com/300x200?text=Serum';">
-      <h3>Face Serum</h3>
-      <p>₹299</p>
-      <button onclick="buyNow('Face Serum', 299)">Add to Cart</button>
+    <div class="section-head">
+
+      <h2>Trending Products</h2>
+
+      <p>Luxury beauty collection for you</p>
+
     </div>
 
-    <div class="product">
-      <img src="images/perfume.jpg"
-        alt="Perfume"
-        onerror="this.src='https://via.placeholder.com/300x200?text=Perfume';">
-      <h3>Perfume</h3>
-      <p>₹499</p>
-      <button onclick="buyNow('Perfume', 499)">Add to Cart</button>
-    </div>
+    <div class="products">
 
-    <div class="product">
-      <img src="images/cream.jpg"
-        alt="Skin Cream"
-        onerror="this.src='https://via.placeholder.com/300x200?text=Cream';">
-      <h3>Skin Cream</h3>
-      <p>₹199</p>
-      <button onclick="buyNow('Skin Cream', 199)">Add to Cart</button>
+      <!-- PRODUCT -->
+      <div class="product-card">
+
+        <div class="product-badge">
+          Bestseller
+        </div>
+
+        <div class="wishlist-btn">
+          <i class="fa-regular fa-heart"></i>
+        </div>
+
+        <div class="product-img">
+
+          <img 
+            src="images/serum.jpg"
+            alt="Face Serum"
+
+            onerror="this.src='https://via.placeholder.com/400x400?text=Serum';"
+          >
+
+        </div>
+
+        <div class="product-info">
+
+          <div class="rating">
+            ★★★★★
+          </div>
+
+          <h3>Face Serum</h3>
+
+          <p class="product-desc">
+            Brightening serum for glowing skin.
+          </p>
+
+          <div class="price-box">
+
+            <span class="price">₹299</span>
+
+            <span class="old-price">₹499</span>
+
+          </div>
+
+          <div class="product-actions">
+
+            <button class="cart-btn2"
+              onclick="buyNow('Face Serum', 299)">
+
+              <i class="fa-solid fa-cart-shopping"></i>
+              Add to Cart
+
+            </button>
+
+            <button class="wish-btn">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- PRODUCT -->
+      <div class="product-card">
+
+        <div class="product-badge new-badge">
+          New
+        </div>
+
+        <div class="wishlist-btn">
+          <i class="fa-regular fa-heart"></i>
+        </div>
+
+        <div class="product-img">
+
+          <img 
+            src="images/perfume.jpg"
+            alt="Perfume"
+
+            onerror="this.src='https://via.placeholder.com/400x400?text=Perfume';"
+          >
+
+        </div>
+
+        <div class="product-info">
+
+          <div class="rating">
+            ★★★★★
+          </div>
+
+          <h3>Luxury Perfume</h3>
+
+          <p class="product-desc">
+            Elegant & long lasting fragrance.
+          </p>
+
+          <div class="price-box">
+
+            <span class="price">₹499</span>
+
+            <span class="old-price">₹799</span>
+
+          </div>
+
+          <div class="product-actions">
+
+            <button class="cart-btn2"
+              onclick="buyNow('Luxury Perfume', 499)">
+
+              <i class="fa-solid fa-cart-shopping"></i>
+              Add to Cart
+
+            </button>
+
+            <button class="wish-btn">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- PRODUCT -->
+      <div class="product-card">
+
+        <div class="product-badge hot-badge">
+          Hot
+        </div>
+
+        <div class="wishlist-btn">
+          <i class="fa-regular fa-heart"></i>
+        </div>
+
+        <div class="product-img">
+
+          <img 
+            src="images/cream.jpg"
+            alt="Cream"
+
+            onerror="this.src='https://via.placeholder.com/400x400?text=Cream';"
+          >
+
+        </div>
+
+        <div class="product-info">
+
+          <div class="rating">
+            ★★★★☆
+          </div>
+
+          <h3>Skin Cream</h3>
+
+          <p class="product-desc">
+            Daily moisturizing skin cream.
+          </p>
+
+          <div class="price-box">
+
+            <span class="price">₹199</span>
+
+            <span class="old-price">₹399</span>
+
+          </div>
+
+          <div class="product-actions">
+
+            <button class="cart-btn2"
+              onclick="buyNow('Skin Cream', 199)">
+
+              <i class="fa-solid fa-cart-shopping"></i>
+              Add to Cart
+
+            </button>
+
+            <button class="wish-btn">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
 
   </section>
+
+  <!-- ================= REVIEWS ================= -->
+  <section class="reviews-section">
+
+    <div class="section-head">
+
+      <h2>Customer Reviews</h2>
+
+      <p>What our customers say</p>
+
+    </div>
+
+    <div class="reviews-grid">
+
+      <div class="review-card">
+
+        <div class="review-stars">
+          ★★★★★
+        </div>
+
+        <p>
+          “Amazing skincare products. My skin feels glowing and fresh!”
+        </p>
+
+        <h4>- Priya Sharma</h4>
+
+      </div>
+
+      <div class="review-card">
+
+        <div class="review-stars">
+          ★★★★★
+        </div>
+
+        <p>
+          “Luxury perfume quality is truly premium and long lasting.”
+        </p>
+
+        <h4>- Ananya Singh</h4>
+
+      </div>
+
+      <div class="review-card">
+
+        <div class="review-stars">
+          ★★★★☆
+        </div>
+
+        <p>
+          “Beautiful design and smooth shopping experience on mobile.”
+        </p>
+
+        <h4>- Rahul Mehta</h4>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+
+    <div class="footer-content">
+
+      <div class="footer-box">
+
+        <h3>SAURVIA</h3>
+
+        <p>
+          Premium skincare, perfumes & beauty products
+          for modern lifestyle.
+        </p>
+
+      </div>
+
+      <div class="footer-box">
+
+        <h4>Quick Links</h4>
+
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="cart.html">Cart</a>
+
+      </div>
+
+      <div class="footer-box">
+
+        <h4>Follow Us</h4>
+
+        <div class="social-icons">
+
+          <i class="fa-brands fa-instagram"></i>
+          <i class="fa-brands fa-facebook"></i>
+          <i class="fa-brands fa-pinterest"></i>
+          <i class="fa-brands fa-youtube"></i>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 SAURVIA STORE | All Rights Reserved
+    </div>
+
+  </footer>
 
 </main>
 
