@@ -43,22 +43,22 @@
   <div class="sidebar-categories">
 
     <div class="side-cat">
-      <img src="images/skincare.jpg">
+      <img src="images/skincare.jpg" alt="Skincare">
       <span>Skincare</span>
     </div>
 
     <div class="side-cat">
-      <img src="images/perfume.jpg">
+      <img src="images/perfume.jpg" alt="Perfume">
       <span>Perfume</span>
     </div>
 
     <div class="side-cat">
-      <img src="images/haircare.jpg">
+      <img src="images/haircare.jpg" alt="Haircare">
       <span>Haircare</span>
     </div>
 
     <div class="side-cat">
-      <img src="images/beauty.jpg">
+      <img src="images/beauty.jpg" alt="Beauty">
       <span>Beauty</span>
     </div>
 
@@ -78,12 +78,14 @@
 
       <!-- SEARCH -->
       <div class="search-box">
+
         <input
           type="text"
           id="searchInput"
           placeholder="Search skincare, perfumes, haircare..."
           onkeyup="searchProducts()"
         >
+
       </div>
 
     </div>
@@ -105,8 +107,13 @@
     >
 
     <div class="shop-hero-text">
+
       <h1>Premium Beauty Collection ✨</h1>
-      <p>Discover skincare, perfumes & haircare essentials</p>
+
+      <p>
+        Discover skincare, perfumes & haircare essentials
+      </p>
+
     </div>
 
   </section>
@@ -114,23 +121,28 @@
   <!-- ================= FILTER ================= -->
   <section class="category-filter">
 
-    <button class="filter-btn active-filter">
+    <button class="filter-btn active-filter"
+      onclick="filterProducts('all')">
       All
     </button>
 
-    <button class="filter-btn">
+    <button class="filter-btn"
+      onclick="filterProducts('skincare')">
       Skincare
     </button>
 
-    <button class="filter-btn">
+    <button class="filter-btn"
+      onclick="filterProducts('perfume')">
       Perfume
     </button>
 
-    <button class="filter-btn">
+    <button class="filter-btn"
+      onclick="filterProducts('haircare')">
       Haircare
     </button>
 
-    <button class="filter-btn">
+    <button class="filter-btn"
+      onclick="filterProducts('beauty')">
       Beauty
     </button>
 
@@ -150,23 +162,21 @@
   <!-- ================= PRODUCTS ================= -->
   <section class="products" id="productsGrid">
 
-    <!-- PRODUCT -->
+    <!-- PRODUCT 1 -->
     <div class="product-card"
+      data-category="skincare"
       data-name="Face Serum"
       data-price="299">
 
-      <!-- DISCOUNT -->
       <div class="discount-tag">
         40% OFF
       </div>
 
-      <!-- WISHLIST -->
       <button class="wishlist-btn"
         onclick="toggleWishlist(this)">
         <i class="fa-regular fa-heart"></i>
       </button>
 
-      <!-- IMAGE -->
       <div class="product-image">
 
         <img
@@ -177,7 +187,6 @@
 
       </div>
 
-      <!-- INFO -->
       <div class="product-info">
 
         <p class="brand-name">
@@ -186,7 +195,6 @@
 
         <h3>Face Serum</h3>
 
-        <!-- RATING -->
         <div class="rating-box">
 
           <span class="rating">
@@ -199,7 +207,6 @@
 
         </div>
 
-        <!-- PRICE -->
         <div class="price-box">
 
           <span class="new-price">
@@ -212,12 +219,10 @@
 
         </div>
 
-        <!-- DELIVERY -->
         <p class="delivery">
-          Free Delivery Tomorrow
+          🚚 Free Delivery Tomorrow
         </p>
 
-        <!-- ACTIONS -->
         <div class="product-actions">
 
           <button class="add-cart-btn"
@@ -228,6 +233,10 @@
 
           </button>
 
+          <button class="quick-view-btn">
+            Quick View
+          </button>
+
         </div>
 
       </div>
@@ -236,6 +245,7 @@
 
     <!-- PRODUCT 2 -->
     <div class="product-card"
+      data-category="perfume"
       data-name="Luxury Perfume"
       data-price="499">
 
@@ -291,7 +301,7 @@
         </div>
 
         <p class="delivery">
-          Fast Delivery Available
+          🚚 Fast Delivery Available
         </p>
 
         <div class="product-actions">
@@ -304,10 +314,181 @@
 
           </button>
 
+          <button class="quick-view-btn">
+            Quick View
+          </button>
+
         </div>
 
       </div>
 
+    </div>
+
+    <!-- PRODUCT 3 -->
+    <div class="product-card"
+      data-category="beauty"
+      data-name="Skin Cream"
+      data-price="199">
+
+      <div class="discount-tag">
+        50% OFF
+      </div>
+
+      <button class="wishlist-btn"
+        onclick="toggleWishlist(this)">
+        <i class="fa-regular fa-heart"></i>
+      </button>
+
+      <div class="product-image">
+
+        <img
+          src="images/cream.jpg"
+          alt="Skin Cream"
+          onerror="this.src='https://via.placeholder.com/300x220?text=Cream';"
+        >
+
+      </div>
+
+      <div class="product-info">
+
+        <p class="brand-name">
+          SAURVIA
+        </p>
+
+        <h3>Skin Cream</h3>
+
+        <div class="rating-box">
+
+          <span class="rating">
+            4.3 ★
+          </span>
+
+          <span class="reviews">
+            1,420 Reviews
+          </span>
+
+        </div>
+
+        <div class="price-box">
+
+          <span class="new-price">
+            ₹199
+          </span>
+
+          <span class="old-price">
+            ₹399
+          </span>
+
+        </div>
+
+        <p class="delivery">
+          🚚 Free Delivery
+        </p>
+
+        <div class="product-actions">
+
+          <button class="add-cart-btn"
+            onclick="buyNow('Skin Cream',199)">
+
+            <i class="fa-solid fa-cart-shopping"></i>
+            Add to Cart
+
+          </button>
+
+          <button class="quick-view-btn">
+            Quick View
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- PRODUCT 4 -->
+    <div class="product-card"
+      data-category="haircare"
+      data-name="Hair Oil"
+      data-price="249">
+
+      <div class="discount-tag">
+        35% OFF
+      </div>
+
+      <button class="wishlist-btn"
+        onclick="toggleWishlist(this)">
+        <i class="fa-regular fa-heart"></i>
+      </button>
+
+      <div class="product-image">
+
+        <img
+          src="images/hair.jpg"
+          alt="Hair Oil"
+          onerror="this.src='https://via.placeholder.com/300x220?text=Hair+Oil';"
+        >
+
+      </div>
+
+      <div class="product-info">
+
+        <p class="brand-name">
+          SAURVIA
+        </p>
+
+        <h3>Hair Oil</h3>
+
+        <div class="rating-box">
+
+          <span class="rating">
+            4.7 ★
+          </span>
+
+          <span class="reviews">
+            3,220 Reviews
+          </span>
+
+        </div>
+
+        <div class="price-box">
+
+          <span class="new-price">
+            ₹249
+          </span>
+
+          <span class="old-price">
+            ₹499
+          </span>
+
+        </div>
+
+        <p class="delivery">
+          🚚 Delivery in 2 Days
+        </p>
+
+        <div class="product-actions">
+
+          <button class="add-cart-btn"
+            onclick="buyNow('Hair Oil',249)">
+
+            <i class="fa-solid fa-cart-shopping"></i>
+            Add to Cart
+
+          </button>
+
+          <button class="quick-view-btn">
+            Quick View
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- NO PRODUCTS -->
+    <div class="no-products" id="noProducts">
+      No products found 😢
     </div>
 
   </section>
@@ -326,6 +507,47 @@
       <a href="#" class="btn">
         Shop Deals
       </a>
+
+    </div>
+
+  </section>
+
+  <!-- ================= TRUST BADGES ================= -->
+  <section class="trust-section">
+
+    <div class="trust-box">
+
+      <i class="fa-solid fa-truck-fast"></i>
+
+      <h3>Fast Delivery</h3>
+
+      <p>
+        Quick shipping across India
+      </p>
+
+    </div>
+
+    <div class="trust-box">
+
+      <i class="fa-solid fa-shield-heart"></i>
+
+      <h3>Secure Payment</h3>
+
+      <p>
+        100% secure checkout system
+      </p>
+
+    </div>
+
+    <div class="trust-box">
+
+      <i class="fa-solid fa-rotate-left"></i>
+
+      <h3>Easy Returns</h3>
+
+      <p>
+        7 days return policy
+      </p>
 
     </div>
 
@@ -366,6 +588,28 @@
 
   </section>
 
+  <!-- ================= NEWSLETTER ================= -->
+  <section class="newsletter">
+
+    <h2>Get Special Offers ✨</h2>
+
+    <p>
+      Subscribe to receive updates, offers & beauty tips
+    </p>
+
+    <div class="newsletter-box">
+
+      <input type="email"
+        placeholder="Enter your email">
+
+      <button>
+        Subscribe
+      </button>
+
+    </div>
+
+  </section>
+
   <!-- ================= FOOTER ================= -->
   <footer class="footer">
 
@@ -386,6 +630,36 @@
   </footer>
 
 </main>
+
+<!-- ================= MOBILE NAVBAR ================= -->
+<div class="mobile-nav">
+
+  <a href="index.html">
+    <i class="fa-solid fa-house"></i>
+    <span>Home</span>
+  </a>
+
+  <a href="shop.html" class="active-mobile-nav">
+    <i class="fa-solid fa-shop"></i>
+    <span>Shop</span>
+  </a>
+
+  <a href="#">
+    <i class="fa-solid fa-heart"></i>
+    <span>Wishlist</span>
+  </a>
+
+  <a href="cart.html">
+    <i class="fa-solid fa-cart-shopping"></i>
+    <span>Cart</span>
+  </a>
+
+  <a href="#">
+    <i class="fa-solid fa-user"></i>
+    <span>Account</span>
+  </a>
+
+</div>
 
 <script src="script.js"></script>
 
