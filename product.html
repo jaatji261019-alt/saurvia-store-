@@ -2,16 +2,28 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>Product Details - SAURVIA</title>
+  <meta charset="UTF-8">
 
-  <link rel="stylesheet" href="shop.css">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    Product Details - SAURVIA
+  </title>
+
+  <!-- MAIN CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- PRODUCT CSS -->
+  <link rel="stylesheet" href="product.css">
 
   <!-- FONT AWESOME -->
   <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  >
 
 </head>
 
@@ -22,12 +34,19 @@
 
   <div class="center-box">
 
-    <h1 class="logo">SAURVIA</h1>
+    <h1 class="logo">
+      SAURVIA
+    </h1>
 
   </div>
 
+  <!-- CART -->
   <div class="cart-box">
-    <a href="cart.html">🛒 Cart (0)</a>
+
+    <a href="cart.html">
+      🛒 Cart (0)
+    </a>
+
   </div>
 
 </header>
@@ -35,16 +54,17 @@
 <!-- ================= PRODUCT PAGE ================= -->
 <section class="product-page">
 
-  <!-- LEFT -->
+  <!-- ================= LEFT ================= -->
   <div class="product-left">
 
     <!-- MAIN IMAGE -->
     <div class="main-product-image">
 
       <img
-        id="mainImage"
+        id="mainProductImage"
         src="images/serum.jpg"
-        alt="Product"
+        alt="Face Serum"
+        onerror="this.src='https://via.placeholder.com/600x600?text=Product';"
       >
 
     </div>
@@ -54,30 +74,34 @@
 
       <img
         src="images/serum.jpg"
-        onclick="changeImage(this)"
         class="active-thumb"
+        onclick="changeMainImage('images/serum.jpg')"
+        onerror="this.src='https://via.placeholder.com/100';"
       >
 
       <img
         src="images/perfume.jpg"
-        onclick="changeImage(this)"
+        onclick="changeMainImage('images/perfume.jpg')"
+        onerror="this.src='https://via.placeholder.com/100';"
       >
 
       <img
         src="images/haircare.jpg"
-        onclick="changeImage(this)"
+        onclick="changeMainImage('images/haircare.jpg')"
+        onerror="this.src='https://via.placeholder.com/100';"
       >
 
       <img
         src="images/beauty.jpg"
-        onclick="changeImage(this)"
+        onclick="changeMainImage('images/beauty.jpg')"
+        onerror="this.src='https://via.placeholder.com/100';"
       >
 
     </div>
 
   </div>
 
-  <!-- RIGHT -->
+  <!-- ================= RIGHT ================= -->
   <div class="product-right">
 
     <!-- BRAND -->
@@ -141,7 +165,9 @@
     <!-- QUANTITY -->
     <div class="quantity-box">
 
-      <h4>Quantity:</h4>
+      <h4>
+        Quantity:
+      </h4>
 
       <div class="qty-controls">
 
@@ -164,17 +190,34 @@
     <!-- BUTTONS -->
     <div class="product-buttons">
 
-      <button class="add-cart-btn"
-        onclick="addProductToCart()">
+      <!-- ADD TO CART -->
+      <button
+        class="add-cart-btn"
+        onclick="addProductToCart(
+          'Premium Face Serum With Vitamin C',
+          299,
+          'images/serum.jpg'
+        )"
+      >
 
         <i class="fa-solid fa-cart-shopping"></i>
+
         Add To Cart
 
       </button>
 
-      <button class="buy-btn">
+      <!-- BUY NOW -->
+      <button
+        class="buy-btn"
+        onclick="buyProductNow(
+          'Premium Face Serum With Vitamin C',
+          299,
+          'images/serum.jpg'
+        )"
+      >
 
         <i class="fa-solid fa-bolt"></i>
+
         Buy Now
 
       </button>
@@ -184,13 +227,21 @@
     <!-- OFFERS -->
     <div class="offer-list">
 
-      <h3>Available Offers</h3>
+      <h3>
+        Available Offers
+      </h3>
 
-      <p>💳 10% OFF on Credit Card</p>
+      <p>
+        💳 10% OFF on Credit Card
+      </p>
 
-      <p>🔥 Extra ₹100 OFF on orders above ₹999</p>
+      <p>
+        🔥 Extra ₹100 OFF on orders above ₹999
+      </p>
 
-      <p>🚚 Free shipping on prepaid orders</p>
+      <p>
+        🚚 Free shipping on prepaid orders
+      </p>
 
     </div>
 
@@ -201,12 +252,16 @@
 <!-- ================= DESCRIPTION ================= -->
 <section class="description-section">
 
-  <h2>Product Description</h2>
+  <h2>
+    Product Description
+  </h2>
 
   <p>
+
     This premium vitamin C face serum helps brighten skin,
-    reduce dark spots, hydrate deeply and provide a natural glow.
+    reduce dark spots, hydrate deeply and provide natural glow.
     Suitable for all skin types with natural ingredients.
+
   </p>
 
 </section>
@@ -214,7 +269,9 @@
 <!-- ================= FEATURES ================= -->
 <section class="features-section">
 
-  <h2>Key Features</h2>
+  <h2>
+    Key Features
+  </h2>
 
   <div class="feature-grid">
 
@@ -238,15 +295,20 @@
 
 </section>
 
-<!-- ================= CUSTOMER REVIEWS ================= -->
+<!-- ================= REVIEWS ================= -->
 <section class="review-section">
 
   <div class="review-title">
-    <h2>Customer Reviews ⭐</h2>
+
+    <h2>
+      Customer Reviews ⭐
+    </h2>
+
   </div>
 
   <div class="review-grid">
 
+    <!-- REVIEW -->
     <div class="review-card">
 
       <div class="review-stars">
@@ -254,7 +316,7 @@
       </div>
 
       <p>
-        Amazing serum! My skin started glowing in just one week.
+        Amazing serum! My skin started glowing in one week.
       </p>
 
       <div class="review-user">
@@ -263,6 +325,7 @@
 
     </div>
 
+    <!-- REVIEW -->
     <div class="review-card">
 
       <div class="review-stars">
@@ -287,7 +350,11 @@
 <section class="related-products">
 
   <div class="review-title">
-    <h2>Related Products 🔥</h2>
+
+    <h2>
+      Related Products 🔥
+    </h2>
+
   </div>
 
   <div class="products">
@@ -304,13 +371,16 @@
         <img
           src="images/perfume.jpg"
           alt="Perfume"
+          onerror="this.src='https://via.placeholder.com/300x250';"
         >
 
       </div>
 
       <div class="product-info">
 
-        <h3>Luxury Perfume</h3>
+        <h3>
+          Luxury Perfume
+        </h3>
 
         <p class="price">
           ₹499
@@ -322,8 +392,10 @@
 
         <div class="product-actions">
 
-          <button class="cart-btn"
-            onclick="buyNow('Luxury Perfume',499)">
+          <button
+            class="cart-btn"
+            onclick="buyNow('Luxury Perfume',499)"
+          >
             Add To Cart
           </button>
 
@@ -344,14 +416,17 @@
 
         <img
           src="images/haircare.jpg"
-          alt="Haircare"
+          alt="Hair Oil"
+          onerror="this.src='https://via.placeholder.com/300x250';"
         >
 
       </div>
 
       <div class="product-info">
 
-        <h3>Hair Care Oil</h3>
+        <h3>
+          Hair Care Oil
+        </h3>
 
         <p class="price">
           ₹349
@@ -363,8 +438,10 @@
 
         <div class="product-actions">
 
-          <button class="cart-btn"
-            onclick="buyNow('Hair Care Oil',349)">
+          <button
+            class="cart-btn"
+            onclick="buyNow('Hair Care Oil',349)"
+          >
             Add To Cart
           </button>
 
@@ -383,9 +460,17 @@
 
   <div class="footer-links">
 
-    <a href="index.html">Home</a>
-    <a href="shop.html">Shop</a>
-    <a href="cart.html">Cart</a>
+    <a href="index.html">
+      Home
+    </a>
+
+    <a href="shop.html">
+      Shop
+    </a>
+
+    <a href="cart.html">
+      Cart
+    </a>
 
   </div>
 
@@ -398,52 +483,6 @@
 <!-- ================= SCRIPT ================= -->
 <script src="script.js"></script>
 
-<script>
-
-let qty = 1;
-
-function increaseQty(){
-
-  qty++;
-
-  document.getElementById("qty").innerText = qty;
-}
-
-function decreaseQty(){
-
-  if(qty > 1){
-
-    qty--;
-
-    document.getElementById("qty").innerText = qty;
-  }
-}
-
-function changeImage(element){
-
-  document.getElementById("mainImage").src = element.src;
-
-  let thumbs =
-    document.querySelectorAll(".thumbnail-row img");
-
-  thumbs.forEach(img=>{
-    img.classList.remove("active-thumb");
-  });
-
-  element.classList.add("active-thumb");
-}
-
-function addProductToCart(){
-
-  buyNow(
-    "Premium Face Serum With Vitamin C",
-    299
-  );
-
-  showToast("Product added to cart 🛒");
-}
-
-</script>
-
 </body>
+
 </html>
