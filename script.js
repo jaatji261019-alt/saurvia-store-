@@ -766,3 +766,89 @@ document.addEventListener(
     }
   }
 );
+// ================= PRODUCT IMAGE CHANGE =================
+function changeMainImage(image) {
+
+  let mainImage =
+    document.getElementById("mainProductImage");
+
+  if (mainImage) {
+    mainImage.src = image;
+  }
+
+  // ACTIVE THUMBNAIL
+  let thumbs =
+    document.querySelectorAll(".thumbnail-row img");
+
+  thumbs.forEach(img => {
+    img.classList.remove("active-thumb");
+  });
+
+  event.target.classList.add("active-thumb");
+}
+
+// ================= PRODUCT QUANTITY =================
+let productQty = 1;
+
+function increaseQty() {
+
+  productQty++;
+
+  let qty = document.getElementById("qty");
+
+  if (qty) {
+    qty.innerText = productQty;
+  }
+}
+
+function decreaseQty() {
+
+  if (productQty > 1) {
+    productQty--;
+  }
+
+  let qty = document.getElementById("qty");
+
+  if (qty) {
+    qty.innerText = productQty;
+  }
+}
+
+// ================= ADD PRODUCT TO CART =================
+function addProductToCart(name, price, image) {
+
+  price = Number(price);
+
+  let existing = cart.find(
+    item => item.name.toLowerCase() === name.toLowerCase()
+  );
+
+  if (existing) {
+
+    existing.qty += productQty;
+
+  } else {
+
+    cart.push({
+      id: Date.now(),
+      name: name,
+      price: price,
+      image: image,
+      qty: productQty
+    });
+  }
+
+  saveCart();
+
+  updateCartCount();
+
+  showToast(`${name} added to cart 🛒`);
+}
+
+// ================= BUY NOW =================
+function buyProductNow(name, price, image) {
+
+  addProductToCart(name, price, image);
+
+  window.location.href = "cart.html";
+}
