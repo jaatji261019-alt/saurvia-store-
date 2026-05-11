@@ -1,1 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    Wishlist - SAURVIA
+  </title>
+
+  <!-- MAIN CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- WISHLIST CSS -->
+  <link rel="stylesheet" href="wishlist.css">
+
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  >
+
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="top-header">
+
+  <div class="center-box">
+
+    <h1 class="logo">
+      SAURVIA
+    </h1>
+
+  </div>
+
+  <!-- CART -->
+  <div class="cart-box">
+
+    <a href="cart.html">
+      🛒 Cart (0)
+    </a>
+
+  </div>
+
+</header>
+
+<!-- ================= PAGE TITLE ================= -->
+<section class="wishlist-title">
+
+  <h1>
+    My Wishlist ❤️
+  </h1>
+
+  <p>
+    Your favorite beauty products saved here
+  </p>
+
+</section>
+
+<!-- ================= WISHLIST CONTAINER ================= -->
+<section
+  class="wishlist-container"
+  id="wishlistContainer"
+>
+
+  <!-- JS PRODUCTS LOAD HERE -->
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+
+  <div class="footer-links">
+
+    <a href="index.html">
+      Home
+    </a>
+
+    <a href="shop.html">
+      Shop
+    </a>
+
+    <a href="cart.html">
+      Cart
+    </a>
+
+    <a href="wishlist.html">
+      Wishlist
+    </a>
+
+  </div>
+
+  <p>
+    © 2026 SAURVIA STORE | All Rights Reserved
+  </p>
+
+</footer>
+
+<!-- ================= SCRIPT ================= -->
+<script src="script.js"></script>
+
+<script>
+
+/* ================= PRODUCT DATABASE ================= */
+
+const allProducts = [
+
+  {
+    name: "Premium Face Serum With Vitamin C",
+    price: 299,
+    image: "images/serum.jpg"
+  },
+
+  {
+    name: "Luxury Perfume",
+    price: 499,
+    image: "images/perfume.jpg"
+  },
+
+  {
+    name: "Hair Care Oil",
+    price: 349,
+    image: "images/haircare.jpg"
+  },
+
+  {
+    name: "Beauty Cream",
+    price: 399,
+    image: "images/beauty.jpg"
+  }
+
+];
+
+/* ================= RENDER WISHLIST ================= */
+
+function renderWishlist(){
+
+  let container =
+    document.getElementById("wishlistContainer");
+
+  if(!container) return;
+
+  container.innerHTML = "";
+
+  /* EMPTY WISHLIST */
+  if(wishlist.length === 0){
+
+    container.innerHTML = `
+
+      <div class="empty-wishlist">
+
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png"
+          width="120"
+        >
+
+        <h2>
+          Wishlist is Empty 💔
+        </h2>
+
+        <p>
+          Save products you love
+        </p>
+
+        <a
+          href="shop.html"
+          class="shop-btn"
+        >
+          Continue Shopping
+        </a>
+
+      </div>
+
+    `;
+
+    return;
+  }
+
+  /* FILTER PRODUCTS */
+  let wishlistProducts =
+    allProducts.filter(product =>
+      wishlist.includes(product.name)
+    );
+
+  wishlistProducts.forEach(product => {
+
+    let card = document.createElement("div");
+
+    card.className = "wishlist-card";
+
+    card.innerHTML = `
+
+      <!-- IMAGE -->
+      <div class="wishlist-image">
+
+        <img
+          src="${product.image}"
+          alt="${product.name}"
+          onerror="this.src='https://via.placeholder.com/300x250';"
+        >
+
+      </div>
+
+      <!-- INFO -->
+      <div class="wishlist-info">
+
+        <h3>
+          ${product.name}
+        </h3>
+
+        <p class="wishlist-price">
+          ₹${product.price}
+        </p>
+
+        <div class="wishlist-rating">
+          ⭐⭐⭐⭐⭐ (4.9)
+        </div>
+
+        <!-- BUTTONS -->
+        <div class="wishlist-buttons">
+
+          <button
+            class="wishlist-cart-btn"
+            onclick="buyNow(
+              '${product.name}',
+              ${product.price}
+            )"
+          >
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+            Add To Cart
+
+          </button>
+
+          <button
+            class="wishlist-remove-btn"
+            onclick="removeWishlistItem(
+              '${product.name}'
+            )"
+          >
+
+            <i class="fa-solid fa-trash"></i>
+
+            Remove
+
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
+
+    container.appendChild(card);
+
+  });
+
+}
+
+/* ================= REMOVE ITEM ================= */
+
+function removeWishlistItem(productName){
+
+  wishlist =
+    wishlist.filter(
+      item => item !== productName
+    );
+
+  saveWishlist();
+
+  renderWishlist();
+
+  showToast(
+    productName +
+    " removed from wishlist 💔"
+  );
+}
+
+/* ================= INIT ================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    updateCartCount();
+
+    renderWishlist();
+
+  }
+);
+
+</script>
+
+</body>
+</html>
