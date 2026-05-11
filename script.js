@@ -1,5 +1,6 @@
 // ================= LOAD CART =================
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let cart =
+  JSON.parse(localStorage.getItem("cart")) || [];
 
 // ================= LOAD WISHLIST =================
 let wishlist =
@@ -7,6 +8,7 @@ let wishlist =
 
 // ================= SAVE CART =================
 function saveCart() {
+
   localStorage.setItem(
     "cart",
     JSON.stringify(cart)
@@ -15,6 +17,7 @@ function saveCart() {
 
 // ================= SAVE WISHLIST =================
 function saveWishlist() {
+
   localStorage.setItem(
     "wishlist",
     JSON.stringify(wishlist)
@@ -25,13 +28,16 @@ function saveWishlist() {
 function updateCartCount() {
 
   let count = cart.reduce((sum, item) => {
+
     return sum + item.qty;
+
   }, 0);
 
   let cartBox =
     document.querySelector(".cart-box a");
 
   if (cartBox) {
+
     cartBox.innerHTML =
       `🛒 Cart (${count})`;
   }
@@ -58,7 +64,9 @@ function showToast(message) {
   currentToast = toast;
 
   setTimeout(() => {
+
     toast.classList.add("show");
+
   }, 100);
 
   setTimeout(() => {
@@ -77,18 +85,25 @@ function showToast(message) {
 }
 
 // ================= WISHLIST =================
-function toggleWishlist(btn, productName) {
-
-  let icon = btn.querySelector("i");
+function toggleWishlist(
+  btn,
+  productName,
+  price = 0,
+  image = ""
+) {
 
   let exists =
-    wishlist.includes(productName);
+    wishlist.find(
+      item => item.name === productName
+    );
+
+  let icon = btn.querySelector("i");
 
   if (exists) {
 
     wishlist =
       wishlist.filter(
-        item => item !== productName
+        item => item.name !== productName
       );
 
     btn.classList.remove(
@@ -96,6 +111,7 @@ function toggleWishlist(btn, productName) {
     );
 
     if (icon) {
+
       icon.className =
         "fa-regular fa-heart";
     }
@@ -106,13 +122,22 @@ function toggleWishlist(btn, productName) {
 
   } else {
 
-    wishlist.push(productName);
+    wishlist.push({
+
+      name: productName,
+
+      price: price,
+
+      image: image
+
+    });
 
     btn.classList.add(
       "active-wishlist"
     );
 
     if (icon) {
+
       icon.className =
         "fa-solid fa-heart";
     }
@@ -138,15 +163,22 @@ function loadWishlistButtons() {
     let product =
       btn.getAttribute("data-product");
 
-    let icon = btn.querySelector("i");
+    let icon =
+      btn.querySelector("i");
 
-    if (wishlist.includes(product)) {
+    let exists =
+      wishlist.find(
+        item => item.name === product
+      );
+
+    if (exists) {
 
       btn.classList.add(
         "active-wishlist"
       );
 
       if (icon) {
+
         icon.className =
           "fa-solid fa-heart";
       }
@@ -154,33 +186,211 @@ function loadWishlistButtons() {
   });
 }
 
+// ================= RENDER WISHLIST =================
+function renderWishlist() {
+
+  let container =
+    document.getElementById(
+      "wishlist-items"
+    );
+
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  // EMPTY
+  if (wishlist.length === 0) {
+
+    container.innerHTML = `
+
+      <div class="empty-wishlist">
+
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png"
+          width="120"
+        >
+
+        <h2>
+          Wishlist is empty ❤️
+        </h2>
+
+        <p>
+          Save products you love
+        </p>
+
+        <a
+          href="shop.html"
+          class="shop-btn"
+        >
+          Continue Shopping
+        </a>
+
+      </div>
+
+    `;
+
+    return;
+  }
+
+  // ITEMS
+  wishlist.forEach((item, index) => {
+
+    let div =
+      document.createElement("div");
+
+    div.className =
+      "wishlist-card";
+
+    div.innerHTML = `
+
+      <div class="wishlist-image">
+
+        <img
+          src="${
+            item.image ||
+            'https://via.placeholder.com/250'
+          }"
+        >
+
+      </div>
+
+      <div class="wishlist-info">
+
+        <h3>
+          ${item.name}
+        </h3>
+
+        <p class="wishlist-price">
+          ₹${item.price}
+        </p>
+
+        <div class="wishlist-buttons">
+
+          <button
+            class="wishlist-cart-btn"
+            onclick="moveToCart(${index})"
+          >
+
+            Add To Cart
+
+          </button>
+
+          <button
+            class="wishlist-remove-btn"
+            onclick="removeFromWishlist(${index})"
+          >
+
+            Remove
+
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
+
+    container.appendChild(div);
+  });
+}
+
+// ================= REMOVE WISHLIST =================
+function removeFromWishlist(index) {
+
+  if (!wishlist[index]) return;
+
+  showToast(
+    `${wishlist[index].name} removed ❌`
+  );
+
+  wishlist.splice(index, 1);
+
+  saveWishlist();
+
+  renderWishlist();
+
+  loadWishlistButtons();
+}
+
+// ================= MOVE TO CART =================
+function moveToCart(index) {
+
+  let item = wishlist[index];
+
+  if (!item) return;
+
+  let existing =
+    cart.find(
+      cartItem =>
+        cartItem.name.toLowerCase() ===
+        item.name.toLowerCase()
+    );
+
+  if (existing) {
+
+    existing.qty++;
+
+  } else {
+
+    cart.push({
+
+      id: Date.now(),
+
+      name: item.name,
+
+      price: item.price,
+
+      image: item.image,
+
+      qty: 1
+
+    });
+  }
+
+  saveCart();
+
+  updateCartCount();
+
+  showToast(
+    `${item.name} moved to cart 🛒`
+  );
+}
+
 // ================= ADD TO CART =================
-function buyNow(product, price) {
+function buyNow(
+  product,
+  price,
+  image = ""
+) {
 
   price = Number(price);
 
-  if (!product || isNaN(price)) return;
+  if (!product || isNaN(price))
+    return;
 
   let existing =
-    cart.find(item =>
-      item.name.toLowerCase() ===
-      product.toLowerCase()
+    cart.find(
+      item =>
+        item.name.toLowerCase() ===
+        product.toLowerCase()
     );
 
-  // PRODUCT CARD
-  let productCard = event.target.closest(
-    ".product-card"
-  );
+  // AUTO IMAGE
+  if (!image && typeof event !== "undefined") {
 
-  let image = "";
+    let productCard =
+      event.target.closest(
+        ".product, .product-card"
+      );
 
-  if (productCard) {
+    if (productCard) {
 
-    let img =
-      productCard.querySelector("img");
+      let img =
+        productCard.querySelector("img");
 
-    if (img) {
-      image = img.src;
+      if (img) {
+        image = img.src;
+      }
     }
   }
 
@@ -217,8 +427,10 @@ function buyNow(product, price) {
 // ================= REMOVE FROM CART =================
 function removeFromCart(index) {
 
-  if (index < 0 || index >= cart.length)
-    return;
+  if (
+    index < 0 ||
+    index >= cart.length
+  ) return;
 
   cart.splice(index, 1);
 
@@ -244,7 +456,9 @@ function clearCart() {
 
     renderCart();
 
-    showToast("Cart cleared 🗑️");
+    showToast(
+      "Cart cleared 🗑️"
+    );
   }
 }
 
@@ -257,7 +471,7 @@ function changeQty(index, type) {
 
     cart[index].qty++;
 
-  } else if (type === "dec") {
+  } else {
 
     if (cart[index].qty > 1) {
 
@@ -295,32 +509,37 @@ function renderCart() {
 
   let total = 0;
 
-  // EMPTY CART
+  // EMPTY
   if (cart.length === 0) {
 
     container.innerHTML = `
 
       <div class="empty-cart">
 
-        <img 
+        <img
           src="https://cdn-icons-png.flaticon.com/512/2038/2038854.png"
           width="120"
         >
 
-        <h2>Your cart is empty 🛒</h2>
+        <h2>
+          Your cart is empty 🛒
+        </h2>
 
         <p>
           Add products to continue shopping
         </p>
 
-        <a href="shop.html"
-          class="shop-btn">
+        <a
+          href="shop.html"
+          class="shop-btn"
+        >
 
           Continue Shopping
 
         </a>
 
       </div>
+
     `;
 
     if (totalBox) {
@@ -341,13 +560,14 @@ function renderCart() {
     let div =
       document.createElement("div");
 
-    div.className = "cart-item";
+    div.className =
+      "cart-item";
 
     div.innerHTML = `
 
       <div class="cart-left">
 
-        <img 
+        <img
           src="${
             item.image ||
             'https://via.placeholder.com/100'
@@ -359,7 +579,9 @@ function renderCart() {
 
       <div class="cart-info">
 
-        <h3>${item.name}</h3>
+        <h3>
+          ${item.name}
+        </h3>
 
         <p class="cart-price">
           ₹${item.price}
@@ -367,22 +589,22 @@ function renderCart() {
 
         <div class="cart-actions">
 
-          <button class="qty-btn"
-            onclick="changeQty(${index}, 'dec')">
-
+          <button
+            class="qty-btn"
+            onclick="changeQty(${index}, 'dec')"
+          >
             −
-
           </button>
 
           <span class="qty-number">
             ${item.qty}
           </span>
 
-          <button class="qty-btn"
-            onclick="changeQty(${index}, 'inc')">
-
+          <button
+            class="qty-btn"
+            onclick="changeQty(${index}, 'inc')"
+          >
             +
-
           </button>
 
         </div>
@@ -395,14 +617,17 @@ function renderCart() {
           ₹${itemTotal}
         </h4>
 
-        <button class="remove-btn"
-          onclick="removeFromCart(${index})">
+        <button
+          class="remove-btn"
+          onclick="removeFromCart(${index})"
+        >
 
           Remove
 
         </button>
 
       </div>
+
     `;
 
     container.appendChild(div);
@@ -426,11 +651,12 @@ function renderCart() {
         </button>
 
       </div>
+
     `;
   }
 }
 
-// ================= SEARCH PRODUCTS =================
+// ================= SEARCH =================
 function searchProducts() {
 
   let input =
@@ -445,7 +671,7 @@ function searchProducts() {
 
   let products =
     document.querySelectorAll(
-      ".product-card"
+      ".product, .product-card"
     );
 
   products.forEach(product => {
@@ -460,16 +686,18 @@ function searchProducts() {
 
     if (text.includes(filter)) {
 
-      product.style.display = "block";
+      product.style.display =
+        "block";
 
     } else {
 
-      product.style.display = "none";
+      product.style.display =
+        "none";
     }
   });
 }
 
-// ================= FILTER PRODUCTS =================
+// ================= FILTER =================
 function filterProducts(
   category,
   button
@@ -477,7 +705,7 @@ function filterProducts(
 
   let products =
     document.querySelectorAll(
-      ".product-card"
+      ".product, .product-card"
     );
 
   products.forEach(product => {
@@ -492,27 +720,30 @@ function filterProducts(
       productCategory === category
     ) {
 
-      product.style.display = "block";
+      product.style.display =
+        "block";
 
     } else {
 
-      product.style.display = "none";
+      product.style.display =
+        "none";
     }
   });
 
-  // ACTIVE BUTTON
   let buttons =
     document.querySelectorAll(
       ".filter-btn"
     );
 
   buttons.forEach(btn => {
+
     btn.classList.remove(
       "active-filter"
     );
   });
 
   if (button) {
+
     button.classList.add(
       "active-filter"
     );
@@ -536,19 +767,21 @@ function quickView(
       "quickViewContent"
     );
 
-  if (!modal || !content) return;
+  if (!modal || !content)
+    return;
 
-  modal.style.display = "flex";
+  modal.style.display =
+    "flex";
 
   content.innerHTML = `
 
     <div class="quick-view-box">
 
-      <span class="close-modal"
-        onclick="closeQuickView()">
-
+      <span
+        class="close-modal"
+        onclick="closeQuickView()"
+      >
         ✖
-
       </span>
 
       <img
@@ -558,7 +791,9 @@ function quickView(
 
       <div class="quick-view-info">
 
-        <h2>${name}</h2>
+        <h2>
+          ${name}
+        </h2>
 
         <div class="quick-rating">
           ⭐⭐⭐⭐⭐ (4.9)
@@ -568,16 +803,10 @@ function quickView(
           ₹${price}
         </p>
 
-        <p class="quick-desc">
-
-          Premium skincare product with
-          natural ingredients for glowing skin.
-
-        </p>
-
         <button
           class="quick-cart-btn"
-          onclick="buyNow('${name}', ${price})">
+          onclick="buyNow('${name}', ${price}, '${image}')"
+        >
 
           Add To Cart
 
@@ -586,6 +815,7 @@ function quickView(
       </div>
 
     </div>
+
   `;
 }
 
@@ -598,7 +828,9 @@ function closeQuickView() {
     );
 
   if (modal) {
-    modal.style.display = "none";
+
+    modal.style.display =
+      "none";
   }
 }
 
@@ -615,10 +847,25 @@ function showSlide(index) {
       ".slide"
     );
 
+  let dots =
+    document.querySelectorAll(
+      ".dot"
+    );
+
   if (!slides.length) return;
 
   slides.forEach(slide => {
-    slide.classList.remove("active");
+
+    slide.classList.remove(
+      "active"
+    );
+  });
+
+  dots.forEach(dot => {
+
+    dot.classList.remove(
+      "active-dot"
+    );
   });
 
   currentSlide =
@@ -627,6 +874,14 @@ function showSlide(index) {
 
   slides[currentSlide]
     .classList.add("active");
+
+  if (dots[currentSlide]) {
+
+    dots[currentSlide]
+      .classList.add(
+        "active-dot"
+      );
+  }
 }
 
 // AUTO SLIDER
@@ -642,23 +897,31 @@ function startSlider() {
   showSlide(0);
 
   if (sliderInterval) {
-    clearInterval(sliderInterval);
+
+    clearInterval(
+      sliderInterval
+    );
   }
 
-  sliderInterval = setInterval(() => {
+  sliderInterval =
+    setInterval(() => {
 
-    showSlide(currentSlide + 1);
+      showSlide(
+        currentSlide + 1
+      );
 
-  }, 4000);
+    }, 4000);
 }
 
 // NEXT
 function nextSlide() {
+
   showSlide(currentSlide + 1);
 }
 
 // PREV
 function prevSlide() {
+
   showSlide(currentSlide - 1);
 }
 
@@ -671,6 +934,7 @@ function toggleSidebar() {
     );
 
   if (sidebar) {
+
     sidebar.classList.toggle(
       "active"
     );
@@ -693,6 +957,211 @@ function toggleCategories() {
   }
 }
 
+// ================= PRODUCT IMAGE =================
+function changeMainImage(image) {
+
+  let mainImage =
+    document.getElementById(
+      "mainProductImage"
+    );
+
+  if (mainImage) {
+
+    mainImage.src = image;
+  }
+
+  let thumbs =
+    document.querySelectorAll(
+      ".thumbnail-row img"
+    );
+
+  thumbs.forEach(img => {
+
+    img.classList.remove(
+      "active-thumb"
+    );
+  });
+
+  if (
+    typeof event !== "undefined"
+  ) {
+
+    event.target.classList.add(
+      "active-thumb"
+    );
+  }
+}
+
+// ================= PRODUCT QTY =================
+let productQty = 1;
+
+function increaseQty() {
+
+  productQty++;
+
+  let qty =
+    document.getElementById("qty");
+
+  if (qty) {
+
+    qty.innerText =
+      productQty;
+  }
+}
+
+function decreaseQty() {
+
+  if (productQty > 1) {
+
+    productQty--;
+  }
+
+  let qty =
+    document.getElementById("qty");
+
+  if (qty) {
+
+    qty.innerText =
+      productQty;
+  }
+}
+
+// ================= ADD PRODUCT TO CART =================
+function addProductToCart(
+  name,
+  price,
+  image
+) {
+
+  price = Number(price);
+
+  let existing =
+    cart.find(
+      item =>
+        item.name.toLowerCase() ===
+        name.toLowerCase()
+    );
+
+  if (existing) {
+
+    existing.qty += productQty;
+
+  } else {
+
+    cart.push({
+
+      id: Date.now(),
+
+      name: name,
+
+      price: price,
+
+      image: image,
+
+      qty: productQty
+
+    });
+  }
+
+  saveCart();
+
+  updateCartCount();
+
+  showToast(
+    `${name} added to cart 🛒`
+  );
+}
+
+// ================= BUY NOW =================
+function buyProductNow(
+  name,
+  price,
+  image
+) {
+
+  addProductToCart(
+    name,
+    price,
+    image
+  );
+
+  window.location.href =
+    "cart.html";
+}
+
+// ================= PRODUCT TABS =================
+function openTab(tabName) {
+
+  let tabs =
+    document.querySelectorAll(
+      ".product-tab-content"
+    );
+
+  let buttons =
+    document.querySelectorAll(
+      ".tab-btn"
+    );
+
+  tabs.forEach(tab => {
+
+    tab.style.display = "none";
+  });
+
+  buttons.forEach(btn => {
+
+    btn.classList.remove(
+      "active-tab"
+    );
+  });
+
+  let activeTab =
+    document.getElementById(tabName);
+
+  if (activeTab) {
+
+    activeTab.style.display =
+      "block";
+  }
+
+  if (
+    typeof event !== "undefined"
+  ) {
+
+    event.target.classList.add(
+      "active-tab"
+    );
+  }
+}
+
+// ================= SHARE PRODUCT =================
+function shareProduct() {
+
+  if (navigator.share) {
+
+    navigator.share({
+
+      title:
+        document.title,
+
+      text:
+        "Check out this product on SAURVIA",
+
+      url:
+        window.location.href
+    });
+
+  } else {
+
+    navigator.clipboard.writeText(
+      window.location.href
+    );
+
+    showToast(
+      "Product link copied 🔗"
+    );
+  }
+}
+
 // ================= CLOSE SIDEBAR =================
 document.addEventListener(
   "click",
@@ -708,7 +1177,8 @@ document.addEventListener(
         ".menu-btn"
       );
 
-    if (!sidebar || !menuBtn) return;
+    if (!sidebar || !menuBtn)
+      return;
 
     if (
       !sidebar.contains(e.target) &&
@@ -722,7 +1192,7 @@ document.addEventListener(
   }
 );
 
-// ================= CLOSE MODAL OUTSIDE =================
+// ================= CLOSE MODAL =================
 window.addEventListener(
   "click",
   function (e) {
@@ -733,6 +1203,7 @@ window.addEventListener(
       );
 
     if (e.target === modal) {
+
       closeQuickView();
     }
   }
@@ -747,11 +1218,13 @@ document.addEventListener(
 
     renderCart();
 
+    renderWishlist();
+
     startSlider();
 
     loadWishlistButtons();
 
-    // SEARCH INPUT
+    // SEARCH
     let searchInput =
       document.getElementById(
         "searchInput"
@@ -764,91 +1237,17 @@ document.addEventListener(
         searchProducts
       );
     }
+
+    // DEFAULT PRODUCT TAB
+    let defaultTab =
+      document.getElementById(
+        "descriptionTab"
+      );
+
+    if (defaultTab) {
+
+      defaultTab.style.display =
+        "block";
+    }
   }
 );
-// ================= PRODUCT IMAGE CHANGE =================
-function changeMainImage(image) {
-
-  let mainImage =
-    document.getElementById("mainProductImage");
-
-  if (mainImage) {
-    mainImage.src = image;
-  }
-
-  // ACTIVE THUMBNAIL
-  let thumbs =
-    document.querySelectorAll(".thumbnail-row img");
-
-  thumbs.forEach(img => {
-    img.classList.remove("active-thumb");
-  });
-
-  event.target.classList.add("active-thumb");
-}
-
-// ================= PRODUCT QUANTITY =================
-let productQty = 1;
-
-function increaseQty() {
-
-  productQty++;
-
-  let qty = document.getElementById("qty");
-
-  if (qty) {
-    qty.innerText = productQty;
-  }
-}
-
-function decreaseQty() {
-
-  if (productQty > 1) {
-    productQty--;
-  }
-
-  let qty = document.getElementById("qty");
-
-  if (qty) {
-    qty.innerText = productQty;
-  }
-}
-
-// ================= ADD PRODUCT TO CART =================
-function addProductToCart(name, price, image) {
-
-  price = Number(price);
-
-  let existing = cart.find(
-    item => item.name.toLowerCase() === name.toLowerCase()
-  );
-
-  if (existing) {
-
-    existing.qty += productQty;
-
-  } else {
-
-    cart.push({
-      id: Date.now(),
-      name: name,
-      price: price,
-      image: image,
-      qty: productQty
-    });
-  }
-
-  saveCart();
-
-  updateCartCount();
-
-  showToast(`${name} added to cart 🛒`);
-}
-
-// ================= BUY NOW =================
-function buyProductNow(name, price, image) {
-
-  addProductToCart(name, price, image);
-
-  window.location.href = "cart.html";
-}
