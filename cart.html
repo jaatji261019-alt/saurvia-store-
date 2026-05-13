@@ -125,13 +125,12 @@
 
 </header>
 
-<!-- ================= CART SECTION ================= -->
+<!-- ================= CART PAGE ================= -->
 <section class="cart-page">
 
-  <!-- LEFT -->
+  <!-- ================= LEFT ================= -->
   <div class="cart-left-section">
 
-    <!-- TITLE -->
     <div class="cart-page-title">
 
       <h2>
@@ -145,15 +144,11 @@
     </div>
 
     <!-- CART ITEMS -->
-    <div id="cart-items">
-
-      <!-- JS RENDER -->
-
-    </div>
+    <div id="cart-items"></div>
 
   </div>
 
-  <!-- RIGHT -->
+  <!-- ================= RIGHT ================= -->
   <div class="cart-summary-section">
 
     <div class="summary-card">
@@ -163,13 +158,9 @@
       </h2>
 
       <!-- TOTAL -->
-      <div id="total">
+      <div id="total"></div>
 
-        <!-- JS RENDER -->
-
-      </div>
-
-      <!-- SAFE CHECKOUT -->
+      <!-- SAFE BOX -->
       <div class="secure-box">
 
         <p>
@@ -192,7 +183,7 @@
 
 </section>
 
-<!-- ================= EMPTY CART TEMPLATE ================= -->
+<!-- ================= EMPTY CART ================= -->
 <div
   id="empty-cart-template"
   style="display:none;"
@@ -255,9 +246,10 @@
 
 </footer>
 
-<!-- ================= SCRIPT ================= -->
+<!-- ================= MAIN SCRIPT ================= -->
 <script src="script.js"></script>
 
+<!-- ================= CART SCRIPT ================= -->
 <script>
 
   // ================= RENDER CART =================
@@ -282,7 +274,7 @@
 
     let total = 0;
 
-    // EMPTY
+    // ================= EMPTY =================
     if (cart.length === 0) {
 
       container.innerHTML =
@@ -295,7 +287,7 @@
       return;
     }
 
-    // PRODUCTS
+    // ================= PRODUCTS =================
     cart.forEach((item, index) => {
 
       let itemTotal =
@@ -328,34 +320,26 @@
             </h3>
 
             <p class="cart-price">
-
               ₹${item.price}
-
             </p>
 
-            <!-- QTY -->
+            <!-- QUANTITY -->
             <div class="qty-box">
 
               <button
                 onclick="changeQty(${index},'dec')"
               >
-
                 −
-
               </button>
 
               <span>
-
                 ${item.qty}
-
               </span>
 
               <button
                 onclick="changeQty(${index},'inc')"
               >
-
                 +
-
               </button>
 
             </div>
@@ -366,9 +350,7 @@
           <div class="cart-item-right">
 
             <h4>
-
               ₹${itemTotal}
-
             </h4>
 
             <button
@@ -387,7 +369,7 @@
       `;
     });
 
-    // TOTAL
+    // ================= TOTAL =================
     totalBox.innerHTML = `
 
       <div class="summary-row">
@@ -409,9 +391,7 @@
         </span>
 
         <span class="free">
-
           FREE
-
         </span>
 
       </div>
@@ -423,14 +403,16 @@
         </span>
 
         <span>
-
           ₹${total}
-
         </span>
 
       </div>
 
-      <button class="checkout-btn">
+      <!-- ✅ FIXED CHECKOUT BUTTON -->
+      <button
+        class="checkout-btn"
+        onclick="goToCheckout()"
+      >
 
         Proceed To Checkout
 
@@ -446,6 +428,29 @@
       </button>
 
     `;
+  }
+
+  // ================= GO TO CHECKOUT =================
+  function goToCheckout() {
+
+    let cart =
+      JSON.parse(
+        localStorage.getItem("cart")
+      ) || [];
+
+    // EMPTY CART CHECK
+    if (cart.length === 0) {
+
+      alert(
+        "Your cart is empty 🛒"
+      );
+
+      return;
+    }
+
+    // REDIRECT
+    window.location.href =
+      "checkout.html";
   }
 
   // ================= REMOVE =================
@@ -465,12 +470,16 @@
 
     renderCartPage();
 
-    if (typeof updateCartCount === "function") {
+    if (
+      typeof updateCartCount ===
+      "function"
+    ) {
+
       updateCartCount();
     }
   }
 
-  // ================= CHANGE QTY =================
+  // ================= CHANGE QUANTITY =================
   function changeQty(index, type) {
 
     let cart =
@@ -503,7 +512,11 @@
 
     renderCartPage();
 
-    if (typeof updateCartCount === "function") {
+    if (
+      typeof updateCartCount ===
+      "function"
+    ) {
+
       updateCartCount();
     }
   }
@@ -517,11 +530,17 @@
       )
     ) {
 
-      localStorage.removeItem("cart");
+      localStorage.removeItem(
+        "cart"
+      );
 
       renderCartPage();
 
-      if (typeof updateCartCount === "function") {
+      if (
+        typeof updateCartCount ===
+        "function"
+      ) {
+
         updateCartCount();
       }
     }
@@ -530,7 +549,11 @@
   // ================= INIT =================
   renderCartPage();
 
-  if (typeof updateCartCount === "function") {
+  if (
+    typeof updateCartCount ===
+    "function"
+  ) {
+
     updateCartCount();
   }
 
