@@ -1,46 +1,539 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>Cart</title>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    Your Cart - SAURVIA
+  </title>
+
+  <!-- MAIN CSS -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- CART CSS -->
+  <link rel="stylesheet" href="cart.css">
+
+  <!-- FONT AWESOME -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  >
+
 </head>
 
 <body>
 
-<h2 style="text-align:center;">Your Cart 🛒</h2>
+<!-- ================= MENU BUTTON ================= -->
+<div
+  class="menu-btn"
+  onclick="toggleSidebar()"
+>
 
-<div id="cart"></div>
+  <i class="fa-solid fa-bars"></i>
 
-<h3 id="total"></h3>
+</div>
+
+<!-- ================= SIDEBAR ================= -->
+<aside
+  class="sidebar"
+  id="sidebar"
+>
+
+  <!-- LOGO -->
+  <div class="sidebar-logo">
+
+    <h2>
+      SAURVIA
+    </h2>
+
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav class="sidebar-nav">
+
+    <a href="index.html">
+
+      <i class="fa-solid fa-house"></i>
+
+      Home
+
+    </a>
+
+    <a href="shop.html">
+
+      <i class="fa-solid fa-shop"></i>
+
+      Shop
+
+    </a>
+
+    <a href="wishlist.html">
+
+      <i class="fa-solid fa-heart"></i>
+
+      Wishlist
+
+    </a>
+
+    <a href="cart.html">
+
+      <i class="fa-solid fa-cart-shopping"></i>
+
+      Cart
+
+    </a>
+
+    <a href="checkout.html">
+
+      <i class="fa-solid fa-credit-card"></i>
+
+      Checkout
+
+    </a>
+
+  </nav>
+
+</aside>
+
+<!-- ================= HEADER ================= -->
+<header class="top-header">
+
+  <div class="center-box">
+
+    <h1 class="logo">
+      SAURVIA
+    </h1>
+
+  </div>
+
+  <div class="cart-box">
+
+    <a href="cart.html">
+
+      🛒 Cart
+
+    </a>
+
+  </div>
+
+</header>
+
+<!-- ================= CART SECTION ================= -->
+<section class="cart-page">
+
+  <!-- LEFT -->
+  <div class="cart-left-section">
+
+    <!-- TITLE -->
+    <div class="cart-page-title">
+
+      <h2>
+        Your Shopping Cart 🛒
+      </h2>
+
+      <p>
+        Premium beauty products selected for you
+      </p>
+
+    </div>
+
+    <!-- CART ITEMS -->
+    <div id="cart-items">
+
+      <!-- JS RENDER -->
+
+    </div>
+
+  </div>
+
+  <!-- RIGHT -->
+  <div class="cart-summary-section">
+
+    <div class="summary-card">
+
+      <h2>
+        Order Summary
+      </h2>
+
+      <!-- TOTAL -->
+      <div id="total">
+
+        <!-- JS RENDER -->
+
+      </div>
+
+      <!-- SAFE CHECKOUT -->
+      <div class="secure-box">
+
+        <p>
+          🔒 100% Secure Checkout
+        </p>
+
+        <p>
+          🚚 Fast Delivery Available
+        </p>
+
+        <p>
+          💳 Cash On Delivery
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ================= EMPTY CART TEMPLATE ================= -->
+<div
+  id="empty-cart-template"
+  style="display:none;"
+>
+
+  <div class="empty-cart">
+
+    <img
+      src="https://cdn-icons-png.flaticon.com/512/2038/2038854.png"
+      alt="Empty Cart"
+    >
+
+    <h2>
+      Your Cart Is Empty 🛒
+    </h2>
+
+    <p>
+      Looks like you haven't added anything yet.
+    </p>
+
+    <a
+      href="shop.html"
+      class="continue-btn"
+    >
+
+      Continue Shopping
+
+    </a>
+
+  </div>
+
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+
+  <div class="footer-links">
+
+    <a href="index.html">
+      Home
+    </a>
+
+    <a href="shop.html">
+      Shop
+    </a>
+
+    <a href="wishlist.html">
+      Wishlist
+    </a>
+
+    <a href="cart.html">
+      Cart
+    </a>
+
+  </div>
+
+  <p>
+    © 2026 SAURVIA STORE | All Rights Reserved
+  </p>
+
+</footer>
+
+<!-- ================= SCRIPT ================= -->
+<script src="script.js"></script>
 
 <script>
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-function render() {
-  let container = document.getElementById("cart");
-  container.innerHTML = "";
-  let total = 0;
+  // ================= RENDER CART =================
+  function renderCartPage() {
 
-  cart.forEach((item,i)=>{
-    total += item.price;
-    container.innerHTML += `
-      <div class="cart-item">
-        ${item.name} - ₹${item.price}
-        <button onclick="remove(${i})">X</button>
+    let cart =
+      JSON.parse(
+        localStorage.getItem("cart")
+      ) || [];
+
+    let container =
+      document.getElementById(
+        "cart-items"
+      );
+
+    let totalBox =
+      document.getElementById(
+        "total"
+      );
+
+    container.innerHTML = "";
+
+    let total = 0;
+
+    // EMPTY
+    if (cart.length === 0) {
+
+      container.innerHTML =
+        document.getElementById(
+          "empty-cart-template"
+        ).innerHTML;
+
+      totalBox.innerHTML = "";
+
+      return;
+    }
+
+    // PRODUCTS
+    cart.forEach((item, index) => {
+
+      let itemTotal =
+        item.price * item.qty;
+
+      total += itemTotal;
+
+      container.innerHTML += `
+
+        <div class="cart-item">
+
+          <!-- IMAGE -->
+          <div class="cart-item-image">
+
+            <img
+              src="${
+                item.image ||
+                'https://via.placeholder.com/120'
+              }"
+              alt="${item.name}"
+            >
+
+          </div>
+
+          <!-- INFO -->
+          <div class="cart-item-info">
+
+            <h3>
+              ${item.name}
+            </h3>
+
+            <p class="cart-price">
+
+              ₹${item.price}
+
+            </p>
+
+            <!-- QTY -->
+            <div class="qty-box">
+
+              <button
+                onclick="changeQty(${index},'dec')"
+              >
+
+                −
+
+              </button>
+
+              <span>
+
+                ${item.qty}
+
+              </span>
+
+              <button
+                onclick="changeQty(${index},'inc')"
+              >
+
+                +
+
+              </button>
+
+            </div>
+
+          </div>
+
+          <!-- RIGHT -->
+          <div class="cart-item-right">
+
+            <h4>
+
+              ₹${itemTotal}
+
+            </h4>
+
+            <button
+              class="remove-btn"
+              onclick="removeFromCart(${index})"
+            >
+
+              Remove
+
+            </button>
+
+          </div>
+
+        </div>
+
+      `;
+    });
+
+    // TOTAL
+    totalBox.innerHTML = `
+
+      <div class="summary-row">
+
+        <span>
+          Subtotal
+        </span>
+
+        <span>
+          ₹${total}
+        </span>
+
       </div>
+
+      <div class="summary-row">
+
+        <span>
+          Delivery
+        </span>
+
+        <span class="free">
+
+          FREE
+
+        </span>
+
+      </div>
+
+      <div class="summary-total">
+
+        <span>
+          Total
+        </span>
+
+        <span>
+
+          ₹${total}
+
+        </span>
+
+      </div>
+
+      <button class="checkout-btn">
+
+        Proceed To Checkout
+
+      </button>
+
+      <button
+        class="clear-cart-btn"
+        onclick="clearCart()"
+      >
+
+        Clear Cart
+
+      </button>
+
     `;
-  });
+  }
 
-  document.getElementById("total").innerText = "Total: ₹" + total;
-}
+  // ================= REMOVE =================
+  function removeFromCart(index) {
 
-function remove(i){
-  cart.splice(i,1);
-  localStorage.setItem("cart",JSON.stringify(cart));
-  render();
-}
+    let cart =
+      JSON.parse(
+        localStorage.getItem("cart")
+      ) || [];
 
-render();
+    cart.splice(index, 1);
+
+    localStorage.setItem(
+      "cart",
+      JSON.stringify(cart)
+    );
+
+    renderCartPage();
+
+    if (typeof updateCartCount === "function") {
+      updateCartCount();
+    }
+  }
+
+  // ================= CHANGE QTY =================
+  function changeQty(index, type) {
+
+    let cart =
+      JSON.parse(
+        localStorage.getItem("cart")
+      ) || [];
+
+    if (!cart[index]) return;
+
+    if (type === "inc") {
+
+      cart[index].qty++;
+
+    } else {
+
+      if (cart[index].qty > 1) {
+
+        cart[index].qty--;
+
+      } else {
+
+        cart.splice(index, 1);
+      }
+    }
+
+    localStorage.setItem(
+      "cart",
+      JSON.stringify(cart)
+    );
+
+    renderCartPage();
+
+    if (typeof updateCartCount === "function") {
+      updateCartCount();
+    }
+  }
+
+  // ================= CLEAR CART =================
+  function clearCart() {
+
+    if (
+      confirm(
+        "Clear your entire cart?"
+      )
+    ) {
+
+      localStorage.removeItem("cart");
+
+      renderCartPage();
+
+      if (typeof updateCartCount === "function") {
+        updateCartCount();
+      }
+    }
+  }
+
+  // ================= INIT =================
+  renderCartPage();
+
+  if (typeof updateCartCount === "function") {
+    updateCartCount();
+  }
+
 </script>
 
 </body>
