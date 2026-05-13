@@ -1,207 +1,702 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Saurvia Store</title>
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    SAURVIA STORE
+  </title>
+
+  <!-- MAIN CSS -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- FONT AWESOME -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  >
+
 </head>
 
 <body>
 
-<!-- ☰ MENU BUTTON -->
-<div class="menu-btn" onclick="toggleSidebar()">☰</div>
+<!-- ================= MENU BUTTON ================= -->
+<div
+  class="menu-btn"
+  onclick="toggleSidebar()"
+>
 
-<!-- 🔥 SIDEBAR -->
-<aside class="sidebar" id="sidebar">
-  <h2>SAURVIA</h2>
+  <i class="fa-solid fa-bars"></i>
 
-  <!-- NAV -->
-  <nav>
-    <a href="#">Home</a>
-    <a href="shop.html">Shop</a>
-    <a href="cart.html">Cart</a>
-    <a href="#">Checkout</a>
-    <a href="#">Contact</a>
-    <a href="#">About</a>
+</div>
+
+<!-- ================= SIDEBAR ================= -->
+<aside
+  class="sidebar"
+  id="sidebar"
+>
+
+  <!-- LOGO -->
+  <div class="sidebar-logo">
+
+    <h2>
+      SAURVIA
+    </h2>
+
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav class="sidebar-nav">
+
+    <a href="index.html">
+
+      <i class="fa-solid fa-house"></i>
+
+      Home
+
+    </a>
+
+    <a href="shop.html">
+
+      <i class="fa-solid fa-shop"></i>
+
+      Shop
+
+    </a>
+
+    <!-- ❤️ WISHLIST -->
+    <a href="wishlist.html">
+
+      <i class="fa-solid fa-heart"></i>
+
+      Wishlist
+
+    </a>
+
+    <a href="cart.html">
+
+      <i class="fa-solid fa-cart-shopping"></i>
+
+      Cart
+
+    </a>
+
+    <a href="checkout.html">
+
+      <i class="fa-solid fa-credit-card"></i>
+
+      Checkout
+
+    </a>
+
+    <a href="contact.html">
+
+      <i class="fa-solid fa-phone"></i>
+
+      Contact
+
+    </a>
+
+    <a href="about.html">
+
+      <i class="fa-solid fa-circle-info"></i>
+
+      About
+
+    </a>
+
   </nav>
 
   <!-- CATEGORY BUTTON -->
-  <div class="cat-toggle" onclick="toggleCategories()">
-    📂 Categories
-  </div>
+  <div
+    class="cat-toggle"
+    onclick="toggleCategories()"
+  >
 
-  <!-- SIDEBAR CATEGORIES -->
-  <div class="sidebar-categories" id="catMenu">
+    <i class="fa-solid fa-folder-open"></i>
 
-    <div class="side-cat" onclick="location.href='shop.html'">
-      <img src="images/skincare.jpg" alt="Skincare">
-      <span>Skincare</span>
-    </div>
-
-    <div class="side-cat" onclick="location.href='shop.html'">
-      <img src="images/perfume.jpg" alt="Perfume">
-      <span>Perfume</span>
-    </div>
-
-    <div class="side-cat" onclick="location.href='shop.html'">
-      <img src="images/haircare.jpg" alt="Haircare">
-      <span>Haircare</span>
-    </div>
-
-    <div class="side-cat" onclick="location.href='shop.html'">
-      <img src="images/beauty.jpg" alt="Beauty">
-      <span>Beauty</span>
-    </div>
+    Categories
 
   </div>
+
+  <!-- CATEGORY MENU -->
+  <div
+    class="sidebar-categories"
+    id="catMenu"
+  >
+
+    <!-- CATEGORY -->
+    <div
+      class="side-cat"
+      onclick="location.href='shop.html'"
+    >
+
+      <img
+        src="images/skincare.jpg"
+        alt="Skincare"
+        onerror="this.src='https://via.placeholder.com/100';"
+      >
+
+      <span>
+        Skincare
+      </span>
+
+    </div>
+
+    <!-- CATEGORY -->
+    <div
+      class="side-cat"
+      onclick="location.href='shop.html'"
+    >
+
+      <img
+        src="images/perfume.jpg"
+        alt="Perfume"
+        onerror="this.src='https://via.placeholder.com/100';"
+      >
+
+      <span>
+        Perfume
+      </span>
+
+    </div>
+
+    <!-- CATEGORY -->
+    <div
+      class="side-cat"
+      onclick="location.href='shop.html'"
+    >
+
+      <img
+        src="images/haircare.jpg"
+        alt="Haircare"
+        onerror="this.src='https://via.placeholder.com/100';"
+      >
+
+      <span>
+        Haircare
+      </span>
+
+    </div>
+
+    <!-- CATEGORY -->
+    <div
+      class="side-cat"
+      onclick="location.href='shop.html'"
+    >
+
+      <img
+        src="images/beauty.jpg"
+        alt="Beauty"
+        onerror="this.src='https://via.placeholder.com/100';"
+      >
+
+      <span>
+        Beauty
+      </span>
+
+    </div>
+
+  </div>
+
 </aside>
 
-<!-- 🔥 MAIN -->
+<!-- ================= MAIN ================= -->
 <main class="main">
 
-  <!-- HEADER -->
+  <!-- ================= HEADER ================= -->
   <header class="top-header">
 
+    <!-- CENTER -->
     <div class="center-box">
-      <h1 class="logo">SAURVIA</h1>
 
-      <input 
-        type="text" 
+      <h1 class="logo">
+        SAURVIA
+      </h1>
+
+      <!-- SEARCH -->
+      <input
+        type="text"
+        id="searchInput"
         placeholder="Search skincare, perfumes, haircare..."
       >
+
     </div>
 
+    <!-- CART -->
     <div class="cart-box">
-      <a href="cart.html">🛒 Cart (0)</a>
+
+      <a href="cart.html">
+
+        🛒 Cart (0)
+
+      </a>
+
     </div>
 
   </header>
 
-  <!-- HERO -->
+  <!-- ================= HERO BANNER ================= -->
   <section class="hero-banner">
 
-    <img 
-      src="images/skincare-main.jpg" 
+    <img
+      src="images/skincare-main.jpg"
       alt="Skincare Product"
       onerror="this.src='https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9';"
     >
 
+    <!-- HERO TEXT -->
     <div class="hero-text">
-      <h1>Glow Naturally ✨</h1>
-      <p>Premium skincare for radiant skin</p>
-      <a href="shop.html" class="btn">Shop Now</a>
+
+      <h1>
+        Glow Naturally ✨
+      </h1>
+
+      <p>
+        Premium skincare for radiant skin
+      </p>
+
+      <a
+        href="shop.html"
+        class="btn"
+      >
+
+        Shop Now
+
+      </a>
+
     </div>
 
   </section>
 
-  <!-- CATEGORY SLIDER -->
+  <!-- ================= CATEGORY SLIDER ================= -->
   <section class="categories">
+
     <div class="cat-track">
 
+      <!-- CATEGORY -->
       <div class="category">
-        <img src="images/skincare.jpg" alt="Skincare">
-        <p>Skincare</p>
+
+        <img
+          src="images/skincare.jpg"
+          alt="Skincare"
+        >
+
+        <p>
+          Skincare
+        </p>
+
       </div>
 
+      <!-- CATEGORY -->
       <div class="category">
-        <img src="images/perfume.jpg" alt="Perfume">
-        <p>Perfume</p>
+
+        <img
+          src="images/perfume.jpg"
+          alt="Perfume"
+        >
+
+        <p>
+          Perfume
+        </p>
+
       </div>
 
+      <!-- CATEGORY -->
       <div class="category">
-        <img src="images/haircare.jpg" alt="Haircare">
-        <p>Haircare</p>
+
+        <img
+          src="images/haircare.jpg"
+          alt="Haircare"
+        >
+
+        <p>
+          Haircare
+        </p>
+
       </div>
 
+      <!-- CATEGORY -->
       <div class="category">
-        <img src="images/beauty.jpg" alt="Beauty">
-        <p>Beauty</p>
+
+        <img
+          src="images/beauty.jpg"
+          alt="Beauty"
+        >
+
+        <p>
+          Beauty
+        </p>
+
       </div>
 
-      <!-- duplicate for smooth scroll -->
+      <!-- DUPLICATE -->
       <div class="category">
-        <img src="images/skincare.jpg">
-        <p>Skincare</p>
+
+        <img
+          src="images/skincare.jpg"
+          alt="Skincare"
+        >
+
+        <p>
+          Skincare
+        </p>
+
       </div>
 
+      <!-- DUPLICATE -->
       <div class="category">
-        <img src="images/perfume.jpg">
-        <p>Perfume</p>
+
+        <img
+          src="images/perfume.jpg"
+          alt="Perfume"
+        >
+
+        <p>
+          Perfume
+        </p>
+
       </div>
 
     </div>
+
   </section>
 
-  <!-- 🔥 SLIDER WITH ARROWS -->
+  <!-- ================= SLIDER ================= -->
   <section class="slider">
 
-    <!-- LEFT ARROW -->
-    <button class="prev" onclick="prevSlide()">❮</button>
+    <!-- PREV -->
+    <button
+      class="prev"
+      onclick="prevSlide()"
+    >
 
-    <!-- RIGHT ARROW -->
-    <button class="next" onclick="nextSlide()">❯</button>
+      ❮
 
-    <div class="slide active" style="background-image:url('images/skincare.jpg')">
+    </button>
+
+    <!-- NEXT -->
+    <button
+      class="next"
+      onclick="nextSlide()"
+    >
+
+      ❯
+
+    </button>
+
+    <!-- SLIDE -->
+    <div
+      class="slide active"
+      style="background-image:url('images/skincare.jpg')"
+    >
+
       <div class="overlay"></div>
+
       <div class="content">
-        <h2>Glow With Premium Skincare ✨</h2>
-        <p>Best products for your daily routine</p>
+
+        <h2>
+          Glow With Premium Skincare ✨
+        </h2>
+
+        <p>
+          Best products for your daily routine
+        </p>
+
       </div>
+
     </div>
 
-    <div class="slide" style="background-image:url('images/perfume.jpg')">
+    <!-- SLIDE -->
+    <div
+      class="slide"
+      style="background-image:url('images/perfume.jpg')"
+    >
+
       <div class="overlay"></div>
+
       <div class="content">
-        <h2>Luxury Perfumes 💎</h2>
-        <p>Smell elegant & feel confident</p>
+
+        <h2>
+          Luxury Perfumes 💎
+        </h2>
+
+        <p>
+          Smell elegant & feel confident
+        </p>
+
       </div>
+
     </div>
 
-    <div class="slide" style="background-image:url('images/haircare.jpg')">
+    <!-- SLIDE -->
+    <div
+      class="slide"
+      style="background-image:url('images/haircare.jpg')"
+    >
+
       <div class="overlay"></div>
+
       <div class="content">
-        <h2>Strong & Healthy Hair 💇‍♀️</h2>
-        <p>Shine & strength products</p>
+
+        <h2>
+          Strong & Healthy Hair 💇‍♀️
+        </h2>
+
+        <p>
+          Shine & strength products
+        </p>
+
       </div>
+
     </div>
 
   </section>
 
-  <!-- PRODUCTS -->
+  <!-- ================= PRODUCTS ================= -->
   <section class="products">
 
-    <div class="product">
-      <img src="images/serum.jpg"
-        alt="Face Serum"
-        onerror="this.src='https://via.placeholder.com/300x200?text=Serum';">
-      <h3>Face Serum</h3>
-      <p>₹299</p>
-      <button onclick="buyNow('Face Serum', 299)">Add to Cart</button>
+    <!-- PRODUCT -->
+    <div
+      class="product-card"
+      data-category="beauty"
+    >
+
+      <!-- BADGE -->
+      <div class="product-badge">
+
+        25% OFF
+
+      </div>
+
+      <!-- ❤️ WISHLIST -->
+      <button
+        class="wishlist-btn"
+        data-product="Face Serum"
+        onclick="toggleWishlist(this,'Face Serum')"
+      >
+
+        <i class="fa-regular fa-heart"></i>
+
+      </button>
+
+      <!-- IMAGE -->
+      <div class="product-image-box">
+
+        <img
+          src="images/serum.jpg"
+          alt="Face Serum"
+          onerror="this.src='https://via.placeholder.com/300x200?text=Serum';"
+        >
+
+      </div>
+
+      <!-- INFO -->
+      <div class="product-info">
+
+        <h3>
+          Face Serum
+        </h3>
+
+        <p class="price">
+          ₹299
+        </p>
+
+        <div class="product-rating">
+
+          ⭐⭐⭐⭐⭐ (4.9)
+
+        </div>
+
+        <!-- BUTTONS -->
+        <div class="product-actions">
+
+          <button
+            class="cart-btn"
+            onclick="buyNow('Face Serum',299)"
+          >
+
+            Add To Cart
+
+          </button>
+
+          <button
+            class="view-btn"
+            onclick="location.href='product.html'"
+          >
+
+            View
+
+          </button>
+
+        </div>
+
+      </div>
+
     </div>
 
-    <div class="product">
-      <img src="images/perfume.jpg"
-        alt="Perfume"
-        onerror="this.src='https://via.placeholder.com/300x200?text=Perfume';">
-      <h3>Perfume</h3>
-      <p>₹499</p>
-      <button onclick="buyNow('Perfume', 499)">Add to Cart</button>
+    <!-- PRODUCT -->
+    <div
+      class="product-card"
+      data-category="perfume"
+    >
+
+      <div class="product-badge">
+
+        HOT
+
+      </div>
+
+      <!-- ❤️ -->
+      <button
+        class="wishlist-btn"
+        data-product="Perfume"
+        onclick="toggleWishlist(this,'Perfume')"
+      >
+
+        <i class="fa-regular fa-heart"></i>
+
+      </button>
+
+      <div class="product-image-box">
+
+        <img
+          src="images/perfume.jpg"
+          alt="Perfume"
+          onerror="this.src='https://via.placeholder.com/300x200?text=Perfume';"
+        >
+
+      </div>
+
+      <div class="product-info">
+
+        <h3>
+          Perfume
+        </h3>
+
+        <p class="price">
+          ₹499
+        </p>
+
+        <div class="product-rating">
+
+          ⭐⭐⭐⭐⭐ (4.8)
+
+        </div>
+
+        <div class="product-actions">
+
+          <button
+            class="cart-btn"
+            onclick="buyNow('Perfume',499)"
+          >
+
+            Add To Cart
+
+          </button>
+
+          <button
+            class="view-btn"
+            onclick="location.href='product.html'"
+          >
+
+            View
+
+          </button>
+
+        </div>
+
+      </div>
+
     </div>
 
-    <div class="product">
-      <img src="images/cream.jpg"
-        alt="Skin Cream"
-        onerror="this.src='https://via.placeholder.com/300x200?text=Cream';">
-      <h3>Skin Cream</h3>
-      <p>₹199</p>
-      <button onclick="buyNow('Skin Cream', 199)">Add to Cart</button>
+    <!-- PRODUCT -->
+    <div
+      class="product-card"
+      data-category="skincare"
+    >
+
+      <div class="product-badge">
+
+        SALE
+
+      </div>
+
+      <!-- ❤️ -->
+      <button
+        class="wishlist-btn"
+        data-product="Skin Cream"
+        onclick="toggleWishlist(this,'Skin Cream')"
+      >
+
+        <i class="fa-regular fa-heart"></i>
+
+      </button>
+
+      <div class="product-image-box">
+
+        <img
+          src="images/cream.jpg"
+          alt="Skin Cream"
+          onerror="this.src='https://via.placeholder.com/300x200?text=Cream';"
+        >
+
+      </div>
+
+      <div class="product-info">
+
+        <h3>
+          Skin Cream
+        </h3>
+
+        <p class="price">
+          ₹199
+        </p>
+
+        <div class="product-rating">
+
+          ⭐⭐⭐⭐☆ (4.5)
+
+        </div>
+
+        <div class="product-actions">
+
+          <button
+            class="cart-btn"
+            onclick="buyNow('Skin Cream',199)"
+          >
+
+            Add To Cart
+
+          </button>
+
+          <button
+            class="view-btn"
+            onclick="location.href='product.html'"
+          >
+
+            View
+
+          </button>
+
+        </div>
+
+      </div>
+
     </div>
 
   </section>
 
 </main>
 
+<!-- ================= SCRIPT ================= -->
 <script src="script.js"></script>
 
 </body>
