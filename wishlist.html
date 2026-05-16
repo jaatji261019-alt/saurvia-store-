@@ -21,13 +21,135 @@
   <link rel="stylesheet" href="wishlist.css">
 
   <!-- FONT AWESOME -->
-  <link rel="stylesheet"
+  <link
+    rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
   >
 
 </head>
 
 <body>
+
+<!-- ================= MENU BUTTON ================= -->
+<div
+  class="menu-btn"
+  onclick="toggleSidebar()"
+>
+  <i class="fa-solid fa-bars"></i>
+</div>
+
+<!-- ================= SIDEBAR ================= -->
+<div
+  class="sidebar"
+  id="sidebar"
+>
+
+  <h2>
+    SAURVIA
+  </h2>
+
+  <!-- NAV -->
+  <div class="sidebar-nav">
+
+    <a href="index.html">
+      <i class="fa-solid fa-house"></i>
+      Home
+    </a>
+
+    <a href="shop.html">
+      <i class="fa-solid fa-shop"></i>
+      Shop
+    </a>
+
+    <a
+      href="wishlist.html"
+      class="active-link"
+    >
+      <i class="fa-solid fa-heart"></i>
+      Wishlist
+    </a>
+
+    <a href="cart.html">
+      <i class="fa-solid fa-cart-shopping"></i>
+      Cart
+    </a>
+
+    <a href="checkout.html">
+      <i class="fa-solid fa-credit-card"></i>
+      Checkout
+    </a>
+
+  </div>
+
+  <!-- CATEGORY BUTTON -->
+  <div
+    class="cat-toggle"
+    onclick="toggleCategories()"
+  >
+    Browse Categories ▼
+  </div>
+
+  <!-- CATEGORY MENU -->
+  <div
+    class="sidebar-categories"
+    id="catMenu"
+  >
+
+    <div class="side-cat">
+
+      <img
+        src="images/beauty.jpg"
+        onerror="this.src='https://via.placeholder.com/60';"
+      >
+
+      <span>
+        Beauty
+      </span>
+
+    </div>
+
+    <div class="side-cat">
+
+      <img
+        src="images/perfume.jpg"
+        onerror="this.src='https://via.placeholder.com/60';"
+      >
+
+      <span>
+        Perfumes
+      </span>
+
+    </div>
+
+    <div class="side-cat">
+
+      <img
+        src="images/haircare.jpg"
+        onerror="this.src='https://via.placeholder.com/60';"
+      >
+
+      <span>
+        Hair Care
+      </span>
+
+    </div>
+
+    <div class="side-cat">
+
+      <img
+        src="images/serum.jpg"
+        onerror="this.src='https://via.placeholder.com/60';"
+      >
+
+      <span>
+        Skin Care
+      </span>
+
+    </div>
+
+  </div>
+
+</div>
 
 <!-- ================= HEADER ================= -->
 <header class="top-header">
@@ -43,13 +165,31 @@
   <!-- CART -->
   <div class="cart-box">
 
-    <a href="cart.html">
+    <a
+      href="cart.html"
+      class="cart-count"
+    >
       🛒 Cart (0)
     </a>
 
   </div>
 
 </header>
+
+<!-- ================= BREADCRUMB ================= -->
+<div class="breadcrumb">
+
+  <a href="index.html">
+    Home
+  </a>
+
+  /
+
+  <span>
+    Wishlist
+  </span>
+
+</div>
 
 <!-- ================= PAGE TITLE ================= -->
 <section class="wishlist-title">
@@ -106,44 +246,17 @@
 <!-- ================= SCRIPT ================= -->
 <script src="script.js"></script>
 
+<!-- ================= WISHLIST SCRIPT ================= -->
 <script>
-
-/* ================= PRODUCT DATABASE ================= */
-
-const allProducts = [
-
-  {
-    name: "Premium Face Serum With Vitamin C",
-    price: 299,
-    image: "images/serum.jpg"
-  },
-
-  {
-    name: "Luxury Perfume",
-    price: 499,
-    image: "images/perfume.jpg"
-  },
-
-  {
-    name: "Hair Care Oil",
-    price: 349,
-    image: "images/haircare.jpg"
-  },
-
-  {
-    name: "Beauty Cream",
-    price: 399,
-    image: "images/beauty.jpg"
-  }
-
-];
 
 /* ================= RENDER WISHLIST ================= */
 
 function renderWishlist(){
 
   let container =
-    document.getElementById("wishlistContainer");
+    document.getElementById(
+      "wishlistContainer"
+    );
 
   if(!container) return;
 
@@ -183,17 +296,14 @@ function renderWishlist(){
     return;
   }
 
-  /* FILTER PRODUCTS */
-  let wishlistProducts =
-    allProducts.filter(product =>
-      wishlist.includes(product.name)
-    );
+  /* PRODUCTS */
+  wishlist.forEach((product, index) => {
 
-  wishlistProducts.forEach(product => {
+    let card =
+      document.createElement("div");
 
-    let card = document.createElement("div");
-
-    card.className = "wishlist-card";
+    card.className =
+      "wishlist-card";
 
     card.innerHTML = `
 
@@ -201,9 +311,17 @@ function renderWishlist(){
       <div class="wishlist-image">
 
         <img
-          src="${product.image}"
+          src="${
+            product.image ||
+            'https://via.placeholder.com/300x250'
+          }"
+
           alt="${product.name}"
-          onerror="this.src='https://via.placeholder.com/300x250';"
+
+          onerror="
+            this.src=
+            'https://via.placeholder.com/300x250';
+          "
         >
 
       </div>
@@ -228,10 +346,7 @@ function renderWishlist(){
 
           <button
             class="wishlist-cart-btn"
-            onclick="buyNow(
-              '${product.name}',
-              ${product.price}
-            )"
+            onclick="moveToCart(${index})"
           >
 
             <i class="fa-solid fa-cart-shopping"></i>
@@ -242,9 +357,7 @@ function renderWishlist(){
 
           <button
             class="wishlist-remove-btn"
-            onclick="removeWishlistItem(
-              '${product.name}'
-            )"
+            onclick="removeFromWishlist(${index})"
           >
 
             <i class="fa-solid fa-trash"></i>
@@ -263,25 +376,6 @@ function renderWishlist(){
 
   });
 
-}
-
-/* ================= REMOVE ITEM ================= */
-
-function removeWishlistItem(productName){
-
-  wishlist =
-    wishlist.filter(
-      item => item !== productName
-    );
-
-  saveWishlist();
-
-  renderWishlist();
-
-  showToast(
-    productName +
-    " removed from wishlist 💔"
-  );
 }
 
 /* ================= INIT ================= */
