@@ -30,6 +30,124 @@
 
 <body>
 
+<!-- ================= MENU BUTTON ================= -->
+<div
+  class="menu-btn"
+  onclick="toggleSidebar()"
+>
+  <i class="fa-solid fa-bars"></i>
+</div>
+
+<!-- ================= SIDEBAR ================= -->
+<div
+  class="sidebar"
+  id="sidebar"
+>
+
+  <h2>
+    SAURVIA
+  </h2>
+
+  <!-- NAV -->
+  <div class="sidebar-nav">
+
+    <a href="index.html">
+      <i class="fa-solid fa-house"></i>
+      Home
+    </a>
+
+    <a href="shop.html">
+      <i class="fa-solid fa-shop"></i>
+      Shop
+    </a>
+
+    <a href="wishlist.html">
+      <i class="fa-solid fa-heart"></i>
+      Wishlist
+    </a>
+
+    <a href="cart.html">
+      <i class="fa-solid fa-cart-shopping"></i>
+      Cart
+    </a>
+
+    <a href="checkout.html">
+      <i class="fa-solid fa-credit-card"></i>
+      Checkout
+    </a>
+
+  </div>
+
+  <!-- CATEGORY TOGGLE -->
+  <div
+    class="cat-toggle"
+    onclick="toggleCategories()"
+  >
+    Browse Categories ▼
+  </div>
+
+  <!-- CATEGORY MENU -->
+  <div
+    class="sidebar-categories"
+    id="catMenu"
+  >
+
+    <div class="side-cat">
+
+      <img
+        src="images/beauty.jpg"
+        onerror="this.src='https://via.placeholder.com/60';"
+      >
+
+      <span>
+        Beauty
+      </span>
+
+    </div>
+
+    <div class="side-cat">
+
+      <img
+        src="images/perfume.jpg"
+        onerror="this.src='https://via.placeholder.com/60';"
+      >
+
+      <span>
+        Perfumes
+      </span>
+
+    </div>
+
+    <div class="side-cat">
+
+      <img
+        src="images/hair.jpg"
+        onerror="this.src='https://via.placeholder.com/60';"
+      >
+
+      <span>
+        Hair Care
+      </span>
+
+    </div>
+
+    <div class="side-cat">
+
+      <img
+        src="images/cream.jpg"
+        onerror="this.src='https://via.placeholder.com/60';"
+      >
+
+      <span>
+        Skin Care
+      </span>
+
+    </div>
+
+  </div>
+
+</div>
+
 <!-- ================= HEADER ================= -->
 <header class="top-header">
 
@@ -44,8 +162,11 @@
   <!-- CART -->
   <div class="cart-box">
 
-    <a href="cart.html">
-      🛒 Cart
+    <a
+      href="cart.html"
+      class="cart-count"
+    >
+      🛒 Cart (0)
     </a>
 
   </div>
@@ -252,7 +373,8 @@
 
       <!-- WISHLIST -->
       <button
-        class="wishlist-product-btn"
+        class="wishlist-product-btn wishlist-btn"
+        data-product="Premium Face Serum With Vitamin C"
         onclick="toggleWishlist(
           this,
           'Premium Face Serum With Vitamin C',
@@ -606,6 +728,10 @@
       Shop
     </a>
 
+    <a href="wishlist.html">
+      Wishlist
+    </a>
+
     <a href="cart.html">
       Cart
     </a>
@@ -769,6 +895,8 @@ document.addEventListener(
   () => {
 
     updateCartCount();
+
+    loadWishlistButtons();
 
   }
 );
