@@ -45,12 +45,33 @@
   <div class="cart-box">
 
     <a href="cart.html">
-      🛒 Cart (0)
+      🛒 Cart
     </a>
 
   </div>
 
 </header>
+
+<!-- ================= BREADCRUMB ================= -->
+<div class="breadcrumb">
+
+  <a href="index.html">
+    Home
+  </a>
+
+  /
+
+  <a href="shop.html">
+    Shop
+  </a>
+
+  /
+
+  <span>
+    Face Serum
+  </span>
+
+</div>
 
 <!-- ================= PRODUCT PAGE ================= -->
 <section class="product-page">
@@ -63,14 +84,16 @@
 
       <img
         id="mainProductImage"
-        src="images/serum.jpg"
+        src="images/serum1.jpg"
         alt="Face Serum"
         onerror="this.src='https://via.placeholder.com/600x600?text=Product';"
       >
 
       <!-- ZOOM ICON -->
       <div class="zoom-icon">
+
         <i class="fa-solid fa-magnifying-glass-plus"></i>
+
       </div>
 
     </div>
@@ -79,7 +102,7 @@
     <div class="thumbnail-row">
 
       <img
-        src="images/serum.jpg"
+        src="images/serum1.jpg"
         class="active-thumb"
         onclick="changeMainImage(this)"
         onerror="this.src='https://via.placeholder.com/100';"
@@ -92,13 +115,13 @@
       >
 
       <img
-        src="images/haircare.jpg"
+        src="images/hair.jpg"
         onclick="changeMainImage(this)"
         onerror="this.src='https://via.placeholder.com/100';"
       >
 
       <img
-        src="images/beauty.jpg"
+        src="images/cream.jpg"
         onclick="changeMainImage(this)"
         onerror="this.src='https://via.placeholder.com/100';"
       >
@@ -122,7 +145,9 @@
 
     <!-- SHORT DESCRIPTION -->
     <p class="short-desc">
-      Brightens skin, reduces dark spots and gives natural glow ✨
+
+      Brightens skin, removes dark spots and gives instant natural glow ✨
+
     </p>
 
     <!-- RATING -->
@@ -228,12 +253,29 @@
       <!-- WISHLIST -->
       <button
         class="wishlist-product-btn"
-        onclick="toggleWishlist(this,'Premium Face Serum With Vitamin C')"
+        onclick="toggleWishlist(
+          this,
+          'Premium Face Serum With Vitamin C',
+          299,
+          document.getElementById('mainProductImage').src
+        )"
       >
 
         <i class="fa-regular fa-heart"></i>
 
         Wishlist
+
+      </button>
+
+      <!-- SHARE -->
+      <button
+        class="share-btn"
+        onclick="shareProduct()"
+      >
+
+        <i class="fa-solid fa-share-nodes"></i>
+
+        Share
 
       </button>
 
@@ -306,8 +348,8 @@
 
   <p>
 
-    This premium vitamin C face serum helps brighten skin,
-    reduce dark spots, hydrate deeply and provide natural glow.
+    This premium Vitamin C face serum deeply hydrates the skin,
+    removes dark spots, improves skin texture and gives instant glow.
     Suitable for all skin types with natural ingredients.
 
   </p>
@@ -468,14 +510,18 @@
 
           <button
             class="cart-btn"
-            onclick="buyNow('Luxury Perfume',499)"
+            onclick="buyNow(
+              'Luxury Perfume',
+              499,
+              'images/perfume.jpg'
+            )"
           >
             Add To Cart
           </button>
 
           <button
             class="view-btn"
-            onclick="window.location.href='product.html'"
+            onclick="window.location.href='product.html?id=perfume'"
           >
             View
           </button>
@@ -496,7 +542,7 @@
       <div class="product-image-box">
 
         <img
-          src="images/haircare.jpg"
+          src="images/hair.jpg"
           alt="Hair Oil"
           onerror="this.src='https://via.placeholder.com/300x250';"
         >
@@ -521,14 +567,18 @@
 
           <button
             class="cart-btn"
-            onclick="buyNow('Hair Care Oil',349)"
+            onclick="buyNow(
+              'Hair Care Oil',
+              349,
+              'images/hair.jpg'
+            )"
           >
             Add To Cart
           </button>
 
           <button
             class="view-btn"
-            onclick="window.location.href='product.html'"
+            onclick="window.location.href='product.html?id=hair'"
           >
             View
           </button>
@@ -580,18 +630,28 @@ let qty = 1;
 function changeMainImage(element){
 
   let mainImage =
-    document.getElementById("mainProductImage");
+    document.getElementById(
+      "mainProductImage"
+    );
 
   mainImage.src = element.src;
 
   let thumbs =
-    document.querySelectorAll(".thumbnail-row img");
+    document.querySelectorAll(
+      ".thumbnail-row img"
+    );
 
   thumbs.forEach(img => {
-    img.classList.remove("active-thumb");
+
+    img.classList.remove(
+      "active-thumb"
+    );
+
   });
 
-  element.classList.add("active-thumb");
+  element.classList.add(
+    "active-thumb"
+  );
 }
 
 /* ================= INCREASE QTY ================= */
@@ -599,7 +659,9 @@ function increaseQty(){
 
   qty++;
 
-  document.getElementById("qty").innerText = qty;
+  document.getElementById(
+    "qty"
+  ).innerText = qty;
 }
 
 /* ================= DECREASE QTY ================= */
@@ -609,7 +671,9 @@ function decreaseQty(){
 
     qty--;
 
-    document.getElementById("qty").innerText = qty;
+    document.getElementById(
+      "qty"
+    ).innerText = qty;
   }
 }
 
@@ -617,16 +681,37 @@ function decreaseQty(){
 function addProductToCart(){
 
   let image =
-    document.getElementById("mainProductImage").src;
+    document.getElementById(
+      "mainProductImage"
+    ).src;
 
-  for(let i = 0; i < qty; i++){
+  let existing =
+    cart.find(
+      item =>
+        item.name.toLowerCase() ===
+        "premium face serum with vitamin c"
+        .toLowerCase()
+    );
+
+  if(existing){
+
+    existing.qty += qty;
+
+  } else {
 
     cart.push({
-      id: Date.now() + i,
-      name: "Premium Face Serum With Vitamin C",
+
+      id: Date.now(),
+
+      name:
+        "Premium Face Serum With Vitamin C",
+
       price: 299,
+
       image: image,
-      qty: 1
+
+      qty: qty
+
     });
   }
 
@@ -634,7 +719,9 @@ function addProductToCart(){
 
   updateCartCount();
 
-  showToast("Product added to cart 🛒");
+  showToast(
+    "Product added to cart 🛒"
+  );
 }
 
 /* ================= BUY NOW ================= */
@@ -642,18 +729,51 @@ function buyProductNow(){
 
   addProductToCart();
 
-  window.location.href = "cart.html";
+  window.location.href =
+    "checkout.html";
+}
+
+/* ================= SHARE PRODUCT ================= */
+function shareProduct(){
+
+  if(navigator.share){
+
+    navigator.share({
+
+      title:
+        "Premium Face Serum",
+
+      text:
+        "Check out this premium product on SAURVIA ✨",
+
+      url:
+        window.location.href
+
+    });
+
+  } else {
+
+    navigator.clipboard.writeText(
+      window.location.href
+    );
+
+    showToast(
+      "Product link copied 🔗"
+    );
+  }
 }
 
 /* ================= INIT ================= */
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
 
-  updateCartCount();
+    updateCartCount();
 
-});
+  }
+);
 
 </script>
 
 </body>
-
 </html>
