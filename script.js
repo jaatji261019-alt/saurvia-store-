@@ -150,6 +150,7 @@ function buyNow(
     );
 
   /* AUTO IMAGE */
+
   if(
     !image &&
     typeof event !== "undefined"
@@ -512,19 +513,50 @@ function toggleWishlist(
   image = ""
 ) {
 
+  /* FIX IMAGE */
+
+  if(
+    !image ||
+    image === ""
+  ){
+
+    let card =
+      btn.closest(
+        ".product-card, .product, .wishlist-card, .product-page"
+      );
+
+    if(card){
+
+      let img =
+        card.querySelector("img");
+
+      if(img){
+
+        image = img.src;
+
+      }
+    }
+  }
+
+  /* CHECK EXISTS */
+
   let exists =
     wishlist.find(item =>
-      item.name === productName
+      item.name.toLowerCase() ===
+      productName.toLowerCase()
     );
 
   let icon =
     btn.querySelector("i");
 
+  /* REMOVE */
+
   if(exists){
 
     wishlist =
       wishlist.filter(item =>
-        item.name !== productName
+        item.name.toLowerCase() !==
+        productName.toLowerCase()
       );
 
     btn.classList.remove(
@@ -543,38 +575,13 @@ function toggleWishlist(
 
   } else {
 
-    /* AUTO IMAGE */
-
-    if(
-      !image &&
-      typeof event !== "undefined"
-    ){
-
-      let card =
-        event.target.closest(
-          ".product-card, .product"
-        );
-
-      if(card){
-
-        let img =
-          card.querySelector("img");
-
-        if(img){
-
-          image = img.src;
-
-        }
-      }
-    }
-
     wishlist.push({
 
       id: Date.now(),
 
       name: productName,
 
-      price: price,
+      price: Number(price),
 
       image: image
 
@@ -598,6 +605,8 @@ function toggleWishlist(
   saveWishlist();
 
   loadWishlistButtons();
+
+  renderWishlist();
 }
 
 /* ================= LOAD ACTIVE WISHLIST ================= */
@@ -625,7 +634,8 @@ function loadWishlistButtons() {
 
     let exists =
       wishlist.find(item =>
-        item.name === product
+        item.name.toLowerCase() ===
+        product.toLowerCase()
       );
 
     let icon =
@@ -775,6 +785,11 @@ function renderWishlist() {
 
 function removeFromWishlist(index) {
 
+  if(!wishlist[index]) return;
+
+  let name =
+    wishlist[index].name;
+
   wishlist.splice(index,1);
 
   saveWishlist();
@@ -784,7 +799,7 @@ function removeFromWishlist(index) {
   loadWishlistButtons();
 
   showToast(
-    "Removed from wishlist ❌"
+    `${name} removed ❌`
   );
 }
 
