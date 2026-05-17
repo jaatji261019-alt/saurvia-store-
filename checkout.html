@@ -90,7 +90,10 @@
 
     </a>
 
-    <a href="checkout.html">
+    <a
+      href="checkout.html"
+      class="active-link"
+    >
 
       <i class="fa-solid fa-credit-card"></i>
 
@@ -115,9 +118,12 @@
 
   <div class="cart-box">
 
-    <a href="cart.html">
+    <a
+      href="cart.html"
+      class="cart-count"
+    >
 
-      🛒 Cart
+      🛒 Cart (0)
 
     </a>
 
@@ -335,10 +341,14 @@
 
         <input
           type="text"
+          id="couponInput"
           placeholder="Enter Coupon Code"
         >
 
-        <button type="button">
+        <button
+          type="button"
+          onclick="applyCoupon()"
+        >
 
           Apply
 
@@ -406,6 +416,28 @@
         <span class="free">
 
           FREE
+
+        </span>
+
+      </div>
+
+      <!-- DISCOUNT -->
+      <div
+        class="summary-row"
+        id="discountRow"
+        style="display:none;"
+      >
+
+        <span>
+          Discount
+        </span>
+
+        <span
+          id="discountAmount"
+          style="color:green;"
+        >
+
+          -₹0
 
         </span>
 
@@ -479,135 +511,279 @@
 <!-- ================= SCRIPT ================= -->
 <script src="script.js"></script>
 
+<!-- ================= CHECKOUT SCRIPT ================= -->
 <script>
 
-  // ================= LOAD CART =================
-  let cart =
-    JSON.parse(
-      localStorage.getItem("cart")
-    ) || [];
+/* ================= LOAD CART ================= */
+let checkoutCart =
+  JSON.parse(
+    localStorage.getItem("cart")
+  ) || [];
 
-  // ================= RENDER CHECKOUT =================
-  function renderCheckout() {
+let discount = 0;
 
-    let container =
-      document.getElementById(
-        "checkout-items"
-      );
+/* ================= UPDATE CART HEADER ================= */
+updateCartCount();
 
-    let subtotal =
-      document.getElementById(
-        "subtotal"
-      );
+/* ================= RENDER CHECKOUT ================= */
+function renderCheckout() {
 
-    let finalTotal =
-      document.getElementById(
-        "finalTotal"
-      );
+  let container =
+    document.getElementById(
+      "checkout-items"
+    );
 
-    let total = 0;
+  let subtotal =
+    document.getElementById(
+      "subtotal"
+    );
 
-    container.innerHTML = "";
+  let finalTotal =
+    document.getElementById(
+      "finalTotal"
+    );
 
-    // EMPTY
-    if (cart.length === 0) {
+  let discountAmount =
+    document.getElementById(
+      "discountAmount"
+    );
 
-      container.innerHTML = `
+  let discountRow =
+    document.getElementById(
+      "discountRow"
+    );
 
-        <div class="empty-checkout">
+  let total = 0;
 
-          No items in cart 🛒
+  container.innerHTML = "";
 
-        </div>
+  /* EMPTY */
+  if(checkoutCart.length === 0){
 
-      `;
+    container.innerHTML = `
 
-      subtotal.innerText = "₹0";
+      <div class="empty-checkout">
 
-      finalTotal.innerText = "₹0";
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/2038/2038854.png"
+          width="120"
+        >
 
-      return;
-    }
+        <h3>
+          Your cart is empty 🛒
+        </h3>
 
-    // PRODUCTS
-    cart.forEach(item => {
+        <a
+          href="shop.html"
+          class="shop-btn"
+        >
 
-      let itemTotal =
-        item.price * item.qty;
+          Continue Shopping
 
-      total += itemTotal;
+        </a>
 
-      container.innerHTML += `
+      </div>
 
-        <div class="checkout-item">
+    `;
 
-          <img
-            src="${
-              item.image ||
-              'https://via.placeholder.com/80'
-            }"
-          >
+    subtotal.innerText = "₹0";
 
-          <div>
+    finalTotal.innerText = "₹0";
 
-            <h4>
-              ${item.name}
-            </h4>
+    return;
+  }
 
-            <p>
-              Qty: ${item.qty}
-            </p>
+  /* PRODUCTS */
+  checkoutCart.forEach(item => {
 
-          </div>
+    let qty =
+      item.qty || 1;
+
+    let itemTotal =
+      item.price * qty;
+
+    total += itemTotal;
+
+    container.innerHTML += `
+
+      <div class="checkout-item">
+
+        <img
+          src="${
+            item.image ||
+            'https://via.placeholder.com/80'
+          }"
+          alt="${item.name}"
+        >
+
+        <div class="checkout-item-info">
+
+          <h4>
+            ${item.name}
+          </h4>
+
+          <p>
+            Qty: ${qty}
+          </p>
 
           <span>
-
-            ₹${itemTotal}
-
+            ₹${item.price} each
           </span>
 
         </div>
 
-      `;
-    });
+        <div class="checkout-price">
 
-    subtotal.innerText =
-      `₹${total}`;
+          ₹${itemTotal}
 
-    finalTotal.innerText =
-      `₹${total}`;
+        </div>
+
+      </div>
+
+    `;
+  });
+
+  subtotal.innerText =
+    `₹${total}`;
+
+  /* FINAL */
+  let final =
+    total - discount;
+
+  if(final < 0){
+
+    final = 0;
   }
 
-  // ================= PLACE ORDER =================
-  document
-    .getElementById("checkoutForm")
-    .addEventListener(
-      "submit",
-      function(e){
+  finalTotal.innerText =
+    `₹${final}`;
 
-        e.preventDefault();
+  /* DISCOUNT */
+  if(discount > 0){
 
-        // CLEAR CART
-        localStorage.removeItem("cart");
+    discountRow.style.display =
+      "flex";
 
-        // SHOW SUCCESS
-        document
-          .getElementById(
-            "orderSuccess"
-          )
-          .classList.add("show");
-      }
+    discountAmount.innerText =
+      `-₹${discount}`;
+
+  } else {
+
+    discountRow.style.display =
+      "none";
+  }
+}
+
+/* ================= APPLY COUPON ================= */
+function applyCoupon() {
+
+  let coupon =
+    document.getElementById(
+      "couponInput"
+    ).value
+      .trim()
+      .toUpperCase();
+
+  let subtotal =
+    checkoutCart.reduce(
+      (sum,item) =>
+        sum + (
+          item.price *
+          (item.qty || 1)
+        ),
+      0
     );
 
-  // ================= HOME =================
-  function goHome() {
+  if(coupon === "SAURVIA10"){
 
-    window.location.href =
-      "index.html";
+    discount =
+      Math.floor(
+        subtotal * 0.10
+      );
+
+    showToast(
+      "Coupon Applied 🎉"
+    );
+
+  } else if(
+    coupon === "WELCOME50"
+  ){
+
+    discount = 50;
+
+    showToast(
+      "₹50 Discount Applied 🎉"
+    );
+
+  } else {
+
+    discount = 0;
+
+    showToast(
+      "Invalid Coupon ❌"
+    );
   }
 
-  // ================= INIT =================
   renderCheckout();
+}
+
+/* ================= PLACE ORDER ================= */
+document
+  .getElementById(
+    "checkoutForm"
+  )
+  .addEventListener(
+    "submit",
+    function(e){
+
+      e.preventDefault();
+
+      if(
+        checkoutCart.length === 0
+      ){
+
+        showToast(
+          "Your cart is empty 🛒"
+        );
+
+        return;
+      }
+
+      /* CLEAR CART */
+      localStorage.removeItem(
+        "cart"
+      );
+
+      checkoutCart = [];
+
+      updateCartCount();
+
+      /* SHOW SUCCESS */
+      document
+        .getElementById(
+          "orderSuccess"
+        )
+        .classList.add("show");
+
+    }
+  );
+
+/* ================= HOME ================= */
+function goHome() {
+
+  window.location.href =
+    "index.html";
+}
+
+/* ================= INIT ================= */
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    renderCheckout();
+
+  }
+);
 
 </script>
 
