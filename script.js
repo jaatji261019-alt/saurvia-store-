@@ -1,4 +1,9 @@
+/* =========================================================
+   SAURVIA MAIN SCRIPT
+========================================================= */
+
 /* ================= LOAD STORAGE ================= */
+
 let cart =
   JSON.parse(
     localStorage.getItem("cart")
@@ -10,6 +15,7 @@ let wishlist =
   ) || [];
 
 /* ================= SAVE FUNCTIONS ================= */
+
 function saveCart() {
 
   localStorage.setItem(
@@ -27,6 +33,7 @@ function saveWishlist() {
 }
 
 /* ================= UPDATE CART COUNT ================= */
+
 function updateCartCount() {
 
   let count = 0;
@@ -34,6 +41,7 @@ function updateCartCount() {
   cart.forEach(item => {
 
     count += item.qty || 1;
+
   });
 
   let cartLinks =
@@ -45,10 +53,12 @@ function updateCartCount() {
 
     link.innerHTML =
       `🛒 Cart (${count})`;
+
   });
 }
 
 /* ================= TOAST ================= */
+
 let currentToast = null;
 
 function showToast(message) {
@@ -56,6 +66,7 @@ function showToast(message) {
   if(currentToast){
 
     currentToast.remove();
+
   }
 
   let toast =
@@ -81,7 +92,11 @@ function showToast(message) {
 
     setTimeout(() => {
 
-      toast.remove();
+      if(toast){
+
+        toast.remove();
+
+      }
 
       currentToast = null;
 
@@ -91,6 +106,7 @@ function showToast(message) {
 }
 
 /* ================= SIDEBAR ================= */
+
 function toggleSidebar() {
 
   let sidebar =
@@ -99,24 +115,26 @@ function toggleSidebar() {
   if(sidebar){
 
     sidebar.classList.toggle("active");
+
   }
 }
 
 /* ================= CATEGORY TOGGLE ================= */
+
 function toggleCategories() {
 
   let menu =
-    document.querySelector(
-      ".sidebar-categories"
-    );
+    document.getElementById("catMenu");
 
   if(menu){
 
     menu.classList.toggle("active");
+
   }
 }
 
 /* ================= ADD TO CART ================= */
+
 function buyNow(
   product,
   price,
@@ -132,11 +150,14 @@ function buyNow(
     );
 
   /* AUTO IMAGE */
-  if(!image && typeof event !== "undefined"){
+  if(
+    !image &&
+    typeof event !== "undefined"
+  ){
 
     let card =
       event.target.closest(
-        ".product-card, .product"
+        ".product-card, .product, .wishlist-card"
       );
 
     if(card){
@@ -147,6 +168,7 @@ function buyNow(
       if(img){
 
         image = img.src;
+
       }
     }
   }
@@ -168,6 +190,7 @@ function buyNow(
       image: image,
 
       qty: 1
+
     });
   }
 
@@ -181,6 +204,7 @@ function buyNow(
 }
 
 /* ================= REMOVE FROM CART ================= */
+
 function removeFromCart(index) {
 
   cart.splice(index,1);
@@ -197,6 +221,7 @@ function removeFromCart(index) {
 }
 
 /* ================= CHANGE QUANTITY ================= */
+
 function changeQty(index,type) {
 
   if(!cart[index]) return;
@@ -227,11 +252,14 @@ function changeQty(index,type) {
 }
 
 /* ================= CLEAR CART ================= */
+
 function clearCart() {
 
-  if(confirm(
-    "Clear entire cart?"
-  )){
+  if(
+    confirm(
+      "Clear entire cart?"
+    )
+  ){
 
     cart = [];
 
@@ -248,6 +276,7 @@ function clearCart() {
 }
 
 /* ================= RENDER CART ================= */
+
 function renderCart() {
 
   let container =
@@ -267,6 +296,7 @@ function renderCart() {
   let total = 0;
 
   /* EMPTY CART */
+
   if(cart.length === 0){
 
     container.innerHTML = `
@@ -290,9 +320,7 @@ function renderCart() {
           href="shop.html"
           class="shop-btn"
         >
-
           Continue Shopping
-
         </a>
 
       </div>
@@ -302,12 +330,14 @@ function renderCart() {
     if(totalBox){
 
       totalBox.innerHTML = "";
+
     }
 
     return;
   }
 
   /* CART ITEMS */
+
   cart.forEach((item,index) => {
 
     let qty =
@@ -381,9 +411,7 @@ function renderCart() {
           class="remove-btn"
           onclick="removeFromCart(${index})"
         >
-
           Remove
-
         </button>
 
       </div>
@@ -391,9 +419,11 @@ function renderCart() {
     `;
 
     container.appendChild(div);
+
   });
 
   /* TOTAL */
+
   if(totalBox){
 
     totalBox.innerHTML = `
@@ -440,18 +470,14 @@ function renderCart() {
           class="checkout-btn"
           onclick="goToCheckout()"
         >
-
           Proceed To Checkout
-
         </button>
 
         <button
           class="clear-cart-btn"
           onclick="clearCart()"
         >
-
           Clear Cart
-
         </button>
 
       </div>
@@ -461,6 +487,7 @@ function renderCart() {
 }
 
 /* ================= GO TO CHECKOUT ================= */
+
 function goToCheckout() {
 
   if(cart.length === 0){
@@ -476,7 +503,8 @@ function goToCheckout() {
     "checkout.html";
 }
 
-/* ================= WISHLIST ================= */
+/* ================= TOGGLE WISHLIST ================= */
+
 function toggleWishlist(
   btn,
   productName,
@@ -516,7 +544,11 @@ function toggleWishlist(
   } else {
 
     /* AUTO IMAGE */
-    if(!image && typeof event !== "undefined"){
+
+    if(
+      !image &&
+      typeof event !== "undefined"
+    ){
 
       let card =
         event.target.closest(
@@ -531,6 +563,7 @@ function toggleWishlist(
         if(img){
 
           image = img.src;
+
         }
       }
     }
@@ -544,6 +577,7 @@ function toggleWishlist(
       price: price,
 
       image: image
+
     });
 
     btn.classList.add(
@@ -562,9 +596,12 @@ function toggleWishlist(
   }
 
   saveWishlist();
+
+  loadWishlistButtons();
 }
 
 /* ================= LOAD ACTIVE WISHLIST ================= */
+
 function loadWishlistButtons() {
 
   let buttons =
@@ -605,14 +642,32 @@ function loadWishlistButtons() {
         icon.className =
           "fa-solid fa-heart";
       }
+
+    } else {
+
+      btn.classList.remove(
+        "active-wishlist"
+      );
+
+      if(icon){
+
+        icon.className =
+          "fa-regular fa-heart";
+      }
     }
   });
 }
 
 /* ================= RENDER WISHLIST ================= */
+
 function renderWishlist() {
 
   let container =
+
+    document.getElementById(
+      "wishlistContainer"
+    ) ||
+
     document.getElementById(
       "wishlist-items"
     );
@@ -622,6 +677,7 @@ function renderWishlist() {
   container.innerHTML = "";
 
   /* EMPTY */
+
   if(wishlist.length === 0){
 
     container.innerHTML = `
@@ -641,9 +697,7 @@ function renderWishlist() {
           href="shop.html"
           class="shop-btn"
         >
-
           Continue Shopping
-
         </a>
 
       </div>
@@ -654,6 +708,7 @@ function renderWishlist() {
   }
 
   /* ITEMS */
+
   wishlist.forEach((item,index) => {
 
     let div =
@@ -664,50 +719,60 @@ function renderWishlist() {
 
     div.innerHTML = `
 
-      <img
-        src="${
-          item.image ||
-          "https://via.placeholder.com/200"
-        }"
-      >
+      <div class="wishlist-image">
 
-      <h3>
-        ${item.name}
-      </h3>
-
-      <p>
-        ₹${item.price}
-      </p>
-
-      <div class="wishlist-buttons">
-
-        <button
-          class="wishlist-cart-btn"
-          onclick="moveToCart(${index})"
+        <img
+          src="${
+            item.image ||
+            "https://via.placeholder.com/200"
+          }"
         >
 
-          Add To Cart
+      </div>
 
-        </button>
+      <div class="wishlist-info">
 
-        <button
-          class="wishlist-remove-btn"
-          onclick="removeFromWishlist(${index})"
-        >
+        <h3>
+          ${item.name}
+        </h3>
 
-          Remove
+        <p class="wishlist-price">
+          ₹${item.price}
+        </p>
 
-        </button>
+        <div class="wishlist-rating">
+          ⭐⭐⭐⭐⭐ (4.9)
+        </div>
+
+        <div class="wishlist-buttons">
+
+          <button
+            class="wishlist-cart-btn"
+            onclick="moveToCart(${index})"
+          >
+            Add To Cart
+          </button>
+
+          <button
+            class="wishlist-remove-btn"
+            onclick="removeFromWishlist(${index})"
+          >
+            Remove
+          </button>
+
+        </div>
 
       </div>
 
     `;
 
     container.appendChild(div);
+
   });
 }
 
 /* ================= REMOVE WISHLIST ================= */
+
 function removeFromWishlist(index) {
 
   wishlist.splice(index,1);
@@ -719,11 +784,12 @@ function removeFromWishlist(index) {
   loadWishlistButtons();
 
   showToast(
-    "Removed ❌"
+    "Removed from wishlist ❌"
   );
 }
 
 /* ================= MOVE TO CART ================= */
+
 function moveToCart(index) {
 
   let item =
@@ -744,9 +810,14 @@ function moveToCart(index) {
   renderWishlist();
 
   loadWishlistButtons();
+
+  showToast(
+    "Moved to cart 🛒"
+  );
 }
 
 /* ================= SEARCH PRODUCTS ================= */
+
 function searchProducts() {
 
   let input =
@@ -776,7 +847,9 @@ function searchProducts() {
     let text =
       title.innerText.toLowerCase();
 
-    if(text.includes(filter)){
+    if(
+      text.includes(filter)
+    ){
 
       product.style.display =
         "block";
@@ -788,6 +861,7 @@ function searchProducts() {
       product.style.display =
         "none";
     }
+
   });
 
   let noProducts =
@@ -803,6 +877,7 @@ function searchProducts() {
 }
 
 /* ================= FILTER PRODUCTS ================= */
+
 function filterProducts(category) {
 
   let products =
@@ -844,28 +919,10 @@ function filterProducts(category) {
     noProducts.style.display =
       found ? "none" : "block";
   }
-
-  let buttons =
-    document.querySelectorAll(
-      ".filter-btn"
-    );
-
-  buttons.forEach(btn => {
-
-    btn.classList.remove(
-      "active-filter"
-    );
-  });
-
-  if(typeof event !== "undefined"){
-
-    event.target.classList.add(
-      "active-filter"
-    );
-  }
 }
 
 /* ================= SLIDER ================= */
+
 let currentSlide = 0;
 
 function showSlide(index) {
@@ -882,6 +939,7 @@ function showSlide(index) {
     slide.classList.remove(
       "active"
     );
+
   });
 
   currentSlide =
@@ -903,6 +961,7 @@ function prevSlide() {
 }
 
 /* ================= AUTO SLIDER ================= */
+
 if(
   document.querySelectorAll(".slide")
     .length > 0
@@ -916,6 +975,7 @@ if(
 }
 
 /* ================= CLOSE SIDEBAR ================= */
+
 document.addEventListener(
   "click",
   function(e){
@@ -930,7 +990,10 @@ document.addEventListener(
         ".menu-btn"
       );
 
-    if(!sidebar || !menuBtn) return;
+    if(
+      !sidebar ||
+      !menuBtn
+    ) return;
 
     if(
       !sidebar.contains(e.target) &&
@@ -945,6 +1008,7 @@ document.addEventListener(
 );
 
 /* ================= INIT ================= */
+
 document.addEventListener(
   "DOMContentLoaded",
   () => {
