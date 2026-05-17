@@ -344,6 +344,7 @@ function renderWishlist(){
         <!-- BUTTONS -->
         <div class="wishlist-buttons">
 
+          <!-- ADD TO CART -->
           <button
             class="wishlist-cart-btn"
             onclick="moveToCart(${index})"
@@ -355,6 +356,7 @@ function renderWishlist(){
 
           </button>
 
+          <!-- REMOVE -->
           <button
             class="wishlist-remove-btn"
             onclick="removeFromWishlist(${index})"
@@ -376,6 +378,52 @@ function renderWishlist(){
 
   });
 
+}
+
+/* ================= REMOVE WISHLIST ================= */
+
+function removeFromWishlist(index){
+
+  let productName =
+    wishlist[index].name;
+
+  wishlist.splice(index, 1);
+
+  saveWishlist();
+
+  renderWishlist();
+
+  showToast(
+    productName +
+    " removed from wishlist 💔"
+  );
+}
+
+/* ================= MOVE TO CART ================= */
+
+function moveToCart(index){
+
+  let item =
+    wishlist[index];
+
+  if(!item) return;
+
+  buyNow(
+    item.name,
+    item.price,
+    item.image
+  );
+
+  wishlist.splice(index, 1);
+
+  saveWishlist();
+
+  renderWishlist();
+
+  showToast(
+    item.name +
+    " moved to cart 🛒"
+  );
 }
 
 /* ================= INIT ================= */
