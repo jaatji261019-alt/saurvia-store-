@@ -78,74 +78,6 @@
 
   </div>
 
-  <!-- CATEGORY TOGGLE -->
-  <div
-    class="cat-toggle"
-    onclick="toggleCategories()"
-  >
-    Browse Categories ▼
-  </div>
-
-  <!-- CATEGORY MENU -->
-  <div
-    class="sidebar-categories"
-    id="catMenu"
-  >
-
-    <div class="side-cat">
-
-      <img
-        src="images/beauty.jpg"
-        onerror="this.src='https://via.placeholder.com/60';"
-      >
-
-      <span>
-        Beauty
-      </span>
-
-    </div>
-
-    <div class="side-cat">
-
-      <img
-        src="images/perfume.jpg"
-        onerror="this.src='https://via.placeholder.com/60';"
-      >
-
-      <span>
-        Perfumes
-      </span>
-
-    </div>
-
-    <div class="side-cat">
-
-      <img
-        src="images/hair.jpg"
-        onerror="this.src='https://via.placeholder.com/60';"
-      >
-
-      <span>
-        Hair Care
-      </span>
-
-    </div>
-
-    <div class="side-cat">
-
-      <img
-        src="images/cream.jpg"
-        onerror="this.src='https://via.placeholder.com/60';"
-      >
-
-      <span>
-        Skin Care
-      </span>
-
-    </div>
-
-  </div>
-
 </div>
 
 <!-- ================= HEADER ================= -->
@@ -173,49 +105,20 @@
 
 </header>
 
-<!-- ================= BREADCRUMB ================= -->
-<div class="breadcrumb">
-
-  <a href="index.html">
-    Home
-  </a>
-
-  /
-
-  <a href="shop.html">
-    Shop
-  </a>
-
-  /
-
-  <span>
-    Face Serum
-  </span>
-
-</div>
-
 <!-- ================= PRODUCT PAGE ================= -->
 <section class="product-page">
 
-  <!-- ================= LEFT ================= -->
+  <!-- LEFT -->
   <div class="product-left">
 
-    <!-- MAIN IMAGE -->
     <div class="main-product-image">
 
       <img
         id="mainProductImage"
         src="images/serum1.jpg"
         alt="Face Serum"
-        onerror="this.src='https://via.placeholder.com/600x600?text=Product';"
+        onerror="this.src='https://via.placeholder.com/600x600';"
       >
-
-      <!-- ZOOM ICON -->
-      <div class="zoom-icon">
-
-        <i class="fa-solid fa-magnifying-glass-plus"></i>
-
-      </div>
 
     </div>
 
@@ -226,63 +129,38 @@
         src="images/serum1.jpg"
         class="active-thumb"
         onclick="changeMainImage(this)"
-        onerror="this.src='https://via.placeholder.com/100';"
       >
 
       <img
         src="images/perfume.jpg"
         onclick="changeMainImage(this)"
-        onerror="this.src='https://via.placeholder.com/100';"
       >
 
       <img
         src="images/hair.jpg"
         onclick="changeMainImage(this)"
-        onerror="this.src='https://via.placeholder.com/100';"
-      >
-
-      <img
-        src="images/cream.jpg"
-        onclick="changeMainImage(this)"
-        onerror="this.src='https://via.placeholder.com/100';"
       >
 
     </div>
 
   </div>
 
-  <!-- ================= RIGHT ================= -->
+  <!-- RIGHT -->
   <div class="product-right">
 
-    <!-- BRAND -->
     <p class="product-brand">
       SAURVIA BEAUTY
     </p>
 
-    <!-- TITLE -->
     <h1 class="product-title">
       Premium Face Serum With Vitamin C
     </h1>
 
-    <!-- SHORT DESCRIPTION -->
     <p class="short-desc">
 
-      Brightens skin, removes dark spots and gives instant natural glow ✨
+      Brightens skin, removes dark spots and gives instant glow ✨
 
     </p>
-
-    <!-- RATING -->
-    <div class="product-rating-box">
-
-      <span class="rating-badge">
-        4.8 ★
-      </span>
-
-      <span class="rating-text">
-        12,541 Ratings & 2,154 Reviews
-      </span>
-
-    </div>
 
     <!-- PRICE -->
     <div class="price-section">
@@ -298,24 +176,6 @@
       <span class="discount">
         50% OFF
       </span>
-
-    </div>
-
-    <!-- STOCK -->
-    <p class="stock-status">
-      ✔ In Stock
-    </p>
-
-    <!-- DELIVERY -->
-    <div class="delivery-box">
-
-      <h4>
-        🚚 Free Delivery
-      </h4>
-
-      <p>
-        Delivery within 2-4 days
-      </p>
 
     </div>
 
@@ -374,7 +234,9 @@
       <!-- WISHLIST -->
       <button
         class="wishlist-product-btn wishlist-btn"
+
         data-product="Premium Face Serum With Vitamin C"
+
         onclick="toggleWishlist(
           this,
           'Premium Face Serum With Vitamin C',
@@ -389,195 +251,6 @@
 
       </button>
 
-      <!-- SHARE -->
-      <button
-        class="share-btn"
-        onclick="shareProduct()"
-      >
-
-        <i class="fa-solid fa-share-nodes"></i>
-
-        Share
-
-      </button>
-
-    </div>
-
-    <!-- OFFERS -->
-    <div class="offer-list">
-
-      <h3>
-        Available Offers
-      </h3>
-
-      <p>
-        💳 10% OFF on Credit Card
-      </p>
-
-      <p>
-        🔥 Extra ₹100 OFF on orders above ₹999
-      </p>
-
-      <p>
-        🚚 Free shipping on prepaid orders
-      </p>
-
-    </div>
-
-    <!-- PRODUCT DETAILS -->
-    <div class="product-extra-details">
-
-      <h3>
-        Product Details
-      </h3>
-
-      <ul>
-
-        <li>
-          Brand: SAURVIA
-        </li>
-
-        <li>
-          Skin Type: All Skin Types
-        </li>
-
-        <li>
-          Weight: 50ml
-        </li>
-
-        <li>
-          Shelf Life: 24 Months
-        </li>
-
-        <li>
-          Country: India
-        </li>
-
-      </ul>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- ================= DESCRIPTION ================= -->
-<section class="description-section">
-
-  <h2>
-    Product Description
-  </h2>
-
-  <p>
-
-    This premium Vitamin C face serum deeply hydrates the skin,
-    removes dark spots, improves skin texture and gives instant glow.
-    Suitable for all skin types with natural ingredients.
-
-  </p>
-
-</section>
-
-<!-- ================= FEATURES ================= -->
-<section class="features-section">
-
-  <h2>
-    Key Features
-  </h2>
-
-  <div class="feature-grid">
-
-    <div class="feature-box">
-      ✨ Brightens Skin
-    </div>
-
-    <div class="feature-box">
-      💧 Deep Hydration
-    </div>
-
-    <div class="feature-box">
-      🌿 Natural Ingredients
-    </div>
-
-    <div class="feature-box">
-      🛡 Suitable For All Skin Types
-    </div>
-
-  </div>
-
-</section>
-
-<!-- ================= AUDIO REVIEW ================= -->
-<section class="audio-review-section">
-
-  <h2>
-    Audio Customer Review 🎧
-  </h2>
-
-  <div class="audio-review-box">
-
-    <p>
-      Hear what customers say about this product
-    </p>
-
-    <audio controls>
-
-      <source
-        src="audio/review.mp3"
-        type="audio/mpeg"
-      >
-
-    </audio>
-
-  </div>
-
-</section>
-
-<!-- ================= REVIEWS ================= -->
-<section class="review-section">
-
-  <div class="review-title">
-
-    <h2>
-      Customer Reviews ⭐
-    </h2>
-
-  </div>
-
-  <div class="review-grid">
-
-    <!-- REVIEW -->
-    <div class="review-card">
-
-      <div class="review-stars">
-        ⭐⭐⭐⭐⭐
-      </div>
-
-      <p>
-        Amazing serum! My skin started glowing in one week.
-      </p>
-
-      <div class="review-user">
-        — Priya Sharma
-      </div>
-
-    </div>
-
-    <!-- REVIEW -->
-    <div class="review-card">
-
-      <div class="review-stars">
-        ⭐⭐⭐⭐☆
-      </div>
-
-      <p>
-        Very lightweight and premium quality product.
-      </p>
-
-      <div class="review-user">
-        — Rahul Verma
-      </div>
-
     </div>
 
   </div>
@@ -587,68 +260,60 @@
 <!-- ================= RELATED PRODUCTS ================= -->
 <section class="related-products">
 
-  <div class="review-title">
-
-    <h2>
-      Related Products 🔥
-    </h2>
-
-  </div>
+  <h2>
+    Related Products 🔥
+  </h2>
 
   <div class="products">
 
     <!-- PRODUCT -->
     <div class="product">
 
-      <div class="product-badge">
-        HOT
-      </div>
+      <img
+        src="images/perfume.jpg"
+        alt="Perfume"
+      >
 
-      <div class="product-image-box">
+      <h3>
+        Luxury Perfume
+      </h3>
 
-        <img
-          src="images/perfume.jpg"
-          alt="Perfume"
-          onerror="this.src='https://via.placeholder.com/300x250';"
+      <p>
+        ₹499
+      </p>
+
+      <div class="product-actions">
+
+        <button
+          class="cart-btn"
+          onclick="buyNow(
+            'Luxury Perfume',
+            499,
+            'images/perfume.jpg'
+          )"
         >
 
-      </div>
+          Add To Cart
 
-      <div class="product-info">
+        </button>
 
-        <h3>
-          Luxury Perfume
-        </h3>
+        <!-- WISHLIST -->
+        <button
+          class="wishlist-btn"
 
-        <p class="price">
-          ₹499
-        </p>
+          data-product="Luxury Perfume"
 
-        <div class="product-rating">
-          ⭐⭐⭐⭐⭐ (4.9)
-        </div>
+          onclick="toggleWishlist(
+            this,
+            'Luxury Perfume',
+            499,
+            'images/perfume.jpg'
+          )"
+        >
 
-        <div class="product-actions">
+          <i class="fa-regular fa-heart"></i>
 
-          <button
-            class="cart-btn"
-            onclick="buyNow(
-              'Luxury Perfume',
-              499,
-              'images/perfume.jpg'
-            )"
-          >
-            Add To Cart
-          </button>
-
-          <button
-            class="view-btn"
-            onclick="window.location.href='product.html?id=perfume'"
-          >
-            View
-          </button>
-
-        </div>
+        </button>
 
       </div>
 
@@ -657,55 +322,51 @@
     <!-- PRODUCT -->
     <div class="product">
 
-      <div class="product-badge">
-        SALE
-      </div>
+      <img
+        src="images/hair.jpg"
+        alt="Hair Oil"
+      >
 
-      <div class="product-image-box">
+      <h3>
+        Hair Care Oil
+      </h3>
 
-        <img
-          src="images/hair.jpg"
-          alt="Hair Oil"
-          onerror="this.src='https://via.placeholder.com/300x250';"
+      <p>
+        ₹349
+      </p>
+
+      <div class="product-actions">
+
+        <button
+          class="cart-btn"
+          onclick="buyNow(
+            'Hair Care Oil',
+            349,
+            'images/hair.jpg'
+          )"
         >
 
-      </div>
+          Add To Cart
 
-      <div class="product-info">
+        </button>
 
-        <h3>
-          Hair Care Oil
-        </h3>
+        <!-- WISHLIST -->
+        <button
+          class="wishlist-btn"
 
-        <p class="price">
-          ₹349
-        </p>
+          data-product="Hair Care Oil"
 
-        <div class="product-rating">
-          ⭐⭐⭐⭐☆ (4.5)
-        </div>
+          onclick="toggleWishlist(
+            this,
+            'Hair Care Oil',
+            349,
+            'images/hair.jpg'
+          )"
+        >
 
-        <div class="product-actions">
+          <i class="fa-regular fa-heart"></i>
 
-          <button
-            class="cart-btn"
-            onclick="buyNow(
-              'Hair Care Oil',
-              349,
-              'images/hair.jpg'
-            )"
-          >
-            Add To Cart
-          </button>
-
-          <button
-            class="view-btn"
-            onclick="window.location.href='product.html?id=hair'"
-          >
-            View
-          </button>
-
-        </div>
+        </button>
 
       </div>
 
@@ -718,28 +379,8 @@
 <!-- ================= FOOTER ================= -->
 <footer class="footer">
 
-  <div class="footer-links">
-
-    <a href="index.html">
-      Home
-    </a>
-
-    <a href="shop.html">
-      Shop
-    </a>
-
-    <a href="wishlist.html">
-      Wishlist
-    </a>
-
-    <a href="cart.html">
-      Cart
-    </a>
-
-  </div>
-
   <p>
-    © 2026 SAURVIA STORE | All Rights Reserved
+    © 2026 SAURVIA STORE
   </p>
 
 </footer>
@@ -780,7 +421,7 @@ function changeMainImage(element){
   );
 }
 
-/* ================= INCREASE QTY ================= */
+/* ================= QTY ================= */
 function increaseQty(){
 
   qty++;
@@ -790,7 +431,6 @@ function increaseQty(){
   ).innerText = qty;
 }
 
-/* ================= DECREASE QTY ================= */
 function decreaseQty(){
 
   if(qty > 1){
@@ -803,7 +443,7 @@ function decreaseQty(){
   }
 }
 
-/* ================= ADD PRODUCT TO CART ================= */
+/* ================= ADD PRODUCT ================= */
 function addProductToCart(){
 
   let image =
@@ -857,36 +497,6 @@ function buyProductNow(){
 
   window.location.href =
     "checkout.html";
-}
-
-/* ================= SHARE PRODUCT ================= */
-function shareProduct(){
-
-  if(navigator.share){
-
-    navigator.share({
-
-      title:
-        "Premium Face Serum",
-
-      text:
-        "Check out this premium product on SAURVIA ✨",
-
-      url:
-        window.location.href
-
-    });
-
-  } else {
-
-    navigator.clipboard.writeText(
-      window.location.href
-    );
-
-    showToast(
-      "Product link copied 🔗"
-    );
-  }
 }
 
 /* ================= INIT ================= */
