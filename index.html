@@ -71,6 +71,7 @@
 
     </a>
 
+    <!-- ❤️ WISHLIST -->
     <a href="wishlist.html">
 
       <i class="fa-solid fa-heart"></i>
@@ -95,7 +96,115 @@
 
     </a>
 
+    <a href="contact.html">
+
+      <i class="fa-solid fa-phone"></i>
+
+      Contact
+
+    </a>
+
+    <a href="about.html">
+
+      <i class="fa-solid fa-circle-info"></i>
+
+      About
+
+    </a>
+
   </nav>
+
+  <!-- CATEGORY BUTTON -->
+  <div
+    class="cat-toggle"
+    onclick="toggleCategories()"
+  >
+
+    <i class="fa-solid fa-folder-open"></i>
+
+    Categories
+
+  </div>
+
+  <!-- CATEGORY MENU -->
+  <div
+    class="sidebar-categories"
+    id="catMenu"
+  >
+
+    <!-- CATEGORY -->
+    <div
+      class="side-cat"
+      onclick="location.href='shop.html'"
+    >
+
+      <img
+        src="images/skincare.jpg"
+        alt="Skincare"
+        onerror="this.src='https://via.placeholder.com/100';"
+      >
+
+      <span>
+        Skincare
+      </span>
+
+    </div>
+
+    <!-- CATEGORY -->
+    <div
+      class="side-cat"
+      onclick="location.href='shop.html'"
+    >
+
+      <img
+        src="images/perfume.jpg"
+        alt="Perfume"
+        onerror="this.src='https://via.placeholder.com/100';"
+      >
+
+      <span>
+        Perfume
+      </span>
+
+    </div>
+
+    <!-- CATEGORY -->
+    <div
+      class="side-cat"
+      onclick="location.href='shop.html'"
+    >
+
+      <img
+        src="images/haircare.jpg"
+        alt="Haircare"
+        onerror="this.src='https://via.placeholder.com/100';"
+      >
+
+      <span>
+        Haircare
+      </span>
+
+    </div>
+
+    <!-- CATEGORY -->
+    <div
+      class="side-cat"
+      onclick="location.href='shop.html'"
+    >
+
+      <img
+        src="images/beauty.jpg"
+        alt="Beauty"
+        onerror="this.src='https://via.placeholder.com/100';"
+      >
+
+      <span>
+        Beauty
+      </span>
+
+    </div>
+
+  </div>
 
 </aside>
 
@@ -116,7 +225,7 @@
       <input
         type="text"
         id="searchInput"
-        placeholder="Search products..."
+        placeholder="Search skincare, perfumes, haircare..."
       >
 
     </div>
@@ -124,10 +233,7 @@
     <!-- CART -->
     <div class="cart-box">
 
-      <a
-        href="cart.html"
-        class="cart-count"
-      >
+      <a href="cart.html">
 
         🛒 Cart (0)
 
@@ -137,15 +243,16 @@
 
   </header>
 
-  <!-- ================= HERO ================= -->
+  <!-- ================= HERO BANNER ================= -->
   <section class="hero-banner">
 
     <img
       src="images/skincare-main.jpg"
-      alt="Banner"
-      onerror="this.src='https://via.placeholder.com/1200x500';"
+      alt="Skincare Product"
+      onerror="this.src='https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9';"
     >
 
+    <!-- HERO TEXT -->
     <div class="hero-text">
 
       <h1>
@@ -153,7 +260,7 @@
       </h1>
 
       <p>
-        Premium skincare products
+        Premium skincare for radiant skin
       </p>
 
       <a
@@ -169,15 +276,205 @@
 
   </section>
 
+  <!-- ================= CATEGORY SLIDER ================= -->
+  <section class="categories">
+
+    <div class="cat-track">
+
+      <!-- CATEGORY -->
+      <div class="category">
+
+        <img
+          src="images/skincare.jpg"
+          alt="Skincare"
+          onerror="this.src='https://via.placeholder.com/100';"
+        >
+
+        <p>
+          Skincare
+        </p>
+
+      </div>
+
+      <!-- CATEGORY -->
+      <div class="category">
+
+        <img
+          src="images/perfume.jpg"
+          alt="Perfume"
+          onerror="this.src='https://via.placeholder.com/100';"
+        >
+
+        <p>
+          Perfume
+        </p>
+
+      </div>
+
+      <!-- CATEGORY -->
+      <div class="category">
+
+        <img
+          src="images/haircare.jpg"
+          alt="Haircare"
+          onerror="this.src='https://via.placeholder.com/100';"
+        >
+
+        <p>
+          Haircare
+        </p>
+
+      </div>
+
+      <!-- CATEGORY -->
+      <div class="category">
+
+        <img
+          src="images/beauty.jpg"
+          alt="Beauty"
+          onerror="this.src='https://via.placeholder.com/100';"
+        >
+
+        <p>
+          Beauty
+        </p>
+
+      </div>
+
+      <!-- DUPLICATES -->
+      <div class="category">
+
+        <img
+          src="images/skincare.jpg"
+          alt="Skincare"
+          onerror="this.src='https://via.placeholder.com/100';"
+        >
+
+        <p>
+          Skincare
+        </p>
+
+      </div>
+
+      <div class="category">
+
+        <img
+          src="images/perfume.jpg"
+          alt="Perfume"
+          onerror="this.src='https://via.placeholder.com/100';"
+        >
+
+        <p>
+          Perfume
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ================= SLIDER ================= -->
+  <section class="slider">
+
+    <!-- PREV -->
+    <button
+      class="prev"
+      onclick="prevSlide()"
+    >
+
+      ❮
+
+    </button>
+
+    <!-- NEXT -->
+    <button
+      class="next"
+      onclick="nextSlide()"
+    >
+
+      ❯
+
+    </button>
+
+    <!-- SLIDE -->
+    <div
+      class="slide active"
+      style="background-image:url('images/skincare.jpg')"
+    >
+
+      <div class="overlay"></div>
+
+      <div class="content">
+
+        <h2>
+          Glow With Premium Skincare ✨
+        </h2>
+
+        <p>
+          Best products for your daily routine
+        </p>
+
+      </div>
+
+    </div>
+
+    <!-- SLIDE -->
+    <div
+      class="slide"
+      style="background-image:url('images/perfume.jpg')"
+    >
+
+      <div class="overlay"></div>
+
+      <div class="content">
+
+        <h2>
+          Luxury Perfumes 💎
+        </h2>
+
+        <p>
+          Smell elegant & feel confident
+        </p>
+
+      </div>
+
+    </div>
+
+    <!-- SLIDE -->
+    <div
+      class="slide"
+      style="background-image:url('images/haircare.jpg')"
+    >
+
+      <div class="overlay"></div>
+
+      <div class="content">
+
+        <h2>
+          Strong & Healthy Hair 💇‍♀️
+        </h2>
+
+        <p>
+          Shine & strength products
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
   <!-- ================= PRODUCTS ================= -->
   <section class="products">
 
-    <!-- ================= PRODUCT 1 ================= -->
+    <!-- PRODUCT -->
     <div
       class="product-card"
       data-category="beauty"
     >
 
+      <!-- BADGE -->
       <div class="product-badge">
 
         25% OFF
@@ -188,12 +485,7 @@
       <button
         class="wishlist-btn"
         data-product="Face Serum"
-        onclick="toggleWishlist(
-          this,
-          'Face Serum',
-          299,
-          'images/serum.jpg'
-        )"
+        onclick="toggleWishlist(this,'Face Serum')"
       >
 
         <i class="fa-regular fa-heart"></i>
@@ -206,7 +498,7 @@
         <img
           src="images/serum.jpg"
           alt="Face Serum"
-          onerror="this.src='https://via.placeholder.com/300x200';"
+          onerror="this.src='https://via.placeholder.com/300x200?text=Serum';"
         >
 
       </div>
@@ -228,23 +520,18 @@
 
         </div>
 
+        <!-- BUTTONS -->
         <div class="product-actions">
 
-          <!-- CART -->
           <button
             class="cart-btn"
-            onclick="buyNow(
-              'Face Serum',
-              299,
-              'images/serum.jpg'
-            )"
+            onclick="buyNow('Face Serum',299)"
           >
 
             Add To Cart
 
           </button>
 
-          <!-- VIEW -->
           <button
             class="view-btn"
             onclick="location.href='product.html'"
@@ -260,7 +547,7 @@
 
     </div>
 
-    <!-- ================= PRODUCT 2 ================= -->
+    <!-- PRODUCT -->
     <div
       class="product-card"
       data-category="perfume"
@@ -272,34 +559,27 @@
 
       </div>
 
-      <!-- ❤️ WISHLIST -->
+      <!-- ❤️ -->
       <button
         class="wishlist-btn"
         data-product="Perfume"
-        onclick="toggleWishlist(
-          this,
-          'Perfume',
-          499,
-          'images/perfume.jpg'
-        )"
+        onclick="toggleWishlist(this,'Perfume')"
       >
 
         <i class="fa-regular fa-heart"></i>
 
       </button>
 
-      <!-- IMAGE -->
       <div class="product-image-box">
 
         <img
           src="images/perfume.jpg"
           alt="Perfume"
-          onerror="this.src='https://via.placeholder.com/300x200';"
+          onerror="this.src='https://via.placeholder.com/300x200?text=Perfume';"
         >
 
       </div>
 
-      <!-- INFO -->
       <div class="product-info">
 
         <h3>
@@ -318,21 +598,15 @@
 
         <div class="product-actions">
 
-          <!-- CART -->
           <button
             class="cart-btn"
-            onclick="buyNow(
-              'Perfume',
-              499,
-              'images/perfume.jpg'
-            )"
+            onclick="buyNow('Perfume',499)"
           >
 
             Add To Cart
 
           </button>
 
-          <!-- VIEW -->
           <button
             class="view-btn"
             onclick="location.href='product.html'"
@@ -348,7 +622,7 @@
 
     </div>
 
-    <!-- ================= PRODUCT 3 ================= -->
+    <!-- PRODUCT -->
     <div
       class="product-card"
       data-category="skincare"
@@ -360,34 +634,27 @@
 
       </div>
 
-      <!-- ❤️ WISHLIST -->
+      <!-- ❤️ -->
       <button
         class="wishlist-btn"
         data-product="Skin Cream"
-        onclick="toggleWishlist(
-          this,
-          'Skin Cream',
-          199,
-          'images/cream.jpg'
-        )"
+        onclick="toggleWishlist(this,'Skin Cream')"
       >
 
         <i class="fa-regular fa-heart"></i>
 
       </button>
 
-      <!-- IMAGE -->
       <div class="product-image-box">
 
         <img
           src="images/cream.jpg"
           alt="Skin Cream"
-          onerror="this.src='https://via.placeholder.com/300x200';"
+          onerror="this.src='https://via.placeholder.com/300x200?text=Cream';"
         >
 
       </div>
 
-      <!-- INFO -->
       <div class="product-info">
 
         <h3>
@@ -406,21 +673,15 @@
 
         <div class="product-actions">
 
-          <!-- CART -->
           <button
             class="cart-btn"
-            onclick="buyNow(
-              'Skin Cream',
-              199,
-              'images/cream.jpg'
-            )"
+            onclick="buyNow('Skin Cream',199)"
           >
 
             Add To Cart
 
           </button>
 
-          <!-- VIEW -->
           <button
             class="view-btn"
             onclick="location.href='product.html'"
@@ -444,4 +705,4 @@
 <script src="script.js"></script>
 
 </body>
-</html>
+</html> 
