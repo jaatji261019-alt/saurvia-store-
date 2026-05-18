@@ -71,7 +71,6 @@
 
     </a>
 
-    <!-- ❤️ WISHLIST -->
     <a href="wishlist.html">
 
       <i class="fa-solid fa-heart"></i>
@@ -132,7 +131,6 @@
     id="catMenu"
   >
 
-    <!-- CATEGORY -->
     <div
       class="side-cat"
       onclick="location.href='shop.html'"
@@ -150,7 +148,6 @@
 
     </div>
 
-    <!-- CATEGORY -->
     <div
       class="side-cat"
       onclick="location.href='shop.html'"
@@ -168,7 +165,6 @@
 
     </div>
 
-    <!-- CATEGORY -->
     <div
       class="side-cat"
       onclick="location.href='shop.html'"
@@ -186,7 +182,6 @@
 
     </div>
 
-    <!-- CATEGORY -->
     <div
       class="side-cat"
       onclick="location.href='shop.html'"
@@ -233,7 +228,10 @@
     <!-- CART -->
     <div class="cart-box">
 
-      <a href="cart.html">
+      <a
+        href="cart.html"
+        id="cart-count"
+      >
 
         🛒 Cart (0)
 
@@ -281,7 +279,6 @@
 
     <div class="cat-track">
 
-      <!-- CATEGORY -->
       <div class="category">
 
         <img
@@ -296,7 +293,6 @@
 
       </div>
 
-      <!-- CATEGORY -->
       <div class="category">
 
         <img
@@ -311,7 +307,6 @@
 
       </div>
 
-      <!-- CATEGORY -->
       <div class="category">
 
         <img
@@ -326,7 +321,6 @@
 
       </div>
 
-      <!-- CATEGORY -->
       <div class="category">
 
         <img
@@ -341,35 +335,6 @@
 
       </div>
 
-      <!-- DUPLICATES -->
-      <div class="category">
-
-        <img
-          src="images/skincare.jpg"
-          alt="Skincare"
-          onerror="this.src='https://via.placeholder.com/100';"
-        >
-
-        <p>
-          Skincare
-        </p>
-
-      </div>
-
-      <div class="category">
-
-        <img
-          src="images/perfume.jpg"
-          alt="Perfume"
-          onerror="this.src='https://via.placeholder.com/100';"
-        >
-
-        <p>
-          Perfume
-        </p>
-
-      </div>
-
     </div>
 
   </section>
@@ -377,7 +342,6 @@
   <!-- ================= SLIDER ================= -->
   <section class="slider">
 
-    <!-- PREV -->
     <button
       class="prev"
       onclick="prevSlide()"
@@ -387,7 +351,6 @@
 
     </button>
 
-    <!-- NEXT -->
     <button
       class="next"
       onclick="nextSlide()"
@@ -397,7 +360,6 @@
 
     </button>
 
-    <!-- SLIDE -->
     <div
       class="slide active"
       style="background-image:url('images/skincare.jpg')"
@@ -419,7 +381,6 @@
 
     </div>
 
-    <!-- SLIDE -->
     <div
       class="slide"
       style="background-image:url('images/perfume.jpg')"
@@ -441,7 +402,6 @@
 
     </div>
 
-    <!-- SLIDE -->
     <div
       class="slide"
       style="background-image:url('images/haircare.jpg')"
@@ -474,7 +434,6 @@
       data-category="beauty"
     >
 
-      <!-- BADGE -->
       <div class="product-badge">
 
         25% OFF
@@ -485,14 +444,13 @@
       <button
         class="wishlist-btn"
         data-product="Face Serum"
-        onclick="toggleWishlist(this,'Face Serum')"
+        onclick="toggleWishlist(this,'Face Serum',299,'images/serum.jpg')"
       >
 
         <i class="fa-regular fa-heart"></i>
 
       </button>
 
-      <!-- IMAGE -->
       <div class="product-image-box">
 
         <img
@@ -503,7 +461,6 @@
 
       </div>
 
-      <!-- INFO -->
       <div class="product-info">
 
         <h3>
@@ -520,12 +477,11 @@
 
         </div>
 
-        <!-- BUTTONS -->
         <div class="product-actions">
 
           <button
             class="cart-btn"
-            onclick="buyNow('Face Serum',299)"
+            onclick="buyNow('Face Serum',299,'images/serum.jpg')"
           >
 
             Add To Cart
@@ -559,11 +515,10 @@
 
       </div>
 
-      <!-- ❤️ -->
       <button
         class="wishlist-btn"
         data-product="Perfume"
-        onclick="toggleWishlist(this,'Perfume')"
+        onclick="toggleWishlist(this,'Perfume',499,'images/perfume.jpg')"
       >
 
         <i class="fa-regular fa-heart"></i>
@@ -600,7 +555,7 @@
 
           <button
             class="cart-btn"
-            onclick="buyNow('Perfume',499)"
+            onclick="buyNow('Perfume',499,'images/perfume.jpg')"
           >
 
             Add To Cart
@@ -634,11 +589,10 @@
 
       </div>
 
-      <!-- ❤️ -->
       <button
         class="wishlist-btn"
         data-product="Skin Cream"
-        onclick="toggleWishlist(this,'Skin Cream')"
+        onclick="toggleWishlist(this,'Skin Cream',199,'images/cream.jpg')"
       >
 
         <i class="fa-regular fa-heart"></i>
@@ -675,7 +629,7 @@
 
           <button
             class="cart-btn"
-            onclick="buyNow('Skin Cream',199)"
+            onclick="buyNow('Skin Cream',199,'images/cream.jpg')"
           >
 
             Add To Cart
@@ -701,8 +655,123 @@
 
 </main>
 
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+
+  <div class="footer-links">
+
+    <a href="index.html">
+      <i class="fa-solid fa-house"></i>
+      <span>Home</span>
+    </a>
+
+    <a href="shop.html">
+      <i class="fa-solid fa-shop"></i>
+      <span>Shop</span>
+    </a>
+
+    <a href="wishlist.html">
+      <i class="fa-solid fa-heart"></i>
+      <span>Wishlist</span>
+    </a>
+
+    <a href="cart.html">
+      <i class="fa-solid fa-cart-shopping"></i>
+      <span>Cart</span>
+    </a>
+
+    <a href="checkout.html">
+      <i class="fa-solid fa-credit-card"></i>
+      <span>Checkout</span>
+    </a>
+
+    <a href="about.html">
+      <i class="fa-solid fa-circle-info"></i>
+      <span>About</span>
+    </a>
+
+    <a href="contact.html">
+      <i class="fa-solid fa-phone"></i>
+      <span>Contact</span>
+    </a>
+
+  </div>
+
+  <p class="footer-text">
+    © 2026 SAURVIA STORE | All Rights Reserved
+  </p>
+
+</footer>
+
+<!-- ================= FOOTER STYLE ================= -->
+<style>
+
+.footer{
+  background:#111;
+  padding:35px 20px;
+  margin-top:60px;
+  text-align:center;
+}
+
+.footer-links{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:25px;
+  flex-wrap:wrap;
+  margin-bottom:20px;
+}
+
+.footer-links a{
+  color:white;
+  text-decoration:none;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  font-size:14px;
+  transition:0.3s;
+}
+
+.footer-links a i{
+  font-size:22px;
+}
+
+.footer-links a:hover{
+  color:#ff5722;
+  transform:translateY(-3px);
+}
+
+.footer-text{
+  color:#bbb;
+  font-size:14px;
+  margin-top:10px;
+}
+
+@media(max-width:768px){
+
+  .footer-links{
+    gap:18px;
+  }
+
+  .footer-links a{
+    font-size:12px;
+  }
+
+  .footer-links a i{
+    font-size:20px;
+  }
+
+  .footer-text{
+    font-size:12px;
+  }
+
+}
+
+</style>
+
 <!-- ================= SCRIPT ================= -->
 <script src="script.js"></script>
 
 </body>
-</html> 
+</html>
