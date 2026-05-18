@@ -101,7 +101,7 @@
       href="cart.html"
       class="cart-count"
     >
-      🛒 Cart (0)
+      🛒 Cart (<span id="cartCount">0</span>)
     </a>
 
   </div>
@@ -132,28 +132,43 @@
 <!-- ================= FOOTER ================= -->
 <footer class="footer">
 
+  <!-- ICON LINKS -->
   <div class="footer-links">
 
-    <a href="index.html">
-      Home
+    <a
+      href="index.html"
+      title="Home"
+    >
+      <i class="fa-solid fa-house"></i>
     </a>
 
-    <a href="shop.html">
-      Shop
+    <a
+      href="shop.html"
+      title="Shop"
+    >
+      <i class="fa-solid fa-shop"></i>
     </a>
 
-    <a href="cart.html">
-      Cart
+    <a
+      href="cart.html"
+      title="Cart"
+    >
+      <i class="fa-solid fa-cart-shopping"></i>
     </a>
 
-    <a href="wishlist.html">
-      Wishlist
+    <a
+      href="wishlist.html"
+      title="Wishlist"
+    >
+      <i class="fa-solid fa-heart"></i>
     </a>
 
   </div>
 
+  <!-- COPYRIGHT -->
   <p>
-    © 2026 SAURVIA STORE | All Rights Reserved
+    © 2026 SAURVIA STORE <br>
+    All Rights Reserved
   </p>
 
 </footer>
@@ -163,6 +178,13 @@
 
 <!-- ================= WISHLIST SCRIPT ================= -->
 <script>
+
+/* ================= GET WISHLIST ================= */
+
+let wishlist =
+  JSON.parse(
+    localStorage.getItem("wishlist")
+  ) || [];
 
 /* ================= RENDER WISHLIST ================= */
 
@@ -177,9 +199,9 @@ function renderWishlist(){
 
   container.innerHTML = "";
 
-  /* EMPTY WISHLIST */
+  /* ================= EMPTY ================= */
+
   if(
-    !wishlist ||
     wishlist.length === 0
   ){
 
@@ -189,7 +211,7 @@ function renderWishlist(){
 
         <img
           src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png"
-          width="120"
+          alt="Empty Wishlist"
         >
 
         <h2>
@@ -197,7 +219,7 @@ function renderWishlist(){
         </h2>
 
         <p>
-          Save products you love
+          Save products you love and they will appear here.
         </p>
 
         <a
@@ -214,7 +236,8 @@ function renderWishlist(){
     return;
   }
 
-  /* PRODUCTS */
+  /* ================= PRODUCTS ================= */
+
   wishlist.forEach((product, index) => {
 
     let card =
@@ -298,7 +321,18 @@ function renderWishlist(){
 
 }
 
-/* ================= REMOVE WISHLIST ================= */
+/* ================= SAVE WISHLIST ================= */
+
+function saveWishlist(){
+
+  localStorage.setItem(
+    "wishlist",
+    JSON.stringify(wishlist)
+  );
+
+}
+
+/* ================= REMOVE FROM WISHLIST ================= */
 
 function removeFromWishlist(index){
 
@@ -319,6 +353,7 @@ function removeFromWishlist(index){
     productName +
     " removed from wishlist 💔"
   );
+
 }
 
 /* ================= MOVE TO CART ================= */
@@ -348,6 +383,38 @@ function moveToCart(index){
     item.name +
     " moved to cart 🛒"
   );
+
+}
+
+/* ================= TOAST ================= */
+
+function showToast(message){
+
+  let toast =
+    document.createElement("div");
+
+  toast.className =
+    "toast";
+
+  toast.innerText =
+    message;
+
+  document.body.appendChild(toast);
+
+  setTimeout(() => {
+    toast.classList.add("show");
+  },100);
+
+  setTimeout(() => {
+
+    toast.classList.remove("show");
+
+    setTimeout(() => {
+      toast.remove();
+    },300);
+
+  },2500);
+
 }
 
 /* ================= INIT ================= */
@@ -360,7 +427,11 @@ document.addEventListener(
 
     renderWishlist();
 
-    loadWishlistButtons();
+    if(typeof loadWishlistButtons === "function"){
+
+      loadWishlistButtons();
+
+    }
 
   }
 );
