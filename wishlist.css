@@ -130,7 +130,11 @@ body{
 
 /* ================= ADD TO CART ================= */
 .wishlist-cart-btn{
-  background:linear-gradient(45deg,#ff9800,#ff5722);
+  background:linear-gradient(
+    45deg,
+    #ff9800,
+    #ff5722
+  );
   color:white;
 }
 
@@ -174,7 +178,11 @@ body{
   display:inline-block;
   padding:14px 26px;
   border-radius:14px;
-  background:linear-gradient(45deg,#ff9800,#ff5722);
+  background:linear-gradient(
+    45deg,
+    #ff9800,
+    #ff5722
+  );
   color:white;
   text-decoration:none;
   font-weight:700;
@@ -183,53 +191,6 @@ body{
 
 .shop-btn:hover{
   transform:translateY(-3px);
-}
-
-/* ================= FOOTER ================= */
-.footer{
-  background:white;
-  padding:22px 15px;
-  margin-top:50px;
-  box-shadow:0 -4px 12px rgba(0,0,0,0.06);
-  text-align:center;
-}
-
-/* ================= FOOTER LINKS ================= */
-.footer-links{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:28px;
-  margin-bottom:16px;
-  flex-wrap:wrap;
-}
-
-.footer-links a{
-  width:52px;
-  height:52px;
-  border-radius:50%;
-  background:#f5f5f5;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#111;
-  font-size:20px;
-  text-decoration:none;
-  transition:0.3s;
-}
-
-.footer-links a:hover{
-  background:#ff5722;
-  color:white;
-  transform:translateY(-4px);
-}
-
-/* ================= FOOTER TEXT ================= */
-.footer p{
-  color:#555;
-  font-size:15px;
-  text-align:center;
-  line-height:1.6;
 }
 
 /* ================= TOAST ================= */
@@ -251,6 +212,75 @@ body{
 .toast.show{
   opacity:1;
   transform:translateY(0);
+}
+
+/* ================= FOOTER ================= */
+.footer{
+  background:#111;
+  padding:35px 20px 25px;
+  margin-top:40px;
+  text-align:center;
+}
+
+/* ================= FOOTER LINKS ================= */
+.footer-links{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:28px;
+  margin-bottom:22px;
+}
+
+/* ================= FOOTER LINK ================= */
+.footer-links a{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  text-decoration:none;
+  color:#fff;
+  font-size:15px;
+  font-weight:600;
+  transition:0.3s;
+  min-width:70px;
+}
+
+/* ================= FOOTER ICON ================= */
+.footer-links a i{
+  width:52px;
+  height:52px;
+  border-radius:16px;
+  background:rgba(255,255,255,0.08);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+  transition:0.3s;
+}
+
+/* ================= FOOTER HOVER ================= */
+.footer-links a:hover{
+  color:#ff9800;
+  transform:translateY(-4px);
+}
+
+.footer-links a:hover i{
+  background:linear-gradient(
+    45deg,
+    #ff9800,
+    #ff5722
+  );
+  color:white;
+}
+
+/* ================= FOOTER TEXT ================= */
+.footer p{
+  color:#bbb;
+  font-size:14px;
+  margin-top:10px;
+  line-height:1.6;
 }
 
 /* ================= TABLET ================= */
@@ -305,8 +335,28 @@ body{
     font-size:26px;
   }
 
+  .footer{
+    padding:28px 14px 22px;
+  }
+
   .footer-links{
-    gap:20px;
+    gap:16px;
+  }
+
+  .footer-links a{
+    font-size:13px;
+    min-width:60px;
+  }
+
+  .footer-links a i{
+    width:46px;
+    height:46px;
+    font-size:18px;
+    border-radius:14px;
+  }
+
+  .footer p{
+    font-size:12px;
   }
 }
 
@@ -353,113 +403,22 @@ body{
   }
 
   .footer-links{
-    gap:18px;
+    gap:12px;
   }
 
   .footer-links a{
-    width:46px;
-    height:46px;
-    font-size:18px;
-  }
-
-  .footer p{
-    font-size:13px;
-  }
-}
-/* ================= FOOTER ================= */
-.footer{
-  background:#111;
-  padding:35px 20px 25px;
-  margin-top:40px;
-  text-align:center;
-}
-
-/* ================= FOOTER LINKS ================= */
-.footer-links{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:28px;
-  margin-bottom:22px;
-}
-
-/* ================= FOOTER LINK ================= */
-.footer-links a{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  text-decoration:none;
-  color:#fff;
-  font-size:15px;
-  font-weight:600;
-  transition:0.3s;
-  min-width:70px;
-}
-
-/* ================= FOOTER ICON ================= */
-.footer-links a i{
-  width:52px;
-  height:52px;
-  border-radius:16px;
-  background:rgba(255,255,255,0.08);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:20px;
-  transition:0.3s;
-}
-
-/* ================= HOVER ================= */
-.footer-links a:hover{
-  color:#ff9800;
-  transform:translateY(-4px);
-}
-
-.footer-links a:hover i{
-  background:linear-gradient(
-    45deg,
-    #ff9800,
-    #ff5722
-  );
-  color:white;
-}
-
-/* ================= COPYRIGHT ================= */
-.footer p{
-  color:#bbb;
-  font-size:14px;
-  margin-top:10px;
-  line-height:1.6;
-}
-
-/* ================= MOBILE ================= */
-@media(max-width:768px){
-
-  .footer{
-    padding:28px 14px 22px;
-  }
-
-  .footer-links{
-    gap:16px;
-  }
-
-  .footer-links a{
-    font-size:13px;
-    min-width:60px;
+    min-width:52px;
+    font-size:11px;
   }
 
   .footer-links a i{
-    width:46px;
-    height:46px;
-    font-size:18px;
-    border-radius:14px;
+    width:42px;
+    height:42px;
+    font-size:16px;
+    border-radius:12px;
   }
 
   .footer p{
-    font-size:12px;
+    font-size:11px;
   }
 }
-
