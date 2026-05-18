@@ -11,7 +11,7 @@
   >
 
   <title>
-    Wishlist - SAURVIA
+    Wishlist - SAURVIA STORE
   </title>
 
   <!-- MAIN CSS -->
@@ -35,57 +35,96 @@
   class="menu-btn"
   onclick="toggleSidebar()"
 >
+
   <i class="fa-solid fa-bars"></i>
+
 </div>
 
 <!-- ================= SIDEBAR ================= -->
-<div
+<aside
   class="sidebar"
   id="sidebar"
 >
 
-  <h2>
-    SAURVIA
-  </h2>
+  <!-- LOGO -->
+  <div class="sidebar-logo">
 
-  <!-- NAV -->
-  <div class="sidebar-nav">
+    <h2>
+      SAURVIA
+    </h2>
+
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav class="sidebar-nav">
 
     <a href="index.html">
+
       <i class="fa-solid fa-house"></i>
+
       Home
+
     </a>
 
     <a href="shop.html">
+
       <i class="fa-solid fa-shop"></i>
+
       Shop
+
     </a>
 
     <a
       href="wishlist.html"
       class="active-link"
     >
+
       <i class="fa-solid fa-heart"></i>
+
       Wishlist
+
     </a>
 
     <a href="cart.html">
+
       <i class="fa-solid fa-cart-shopping"></i>
+
       Cart
+
     </a>
 
     <a href="checkout.html">
+
       <i class="fa-solid fa-credit-card"></i>
+
       Checkout
+
     </a>
 
-  </div>
+    <a href="about.html">
 
-</div>
+      <i class="fa-solid fa-circle-info"></i>
+
+      About
+
+    </a>
+
+    <a href="contact.html">
+
+      <i class="fa-solid fa-phone"></i>
+
+      Contact
+
+    </a>
+
+  </nav>
+
+</aside>
 
 <!-- ================= HEADER ================= -->
 <header class="top-header">
 
+  <!-- CENTER -->
   <div class="center-box">
 
     <h1 class="logo">
@@ -101,7 +140,13 @@
       href="cart.html"
       class="cart-count"
     >
-      🛒 Cart (<span id="cartCount">0</span>)
+
+      🛒 Cart (
+      <span id="cartCount">
+        0
+      </span>
+      )
+
     </a>
 
   </div>
@@ -135,45 +180,83 @@
   <div class="footer-links">
 
     <a href="index.html">
+
       <i class="fa-solid fa-house"></i>
-      <span>Home</span>
+
+      <span>
+        Home
+      </span>
+
     </a>
 
     <a href="shop.html">
+
       <i class="fa-solid fa-shop"></i>
-      <span>Shop</span>
+
+      <span>
+        Shop
+      </span>
+
     </a>
 
     <a href="wishlist.html">
+
       <i class="fa-solid fa-heart"></i>
-      <span>Wishlist</span>
+
+      <span>
+        Wishlist
+      </span>
+
     </a>
 
     <a href="cart.html">
+
       <i class="fa-solid fa-cart-shopping"></i>
-      <span>Cart</span>
+
+      <span>
+        Cart
+      </span>
+
     </a>
 
     <a href="checkout.html">
+
       <i class="fa-solid fa-credit-card"></i>
-      <span>Checkout</span>
+
+      <span>
+        Checkout
+      </span>
+
     </a>
 
     <a href="about.html">
+
       <i class="fa-solid fa-circle-info"></i>
-      <span>About</span>
+
+      <span>
+        About
+      </span>
+
     </a>
 
     <a href="contact.html">
+
       <i class="fa-solid fa-phone"></i>
-      <span>Contact</span>
+
+      <span>
+        Contact
+      </span>
+
     </a>
 
   </div>
 
   <p>
+
     © 2026 SAURVIA STORE <br>
+
     All Rights Reserved
+
   </p>
 
 </footer>
@@ -188,7 +271,9 @@
 
 let wishlist =
   JSON.parse(
-    localStorage.getItem("wishlist")
+    localStorage.getItem(
+      "wishlist"
+    )
   ) || [];
 
 /* ================= RENDER WISHLIST ================= */
@@ -224,14 +309,16 @@ function renderWishlist(){
         </h2>
 
         <p>
-          Save products you love and they will appear here.
+          Save your favorite beauty products here.
         </p>
 
         <a
           href="shop.html"
           class="shop-btn"
         >
+
           Continue Shopping
+
         </a>
 
       </div>
@@ -239,14 +326,21 @@ function renderWishlist(){
     `;
 
     return;
+
   }
 
   /* ================= PRODUCTS ================= */
 
-  wishlist.forEach((product, index) => {
+  wishlist.forEach(
+    (
+      product,
+      index
+    ) => {
 
     let card =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
     card.className =
       "wishlist-card";
@@ -257,12 +351,15 @@ function renderWishlist(){
       <div class="wishlist-image">
 
         <img
+
           src="${
             product.image ||
             'https://via.placeholder.com/300x250'
           }"
 
-          alt="${product.name}"
+          alt="${
+            product.name
+          }"
 
           onerror="
             this.src=
@@ -276,15 +373,23 @@ function renderWishlist(){
       <div class="wishlist-info">
 
         <h3>
-          ${product.name}
+          ${
+            product.name
+          }
         </h3>
 
         <p class="wishlist-price">
-          ₹${product.price}
+
+          ₹${
+            product.price
+          }
+
         </p>
 
         <div class="wishlist-rating">
+
           ⭐⭐⭐⭐⭐ (4.9)
+
         </div>
 
         <!-- BUTTONS -->
@@ -320,7 +425,9 @@ function renderWishlist(){
 
     `;
 
-    container.appendChild(card);
+    container.appendChild(
+      card
+    );
 
   });
 
@@ -331,8 +438,13 @@ function renderWishlist(){
 function saveWishlist(){
 
   localStorage.setItem(
+
     "wishlist",
-    JSON.stringify(wishlist)
+
+    JSON.stringify(
+      wishlist
+    )
+
   );
 
 }
@@ -341,22 +453,37 @@ function saveWishlist(){
 
 function removeFromWishlist(index){
 
-  if(!wishlist[index]) return;
+  if(
+    !wishlist[index]
+  ) return;
 
   let productName =
     wishlist[index].name;
 
-  wishlist.splice(index, 1);
+  wishlist.splice(
+    index,
+    1
+  );
 
   saveWishlist();
 
   renderWishlist();
 
-  loadWishlistButtons();
+  if(
+    typeof loadWishlistButtons
+    === "function"
+  ){
+
+    loadWishlistButtons();
+
+  }
 
   showToast(
+
     productName +
+
     " removed from wishlist 💔"
+
   );
 
 }
@@ -371,22 +498,41 @@ function moveToCart(index){
   if(!item) return;
 
   buyNow(
+
     item.name,
+
     item.price,
+
     item.image
+
   );
 
-  wishlist.splice(index, 1);
+  wishlist.splice(
+    index,
+    1
+  );
 
   saveWishlist();
 
   renderWishlist();
 
-  loadWishlistButtons();
+  if(
+    typeof loadWishlistButtons
+    === "function"
+  ){
+
+    loadWishlistButtons();
+
+  }
+
+  updateCartCount();
 
   showToast(
+
     item.name +
+
     " moved to cart 🛒"
+
   );
 
 }
@@ -396,7 +542,9 @@ function moveToCart(index){
 function showToast(message){
 
   let toast =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
   toast.className =
     "toast";
@@ -404,18 +552,28 @@ function showToast(message){
   toast.innerText =
     message;
 
-  document.body.appendChild(toast);
+  document.body.appendChild(
+    toast
+  );
 
   setTimeout(() => {
-    toast.classList.add("show");
+
+    toast.classList.add(
+      "show"
+    );
+
   },100);
 
   setTimeout(() => {
 
-    toast.classList.remove("show");
+    toast.classList.remove(
+      "show"
+    );
 
     setTimeout(() => {
+
       toast.remove();
+
     },300);
 
   },2500);
@@ -425,20 +583,26 @@ function showToast(message){
 /* ================= INIT ================= */
 
 document.addEventListener(
-  "DOMContentLoaded",
-  () => {
 
-    updateCartCount();
+  "DOMContentLoaded",
+
+  () => {
 
     renderWishlist();
 
-    if(typeof loadWishlistButtons === "function"){
+    updateCartCount();
+
+    if(
+      typeof loadWishlistButtons
+      === "function"
+    ){
 
       loadWishlistButtons();
 
     }
 
   }
+
 );
 
 </script>
