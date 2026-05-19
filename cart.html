@@ -30,6 +30,13 @@
 
 <body>
 
+<!-- ================= OVERLAY ================= -->
+<div
+  class="overlay-bg"
+  id="overlay"
+  onclick="toggleSidebar()"
+></div>
+
 <!-- ================= MENU BUTTON ================= -->
 <div
   class="menu-btn"
@@ -251,7 +258,7 @@
 <!-- ================= CART PAGE ================= -->
 <section class="cart-page">
 
-  <!-- ================= LEFT ================= -->
+  <!-- LEFT -->
   <div class="cart-left-section">
 
     <div class="cart-page-title">
@@ -271,7 +278,7 @@
 
   </div>
 
-  <!-- ================= RIGHT ================= -->
+  <!-- RIGHT -->
   <div class="cart-summary-section">
 
     <div class="summary-card">
@@ -433,6 +440,50 @@
 <!-- ================= CART SCRIPT ================= -->
 <script>
 
+/* ================= SIDEBAR ================= */
+function toggleSidebar(){
+
+  let sidebar =
+    document.getElementById(
+      "sidebar"
+    );
+
+  let overlay =
+    document.getElementById(
+      "overlay"
+    );
+
+  sidebar.classList.toggle(
+    "show-sidebar"
+  );
+
+  overlay.classList.toggle(
+    "show-overlay"
+  );
+}
+
+/* ================= UPDATE CART COUNT ================= */
+function updateCartCount(){
+
+  let cart =
+    JSON.parse(
+      localStorage.getItem("cart")
+    ) || [];
+
+  let totalItems = 0;
+
+  cart.forEach(item => {
+
+    totalItems +=
+      item.qty || 1;
+
+  });
+
+  document.getElementById(
+    "cartCount"
+  ).innerText = totalItems;
+}
+
 /* ================= RENDER CART ================= */
 function renderCartPage() {
 
@@ -471,8 +522,11 @@ function renderCartPage() {
   /* ================= PRODUCTS ================= */
   cart.forEach((item, index) => {
 
+    let qty =
+      item.qty || 1;
+
     let itemTotal =
-      item.price * item.qty;
+      item.price * qty;
 
     total += itemTotal;
 
@@ -484,15 +538,17 @@ function renderCartPage() {
         <div class="cart-item-image">
 
           <img
+            class="cart-product-image"
+
             src="${
               item.image ||
-              'https://via.placeholder.com/120'
+              'https://via.placeholder.com/100'
             }"
 
             alt="${item.name}"
 
             onerror="
-              this.src='https://via.placeholder.com/120';
+              this.src='https://via.placeholder.com/100';
             "
           >
 
@@ -519,7 +575,7 @@ function renderCartPage() {
             </button>
 
             <span>
-              ${item.qty}
+              ${qty}
             </span>
 
             <button
@@ -727,14 +783,7 @@ document.addEventListener(
 
     renderCartPage();
 
-    if (
-      typeof updateCartCount
-      === "function"
-    ) {
-
-      updateCartCount();
-
-    }
+    updateCartCount();
 
   }
 );
