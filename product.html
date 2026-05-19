@@ -11,13 +11,12 @@
   >
 
   <title>
-    Product Details - SAURVIA
+    Product Details - SAURVIA STORE
   </title>
 
-  <!-- MAIN CSS -->
+  <!-- STYLE -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- PRODUCT CSS -->
   <link rel="stylesheet" href="product.css">
 
   <!-- FONT AWESOME -->
@@ -30,55 +29,175 @@
 
 <body>
 
+<!-- ================= OVERLAY ================= -->
+<div
+  class="overlay-bg"
+  id="overlay"
+  onclick="toggleSidebar()"
+></div>
+
 <!-- ================= MENU BUTTON ================= -->
 <div
   class="menu-btn"
   onclick="toggleSidebar()"
 >
+
   <i class="fa-solid fa-bars"></i>
+
 </div>
 
 <!-- ================= SIDEBAR ================= -->
-<div
+<aside
   class="sidebar"
   id="sidebar"
 >
 
-  <h2>
-    SAURVIA
-  </h2>
+  <!-- LOGO -->
+  <div class="sidebar-logo">
 
-  <!-- NAV -->
-  <div class="sidebar-nav">
-
-    <a href="index.html">
-      <i class="fa-solid fa-house"></i>
-      Home
-    </a>
-
-    <a href="shop.html">
-      <i class="fa-solid fa-shop"></i>
-      Shop
-    </a>
-
-    <a href="wishlist.html">
-      <i class="fa-solid fa-heart"></i>
-      Wishlist
-    </a>
-
-    <a href="cart.html">
-      <i class="fa-solid fa-cart-shopping"></i>
-      Cart
-    </a>
-
-    <a href="checkout.html">
-      <i class="fa-solid fa-credit-card"></i>
-      Checkout
-    </a>
+    <h2>
+      SAURVIA
+    </h2>
 
   </div>
 
-</div>
+  <!-- NAVIGATION -->
+  <nav class="sidebar-nav">
+
+    <a href="index.html">
+
+      <i class="fa-solid fa-house"></i>
+
+      Home
+
+    </a>
+
+    <a
+      href="shop.html"
+      class="active-link"
+    >
+
+      <i class="fa-solid fa-shop"></i>
+
+      Shop
+
+    </a>
+
+    <a href="wishlist.html">
+
+      <i class="fa-solid fa-heart"></i>
+
+      Wishlist
+
+    </a>
+
+    <a href="cart.html">
+
+      <i class="fa-solid fa-cart-shopping"></i>
+
+      Cart
+
+    </a>
+
+    <a href="checkout.html">
+
+      <i class="fa-solid fa-credit-card"></i>
+
+      Checkout
+
+    </a>
+
+    <a href="about.html">
+
+      <i class="fa-solid fa-circle-info"></i>
+
+      About
+
+    </a>
+
+    <a href="contact.html">
+
+      <i class="fa-solid fa-phone"></i>
+
+      Contact
+
+    </a>
+
+  </nav>
+
+  <!-- CATEGORY BUTTON -->
+  <div
+    class="cat-toggle"
+    onclick="toggleCategories()"
+  >
+
+    <i class="fa-solid fa-folder-open"></i>
+
+    Categories
+
+  </div>
+
+  <!-- CATEGORY LIST -->
+  <div
+    class="sidebar-categories"
+    id="catMenu"
+  >
+
+    <div class="side-cat">
+
+      <img
+        src="images/skincare.jpg"
+        alt=""
+      >
+
+      <span>
+        Skincare
+      </span>
+
+    </div>
+
+    <div class="side-cat">
+
+      <img
+        src="images/perfume.jpg"
+        alt=""
+      >
+
+      <span>
+        Perfume
+      </span>
+
+    </div>
+
+    <div class="side-cat">
+
+      <img
+        src="images/hair.jpg"
+        alt=""
+      >
+
+      <span>
+        Haircare
+      </span>
+
+    </div>
+
+    <div class="side-cat">
+
+      <img
+        src="images/beauty.jpg"
+        alt=""
+      >
+
+      <span>
+        Beauty
+      </span>
+
+    </div>
+
+  </div>
+
+</aside>
 
 <!-- ================= HEADER ================= -->
 <header class="top-header">
@@ -98,7 +217,13 @@
       href="cart.html"
       class="cart-count"
     >
-      🛒 Cart (0)
+
+      🛒 Cart (
+      <span id="cartCount">
+        0
+      </span>
+      )
+
     </a>
 
   </div>
@@ -271,7 +396,7 @@
 
       <img
         src="images/perfume.jpg"
-        alt="Perfume"
+        alt=""
       >
 
       <h3>
@@ -297,24 +422,6 @@
 
         </button>
 
-        <!-- WISHLIST -->
-        <button
-          class="wishlist-btn"
-
-          data-product="Luxury Perfume"
-
-          onclick="toggleWishlist(
-            this,
-            'Luxury Perfume',
-            499,
-            'images/perfume.jpg'
-          )"
-        >
-
-          <i class="fa-regular fa-heart"></i>
-
-        </button>
-
       </div>
 
     </div>
@@ -324,7 +431,7 @@
 
       <img
         src="images/hair.jpg"
-        alt="Hair Oil"
+        alt=""
       >
 
       <h3>
@@ -350,24 +457,6 @@
 
         </button>
 
-        <!-- WISHLIST -->
-        <button
-          class="wishlist-btn"
-
-          data-product="Hair Care Oil"
-
-          onclick="toggleWishlist(
-            this,
-            'Hair Care Oil',
-            349,
-            'images/hair.jpg'
-          )"
-        >
-
-          <i class="fa-regular fa-heart"></i>
-
-        </button>
-
       </div>
 
     </div>
@@ -376,51 +465,89 @@
 
 </section>
 
-  <!-- ================= FOOTER ================= -->
+<!-- ================= FOOTER ================= -->
 <footer class="footer">
 
   <div class="footer-links">
 
     <a href="index.html">
+
       <i class="fa-solid fa-house"></i>
-      <span>Home</span>
+
+      <span>
+        Home
+      </span>
+
     </a>
 
     <a href="shop.html">
+
       <i class="fa-solid fa-shop"></i>
-      <span>Shop</span>
+
+      <span>
+        Shop
+      </span>
+
     </a>
 
     <a href="wishlist.html">
+
       <i class="fa-solid fa-heart"></i>
-      <span>Wishlist</span>
+
+      <span>
+        Wishlist
+      </span>
+
     </a>
 
     <a href="cart.html">
+
       <i class="fa-solid fa-cart-shopping"></i>
-      <span>Cart</span>
+
+      <span>
+        Cart
+      </span>
+
     </a>
 
     <a href="checkout.html">
+
       <i class="fa-solid fa-credit-card"></i>
-      <span>Checkout</span>
+
+      <span>
+        Checkout
+      </span>
+
     </a>
 
     <a href="about.html">
+
       <i class="fa-solid fa-circle-info"></i>
-      <span>About</span>
+
+      <span>
+        About
+      </span>
+
     </a>
 
     <a href="contact.html">
+
       <i class="fa-solid fa-phone"></i>
-      <span>Contact</span>
+
+      <span>
+        Contact
+      </span>
+
     </a>
 
   </div>
 
   <p>
+
     © 2026 SAURVIA STORE <br>
+
     All Rights Reserved
+
   </p>
 
 </footer>
@@ -428,12 +555,52 @@
 <!-- ================= SCRIPT ================= -->
 <script src="script.js"></script>
 
-<!-- ================= PRODUCT PAGE SCRIPT ================= -->
+<!-- ================= PRODUCT SCRIPT ================= -->
 <script>
 
 let qty = 1;
 
+/* ================= SIDEBAR ================= */
+
+function toggleSidebar(){
+
+  let sidebar =
+    document.getElementById(
+      "sidebar"
+    );
+
+  let overlay =
+    document.getElementById(
+      "overlay"
+    );
+
+  sidebar.classList.toggle(
+    "active"
+  );
+
+  overlay.classList.toggle(
+    "show-overlay"
+  );
+
+}
+
+/* ================= CATEGORY ================= */
+
+function toggleCategories(){
+
+  let menu =
+    document.getElementById(
+      "catMenu"
+    );
+
+  menu.classList.toggle(
+    "active"
+  );
+
+}
+
 /* ================= CHANGE IMAGE ================= */
+
 function changeMainImage(element){
 
   let mainImage =
@@ -441,7 +608,8 @@ function changeMainImage(element){
       "mainProductImage"
     );
 
-  mainImage.src = element.src;
+  mainImage.src =
+    element.src;
 
   let thumbs =
     document.querySelectorAll(
@@ -459,9 +627,11 @@ function changeMainImage(element){
   element.classList.add(
     "active-thumb"
   );
+
 }
 
-/* ================= QTY ================= */
+/* ================= QUANTITY ================= */
+
 function increaseQty(){
 
   qty++;
@@ -469,6 +639,7 @@ function increaseQty(){
   document.getElementById(
     "qty"
   ).innerText = qty;
+
 }
 
 function decreaseQty(){
@@ -480,10 +651,13 @@ function decreaseQty(){
     document.getElementById(
       "qty"
     ).innerText = qty;
+
   }
+
 }
 
-/* ================= ADD PRODUCT ================= */
+/* ================= ADD TO CART ================= */
+
 function addProductToCart(){
 
   let image =
@@ -494,31 +668,35 @@ function addProductToCart(){
   let existing =
     cart.find(
       item =>
-        item.name.toLowerCase() ===
-        "premium face serum with vitamin c"
-        .toLowerCase()
+      item.name.toLowerCase()
+      ===
+      "premium face serum with vitamin c"
+      .toLowerCase()
     );
 
   if(existing){
 
     existing.qty += qty;
 
-  } else {
+  }
+
+  else{
 
     cart.push({
 
       id: Date.now(),
 
       name:
-        "Premium Face Serum With Vitamin C",
+      "Premium Face Serum With Vitamin C",
 
-      price: 299,
+      price:299,
 
-      image: image,
+      image:image,
 
-      qty: qty
+      qty:qty
 
     });
+
   }
 
   saveCart();
@@ -528,18 +706,22 @@ function addProductToCart(){
   showToast(
     "Product added to cart 🛒"
   );
+
 }
 
 /* ================= BUY NOW ================= */
+
 function buyProductNow(){
 
   addProductToCart();
 
   window.location.href =
     "checkout.html";
+
 }
 
 /* ================= INIT ================= */
+
 document.addEventListener(
   "DOMContentLoaded",
   () => {
