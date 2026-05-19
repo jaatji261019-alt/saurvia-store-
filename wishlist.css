@@ -422,3 +422,87 @@ body{
     font-size:11px;
   }
 }
+/* ================= ACTIVE SIDEBAR LINK ================= */
+.sidebar-nav a.active-link{
+  background:rgba(255,255,255,0.2);
+  color:white;
+}
+
+/* ================= MAIN ================= */
+.main{
+  width:100%;
+  min-height:100vh;
+}
+
+/* ================= HEADER FIX ================= */
+.top-header{
+  position:relative;
+  z-index:5;
+}
+
+/* ================= SIDEBAR FIX ================= */
+.sidebar{
+  overflow-y:auto;
+  scrollbar-width:none;
+}
+
+.sidebar::-webkit-scrollbar{
+  display:none;
+}
+
+/* ================= CATEGORY FIX ================= */
+.sidebar-categories{
+  margin-bottom:20px;
+}
+
+/* ================= FOOTER FIX ================= */
+.footer{
+  width:100%;
+  overflow:hidden;
+}
+
+/* ================= FOOTER LINKS FIX ================= */
+.footer-links a span{
+  font-size:13px;
+}
+
+/* ================= MOBILE FIX ================= */
+@media(max-width:768px){
+
+  .wishlist-title{
+    padding-top:30px;
+  }
+
+  .footer-links{
+    justify-content:center;
+  }
+
+  .footer-links a{
+    min-width:65px;
+  }
+
+}
+
+/* ================= SMALL MOBILE ================= */
+@media(max-width:480px){
+
+  .wishlist-title h1{
+    font-size:28px;
+  }
+
+  .wishlist-title p{
+    font-size:14px;
+  }
+
+  .footer-links{
+    gap:14px;
+  }
+
+  .footer-links a i{
+    width:44px;
+    height:44px;
+    font-size:16px;
+  }
+
+}
+
