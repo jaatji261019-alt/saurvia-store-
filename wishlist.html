@@ -55,7 +55,7 @@
 
   </div>
 
-  <!-- NAVIGATION -->
+  <!-- NAV -->
   <nav class="sidebar-nav">
 
     <a href="index.html">
@@ -119,12 +119,84 @@
 
   </nav>
 
+  <!-- CATEGORY BUTTON -->
+  <div
+    class="cat-toggle"
+    onclick="toggleCategories()"
+  >
+
+    📂 Categories
+
+  </div>
+
+  <!-- CATEGORY LIST -->
+  <div
+    class="sidebar-categories"
+    id="catMenu"
+  >
+
+    <div class="side-cat">
+
+      <img
+        src="images/skincare.jpg"
+        alt="Skincare"
+      >
+
+      <span>
+        Skincare
+      </span>
+
+    </div>
+
+    <div class="side-cat">
+
+      <img
+        src="images/perfume.jpg"
+        alt="Perfume"
+      >
+
+      <span>
+        Perfume
+      </span>
+
+    </div>
+
+    <div class="side-cat">
+
+      <img
+        src="images/haircare.jpg"
+        alt="Haircare"
+      >
+
+      <span>
+        Haircare
+      </span>
+
+    </div>
+
+    <div class="side-cat">
+
+      <img
+        src="images/beauty.jpg"
+        alt="Beauty"
+      >
+
+      <span>
+        Beauty
+      </span>
+
+    </div>
+
+  </div>
+
 </aside>
+
+<!-- ================= MAIN ================= -->
+<main class="main">
 
 <!-- ================= HEADER ================= -->
 <header class="top-header">
 
-  <!-- CENTER -->
   <div class="center-box">
 
     <h1 class="logo">
@@ -136,10 +208,7 @@
   <!-- CART -->
   <div class="cart-box">
 
-    <a
-      href="cart.html"
-      class="cart-count"
-    >
+    <a href="cart.html">
 
       🛒 Cart (
       <span id="cartCount">
@@ -153,7 +222,7 @@
 
 </header>
 
-<!-- ================= PAGE TITLE ================= -->
+<!-- ================= TITLE ================= -->
 <section class="wishlist-title">
 
   <h1>
@@ -166,7 +235,7 @@
 
 </section>
 
-<!-- ================= WISHLIST CONTAINER ================= -->
+<!-- ================= WISHLIST ================= -->
 <section
   class="wishlist-container"
   id="wishlistContainer"
@@ -261,6 +330,8 @@
 
 </footer>
 
+</main>
+
 <!-- ================= SCRIPT ================= -->
 <script src="script.js"></script>
 
@@ -276,7 +347,7 @@ let wishlist =
     )
   ) || [];
 
-/* ================= RENDER WISHLIST ================= */
+/* ================= RENDER ================= */
 
 function renderWishlist(){
 
@@ -285,11 +356,9 @@ function renderWishlist(){
       "wishlistContainer"
     );
 
-  if(!container) return;
-
   container.innerHTML = "";
 
-  /* ================= EMPTY ================= */
+  /* EMPTY */
 
   if(
     wishlist.length === 0
@@ -301,7 +370,7 @@ function renderWishlist(){
 
         <img
           src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png"
-          alt="Empty Wishlist"
+          alt="Empty"
         >
 
         <h2>
@@ -309,7 +378,7 @@ function renderWishlist(){
         </h2>
 
         <p>
-          Save your favorite beauty products here.
+          Save your favorite products here.
         </p>
 
         <a
@@ -329,7 +398,7 @@ function renderWishlist(){
 
   }
 
-  /* ================= PRODUCTS ================= */
+  /* PRODUCTS */
 
   wishlist.forEach(
     (
@@ -337,103 +406,95 @@ function renderWishlist(){
       index
     ) => {
 
-    let card =
-      document.createElement(
-        "div"
+      let card =
+        document.createElement(
+          "div"
+        );
+
+      card.className =
+        "wishlist-card";
+
+      card.innerHTML = `
+
+        <div class="wishlist-image">
+
+          <img
+
+            src="${
+              product.image ||
+              'https://via.placeholder.com/300'
+            }"
+
+            alt="${
+              product.name
+            }"
+
+          >
+
+        </div>
+
+        <div class="wishlist-info">
+
+          <h3>
+            ${
+              product.name
+            }
+          </h3>
+
+          <p class="wishlist-price">
+
+            ₹${
+              product.price
+            }
+
+          </p>
+
+          <div class="wishlist-rating">
+
+            ⭐⭐⭐⭐⭐ (4.9)
+
+          </div>
+
+          <div class="wishlist-buttons">
+
+            <button
+              class="wishlist-cart-btn"
+              onclick="moveToCart(${index})"
+            >
+
+              <i class="fa-solid fa-cart-shopping"></i>
+
+              Add To Cart
+
+            </button>
+
+            <button
+              class="wishlist-remove-btn"
+              onclick="removeFromWishlist(${index})"
+            >
+
+              <i class="fa-solid fa-trash"></i>
+
+              Remove
+
+            </button>
+
+          </div>
+
+        </div>
+
+      `;
+
+      container.appendChild(
+        card
       );
 
-    card.className =
-      "wishlist-card";
-
-    card.innerHTML = `
-
-      <!-- IMAGE -->
-      <div class="wishlist-image">
-
-        <img
-
-          src="${
-            product.image ||
-            'https://via.placeholder.com/300x250'
-          }"
-
-          alt="${
-            product.name
-          }"
-
-          onerror="
-            this.src=
-            'https://via.placeholder.com/300x250';
-          "
-        >
-
-      </div>
-
-      <!-- INFO -->
-      <div class="wishlist-info">
-
-        <h3>
-          ${
-            product.name
-          }
-        </h3>
-
-        <p class="wishlist-price">
-
-          ₹${
-            product.price
-          }
-
-        </p>
-
-        <div class="wishlist-rating">
-
-          ⭐⭐⭐⭐⭐ (4.9)
-
-        </div>
-
-        <!-- BUTTONS -->
-        <div class="wishlist-buttons">
-
-          <!-- ADD TO CART -->
-          <button
-            class="wishlist-cart-btn"
-            onclick="moveToCart(${index})"
-          >
-
-            <i class="fa-solid fa-cart-shopping"></i>
-
-            Add To Cart
-
-          </button>
-
-          <!-- REMOVE -->
-          <button
-            class="wishlist-remove-btn"
-            onclick="removeFromWishlist(${index})"
-          >
-
-            <i class="fa-solid fa-trash"></i>
-
-            Remove
-
-          </button>
-
-        </div>
-
-      </div>
-
-    `;
-
-    container.appendChild(
-      card
-    );
-
-  });
+    }
+  );
 
 }
 
-/* ================= SAVE WISHLIST ================= */
+/* ================= SAVE ================= */
 
 function saveWishlist(){
 
@@ -449,13 +510,9 @@ function saveWishlist(){
 
 }
 
-/* ================= REMOVE FROM WISHLIST ================= */
+/* ================= REMOVE ================= */
 
 function removeFromWishlist(index){
-
-  if(
-    !wishlist[index]
-  ) return;
 
   let productName =
     wishlist[index].name;
@@ -469,21 +526,9 @@ function removeFromWishlist(index){
 
   renderWishlist();
 
-  if(
-    typeof loadWishlistButtons
-    === "function"
-  ){
-
-    loadWishlistButtons();
-
-  }
-
   showToast(
-
     productName +
-
-    " removed from wishlist 💔"
-
+    " removed 💔"
   );
 
 }
@@ -494,8 +539,6 @@ function moveToCart(index){
 
   let item =
     wishlist[index];
-
-  if(!item) return;
 
   buyNow(
 
@@ -516,23 +559,11 @@ function moveToCart(index){
 
   renderWishlist();
 
-  if(
-    typeof loadWishlistButtons
-    === "function"
-  ){
-
-    loadWishlistButtons();
-
-  }
-
   updateCartCount();
 
   showToast(
-
     item.name +
-
-    " moved to cart 🛒"
-
+    " added to cart 🛒"
   );
 
 }
@@ -591,15 +622,6 @@ document.addEventListener(
     renderWishlist();
 
     updateCartCount();
-
-    if(
-      typeof loadWishlistButtons
-      === "function"
-    ){
-
-      loadWishlistButtons();
-
-    }
 
   }
 
