@@ -26,6 +26,259 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
   >
 
+  <style>
+
+    /* ================= OVERLAY ================= */
+    .overlay-bg{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:rgba(0,0,0,0.45);
+      opacity:0;
+      visibility:hidden;
+      transition:0.3s;
+      z-index:9997;
+    }
+
+    .overlay-bg.show-overlay{
+      opacity:1;
+      visibility:visible;
+    }
+
+    /* ================= SIDEBAR FIX ================= */
+    .sidebar{
+      left:-280px;
+      transition:0.35s;
+    }
+
+    .sidebar.show-sidebar{
+      left:0;
+    }
+
+    /* ================= ACTIVE LINK ================= */
+    .sidebar-nav a.active-link{
+      background:rgba(255,255,255,0.2);
+    }
+
+    /* ================= CART PAGE ================= */
+    .cart-page{
+      width:100%;
+      max-width:1300px;
+      margin:auto;
+      padding:30px 20px;
+      display:grid;
+      grid-template-columns:1.8fr 1fr;
+      gap:30px;
+    }
+
+    /* ================= CART ITEM ================= */
+    .cart-item{
+      background:white;
+      border-radius:24px;
+      padding:18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      margin-bottom:20px;
+      box-shadow:0 5px 16px rgba(0,0,0,0.08);
+    }
+
+    /* ================= IMAGE FIX ================= */
+    .cart-item-image{
+      flex-shrink:0;
+    }
+
+    .cart-product-image{
+      width:80px;
+      height:80px;
+      object-fit:cover;
+      border-radius:16px;
+      border:2px solid #f2f2f2;
+      background:#f5f5f5;
+      display:block;
+    }
+
+    /* ================= INFO ================= */
+    .cart-item-info{
+      flex:1;
+    }
+
+    .cart-item-info h3{
+      font-size:18px;
+      margin-bottom:8px;
+    }
+
+    .cart-price{
+      color:#ff5722;
+      font-size:18px;
+      font-weight:700;
+      margin-bottom:12px;
+    }
+
+    /* ================= QTY ================= */
+    .qty-box{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .qty-box button{
+      width:34px;
+      height:34px;
+      border:none;
+      border-radius:10px;
+      background:#f1f1f1;
+      font-size:18px;
+      cursor:pointer;
+      font-weight:700;
+    }
+
+    .qty-box button:hover{
+      background:#ff5722;
+      color:white;
+    }
+
+    /* ================= RIGHT ================= */
+    .cart-item-right{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-end;
+      gap:12px;
+    }
+
+    .cart-item-right h4{
+      font-size:20px;
+    }
+
+    /* ================= REMOVE ================= */
+    .remove-btn{
+      border:none;
+      background:#ffe9e4;
+      color:#ff5722;
+      padding:10px 16px;
+      border-radius:12px;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .remove-btn:hover{
+      background:#ff5722;
+      color:white;
+    }
+
+    /* ================= SUMMARY ================= */
+    .summary-card{
+      background:white;
+      border-radius:24px;
+      padding:28px;
+      box-shadow:0 5px 16px rgba(0,0,0,0.08);
+      position:sticky;
+      top:100px;
+    }
+
+    .summary-row,
+    .summary-total{
+      display:flex;
+      justify-content:space-between;
+      margin-bottom:18px;
+    }
+
+    .summary-total{
+      border-top:1px solid #eee;
+      padding-top:18px;
+      font-size:22px;
+      font-weight:800;
+    }
+
+    .checkout-btn,
+    .clear-cart-btn{
+      width:100%;
+      border:none;
+      padding:15px;
+      border-radius:16px;
+      cursor:pointer;
+      font-weight:700;
+      margin-top:14px;
+    }
+
+    .checkout-btn{
+      background:linear-gradient(
+        45deg,
+        #ff9800,
+        #ff5722
+      );
+      color:white;
+    }
+
+    .clear-cart-btn{
+      background:#111;
+      color:white;
+    }
+
+    /* ================= EMPTY CART ================= */
+    .empty-cart{
+      background:white;
+      border-radius:24px;
+      padding:50px 24px;
+      text-align:center;
+      box-shadow:0 5px 16px rgba(0,0,0,0.08);
+    }
+
+    .empty-cart img{
+      width:120px;
+      margin-bottom:20px;
+    }
+
+    .continue-btn{
+      display:inline-block;
+      padding:14px 24px;
+      background:linear-gradient(
+        45deg,
+        #ff9800,
+        #ff5722
+      );
+      color:white;
+      text-decoration:none;
+      border-radius:40px;
+      margin-top:20px;
+      font-weight:700;
+    }
+
+    /* ================= MOBILE ================= */
+    @media(max-width:768px){
+
+      .cart-page{
+        grid-template-columns:1fr;
+        padding:20px 14px;
+      }
+
+      .summary-card{
+        position:static;
+      }
+
+      .cart-item{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .cart-item-right{
+        width:100%;
+        flex-direction:row;
+        justify-content:space-between;
+        align-items:center;
+      }
+
+      .cart-product-image{
+        width:70px;
+        height:70px;
+      }
+    }
+
+  </style>
+
 </head>
 
 <body>
@@ -62,7 +315,7 @@
 
   </div>
 
-  <!-- NAVIGATION -->
+  <!-- NAV -->
   <nav class="sidebar-nav">
 
     <a href="index.html">
@@ -108,120 +361,7 @@
 
     </a>
 
-    <a href="about.html">
-
-      <i class="fa-solid fa-circle-info"></i>
-
-      About
-
-    </a>
-
-    <a href="contact.html">
-
-      <i class="fa-solid fa-phone"></i>
-
-      Contact
-
-    </a>
-
   </nav>
-
-  <!-- ================= CATEGORIES ================= -->
-  <div class="sidebar-categories">
-
-    <h3>
-
-      <i class="fa-solid fa-folder-open"></i>
-
-      Categories
-
-    </h3>
-
-    <!-- SKINCARE -->
-    <a
-      href="shop.html"
-      class="category-item"
-    >
-
-      <img
-        src="images/skincare.jpg"
-        alt="Skincare"
-
-        onerror="
-          this.src='https://images.unsplash.com/photo-1556228578-8c89e6adf883?q=80&w=300&auto=format&fit=crop';
-        "
-      >
-
-      <span>
-        Skincare
-      </span>
-
-    </a>
-
-    <!-- PERFUME -->
-    <a
-      href="shop.html"
-      class="category-item"
-    >
-
-      <img
-        src="images/perfume.jpg"
-        alt="Perfume"
-
-        onerror="
-          this.src='https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=300&auto=format&fit=crop';
-        "
-      >
-
-      <span>
-        Perfume
-      </span>
-
-    </a>
-
-    <!-- HAIRCARE -->
-    <a
-      href="shop.html"
-      class="category-item"
-    >
-
-      <img
-        src="images/hair.jpg"
-        alt="Haircare"
-
-        onerror="
-          this.src='https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?q=80&w=300&auto=format&fit=crop';
-        "
-      >
-
-      <span>
-        Haircare
-      </span>
-
-    </a>
-
-    <!-- BEAUTY -->
-    <a
-      href="shop.html"
-      class="category-item"
-    >
-
-      <img
-        src="images/beauty.jpg"
-        alt="Beauty"
-
-        onerror="
-          this.src='https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=300&auto=format&fit=crop';
-        "
-      >
-
-      <span>
-        Beauty
-      </span>
-
-    </a>
-
-  </div>
 
 </aside>
 
@@ -259,7 +399,7 @@
 <section class="cart-page">
 
   <!-- LEFT -->
-  <div class="cart-left-section">
+  <div>
 
     <div class="cart-page-title">
 
@@ -273,13 +413,13 @@
 
     </div>
 
-    <!-- CART ITEMS -->
+    <!-- ITEMS -->
     <div id="cart-items"></div>
 
   </div>
 
   <!-- RIGHT -->
-  <div class="cart-summary-section">
+  <div>
 
     <div class="summary-card">
 
@@ -287,25 +427,7 @@
         Order Summary
       </h2>
 
-      <!-- TOTAL -->
       <div id="total"></div>
-
-      <!-- SAFE BOX -->
-      <div class="secure-box">
-
-        <p>
-          🔒 100% Secure Checkout
-        </p>
-
-        <p>
-          🚚 Fast Delivery Available
-        </p>
-
-        <p>
-          💳 Cash On Delivery
-        </p>
-
-      </div>
 
     </div>
 
@@ -313,7 +435,7 @@
 
 </section>
 
-<!-- ================= EMPTY CART ================= -->
+<!-- ================= EMPTY TEMPLATE ================= -->
 <div
   id="empty-cart-template"
   style="display:none;"
@@ -347,446 +469,330 @@
 
 </div>
 
-<!-- ================= FOOTER ================= -->
-<footer class="footer">
-
-  <div class="footer-links">
-
-    <a href="index.html">
-
-      <i class="fa-solid fa-house"></i>
-
-      <span>
-        Home
-      </span>
-
-    </a>
-
-    <a href="shop.html">
-
-      <i class="fa-solid fa-shop"></i>
-
-      <span>
-        Shop
-      </span>
-
-    </a>
-
-    <a href="wishlist.html">
-
-      <i class="fa-solid fa-heart"></i>
-
-      <span>
-        Wishlist
-      </span>
-
-    </a>
-
-    <a href="cart.html">
-
-      <i class="fa-solid fa-cart-shopping"></i>
-
-      <span>
-        Cart
-      </span>
-
-    </a>
-
-    <a href="checkout.html">
-
-      <i class="fa-solid fa-credit-card"></i>
-
-      <span>
-        Checkout
-      </span>
-
-    </a>
-
-    <a href="about.html">
-
-      <i class="fa-solid fa-circle-info"></i>
-
-      <span>
-        About
-      </span>
-
-    </a>
-
-    <a href="contact.html">
-
-      <i class="fa-solid fa-phone"></i>
-
-      <span>
-        Contact
-      </span>
-
-    </a>
-
-  </div>
-
-  <p>
-
-    © 2026 SAURVIA STORE <br>
-
-    All Rights Reserved
-
-  </p>
-
-</footer>
-
-<!-- ================= MAIN SCRIPT ================= -->
-<script src="script.js"></script>
-
-<!-- ================= CART SCRIPT ================= -->
+<!-- ================= SCRIPT ================= -->
 <script>
 
-/* ================= SIDEBAR ================= */
-function toggleSidebar(){
+  /* ================= SIDEBAR ================= */
+  function toggleSidebar(){
 
-  let sidebar =
-    document.getElementById(
-      "sidebar"
-    );
+    document
+      .getElementById("sidebar")
+      .classList.toggle(
+        "show-sidebar"
+      );
 
-  let overlay =
-    document.getElementById(
-      "overlay"
-    );
-
-  sidebar.classList.toggle(
-    "show-sidebar"
-  );
-
-  overlay.classList.toggle(
-    "show-overlay"
-  );
-}
-
-/* ================= UPDATE CART COUNT ================= */
-function updateCartCount(){
-
-  let cart =
-    JSON.parse(
-      localStorage.getItem("cart")
-    ) || [];
-
-  let totalItems = 0;
-
-  cart.forEach(item => {
-
-    totalItems +=
-      item.qty || 1;
-
-  });
-
-  document.getElementById(
-    "cartCount"
-  ).innerText = totalItems;
-}
-
-/* ================= RENDER CART ================= */
-function renderCartPage() {
-
-  let cart =
-    JSON.parse(
-      localStorage.getItem("cart")
-    ) || [];
-
-  let container =
-    document.getElementById(
-      "cart-items"
-    );
-
-  let totalBox =
-    document.getElementById(
-      "total"
-    );
-
-  container.innerHTML = "";
-
-  let total = 0;
-
-  /* ================= EMPTY ================= */
-  if (cart.length === 0) {
-
-    container.innerHTML =
-      document.getElementById(
-        "empty-cart-template"
-      ).innerHTML;
-
-    totalBox.innerHTML = "";
-
-    return;
+    document
+      .getElementById("overlay")
+      .classList.toggle(
+        "show-overlay"
+      );
   }
 
-  /* ================= PRODUCTS ================= */
-  cart.forEach((item, index) => {
+  /* ================= UPDATE COUNT ================= */
+  function updateCartCount(){
 
-    let qty =
-      item.qty || 1;
+    let cart =
+      JSON.parse(
+        localStorage.getItem("cart")
+      ) || [];
 
-    let itemTotal =
-      item.price * qty;
+    let totalItems = 0;
 
-    total += itemTotal;
+    cart.forEach(item => {
 
-    container.innerHTML += `
+      totalItems +=
+        item.qty || 1;
 
-      <div class="cart-item">
+    });
 
-        <!-- IMAGE -->
-        <div class="cart-item-image">
+    document.getElementById(
+      "cartCount"
+    ).innerText = totalItems;
+  }
 
-          <img
-            class="cart-product-image"
+  /* ================= RENDER CART ================= */
+  function renderCartPage(){
 
-            src="${
-              item.image ||
-              'https://via.placeholder.com/100'
-            }"
+    let cart =
+      JSON.parse(
+        localStorage.getItem("cart")
+      ) || [];
 
-            alt="${item.name}"
+    let container =
+      document.getElementById(
+        "cart-items"
+      );
 
-            onerror="
-              this.src='https://via.placeholder.com/100';
-            "
-          >
+    let totalBox =
+      document.getElementById(
+        "total"
+      );
 
-        </div>
+    container.innerHTML = "";
 
-        <!-- INFO -->
-        <div class="cart-item-info">
+    let total = 0;
 
-          <h3>
-            ${item.name}
-          </h3>
+    /* EMPTY */
+    if(cart.length === 0){
 
-          <p class="cart-price">
-            ₹${item.price}
-          </p>
+      container.innerHTML =
+        document.getElementById(
+          "empty-cart-template"
+        ).innerHTML;
 
-          <!-- QUANTITY -->
-          <div class="qty-box">
+      totalBox.innerHTML = "";
+
+      return;
+    }
+
+    /* PRODUCTS */
+    cart.forEach((item,index)=>{
+
+      let qty =
+        item.qty || 1;
+
+      let itemTotal =
+        item.price * qty;
+
+      total += itemTotal;
+
+      container.innerHTML += `
+
+        <div class="cart-item">
+
+          <div class="cart-item-image">
+
+            <img
+              class="cart-product-image"
+
+              src="${
+                item.image ||
+                'https://via.placeholder.com/100'
+              }"
+
+              alt="${item.name}"
+            >
+
+          </div>
+
+          <div class="cart-item-info">
+
+            <h3>
+              ${item.name}
+            </h3>
+
+            <p class="cart-price">
+              ₹${item.price}
+            </p>
+
+            <div class="qty-box">
+
+              <button
+                onclick="changeQty(${index},'dec')"
+              >
+                −
+              </button>
+
+              <span>
+                ${qty}
+              </span>
+
+              <button
+                onclick="changeQty(${index},'inc')"
+              >
+                +
+              </button>
+
+            </div>
+
+          </div>
+
+          <div class="cart-item-right">
+
+            <h4>
+              ₹${itemTotal}
+            </h4>
 
             <button
-              onclick="changeQty(${index},'dec')"
+              class="remove-btn"
+              onclick="removeFromCart(${index})"
             >
-              −
-            </button>
 
-            <span>
-              ${qty}
-            </span>
+              Remove
 
-            <button
-              onclick="changeQty(${index},'inc')"
-            >
-              +
             </button>
 
           </div>
 
         </div>
 
-        <!-- RIGHT -->
-        <div class="cart-item-right">
+      `;
+    });
 
-          <h4>
-            ₹${itemTotal}
-          </h4>
+    /* TOTAL */
+    totalBox.innerHTML = `
 
-          <button
-            class="remove-btn"
-            onclick="removeFromCart(${index})"
-          >
+      <div class="summary-row">
 
-            Remove
+        <span>
+          Subtotal
+        </span>
 
-          </button>
-
-        </div>
+        <span>
+          ₹${total}
+        </span>
 
       </div>
 
+      <div class="summary-row">
+
+        <span>
+          Delivery
+        </span>
+
+        <span>
+          FREE
+        </span>
+
+      </div>
+
+      <div class="summary-total">
+
+        <span>
+          Total
+        </span>
+
+        <span>
+          ₹${total}
+        </span>
+
+      </div>
+
+      <button
+        class="checkout-btn"
+        onclick="goToCheckout()"
+      >
+
+        Proceed To Checkout
+
+      </button>
+
+      <button
+        class="clear-cart-btn"
+        onclick="clearCart()"
+      >
+
+        Clear Cart
+
+      </button>
+
     `;
-
-  });
-
-  /* ================= TOTAL ================= */
-  totalBox.innerHTML = `
-
-    <div class="summary-row">
-
-      <span>
-        Subtotal
-      </span>
-
-      <span>
-        ₹${total}
-      </span>
-
-    </div>
-
-    <div class="summary-row">
-
-      <span>
-        Delivery
-      </span>
-
-      <span class="free">
-        FREE
-      </span>
-
-    </div>
-
-    <div class="summary-total">
-
-      <span>
-        Total
-      </span>
-
-      <span>
-        ₹${total}
-      </span>
-
-    </div>
-
-    <button
-      class="checkout-btn"
-      onclick="goToCheckout()"
-    >
-
-      Proceed To Checkout
-
-    </button>
-
-    <button
-      class="clear-cart-btn"
-      onclick="clearCart()"
-    >
-
-      Clear Cart
-
-    </button>
-
-  `;
-
-}
-
-/* ================= GO TO CHECKOUT ================= */
-function goToCheckout() {
-
-  let cart =
-    JSON.parse(
-      localStorage.getItem("cart")
-    ) || [];
-
-  if (cart.length === 0) {
-
-    alert(
-      "Your cart is empty 🛒"
-    );
-
-    return;
   }
 
-  window.location.href =
-    "checkout.html";
+  /* ================= CHECKOUT ================= */
+  function goToCheckout(){
 
-}
+    let cart =
+      JSON.parse(
+        localStorage.getItem("cart")
+      ) || [];
 
-/* ================= REMOVE ================= */
-function removeFromCart(index) {
+    if(cart.length === 0){
 
-  let cart =
-    JSON.parse(
-      localStorage.getItem("cart")
-    ) || [];
+      alert(
+        "Your cart is empty 🛒"
+      );
 
-  cart.splice(index, 1);
+      return;
+    }
 
-  localStorage.setItem(
-    "cart",
-    JSON.stringify(cart)
-  );
+    window.location.href =
+      "checkout.html";
+  }
 
-  renderCartPage();
+  /* ================= REMOVE ================= */
+  function removeFromCart(index){
 
-  updateCartCount();
+    let cart =
+      JSON.parse(
+        localStorage.getItem("cart")
+      ) || [];
 
-}
+    cart.splice(index,1);
 
-/* ================= CHANGE QUANTITY ================= */
-function changeQty(index, type) {
+    localStorage.setItem(
+      "cart",
+      JSON.stringify(cart)
+    );
 
-  let cart =
-    JSON.parse(
-      localStorage.getItem("cart")
-    ) || [];
+    renderCartPage();
 
-  if (!cart[index]) return;
+    updateCartCount();
+  }
 
-  if (type === "inc") {
+  /* ================= QTY ================= */
+  function changeQty(index,type){
 
-    cart[index].qty++;
+    let cart =
+      JSON.parse(
+        localStorage.getItem("cart")
+      ) || [];
 
-  } else {
+    if(type === "inc"){
 
-    if (cart[index].qty > 1) {
-
-      cart[index].qty--;
+      cart[index].qty++;
 
     } else {
 
-      cart.splice(index, 1);
+      if(cart[index].qty > 1){
 
+        cart[index].qty--;
+
+      } else {
+
+        cart.splice(index,1);
+      }
     }
 
-  }
-
-  localStorage.setItem(
-    "cart",
-    JSON.stringify(cart)
-  );
-
-  renderCartPage();
-
-  updateCartCount();
-
-}
-
-/* ================= CLEAR CART ================= */
-function clearCart() {
-
-  if (
-    confirm(
-      "Clear your entire cart?"
-    )
-  ) {
-
-    localStorage.removeItem(
-      "cart"
+    localStorage.setItem(
+      "cart",
+      JSON.stringify(cart)
     );
 
     renderCartPage();
 
     updateCartCount();
-
   }
 
-}
+  /* ================= CLEAR ================= */
+  function clearCart(){
 
-/* ================= INIT ================= */
-document.addEventListener(
-  "DOMContentLoaded",
-  () => {
+    if(
+      confirm(
+        "Clear your entire cart?"
+      )
+    ){
 
-    renderCartPage();
+      localStorage.removeItem(
+        "cart"
+      );
 
-    updateCartCount();
+      renderCartPage();
 
+      updateCartCount();
+    }
   }
-);
+
+  /* ================= INIT ================= */
+  document.addEventListener(
+    "DOMContentLoaded",
+    ()=>{
+
+      renderCartPage();
+
+      updateCartCount();
+    }
+  );
 
 </script>
 
