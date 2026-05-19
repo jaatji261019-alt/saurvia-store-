@@ -40,6 +40,13 @@
 
 </div>
 
+<!-- ================= SIDEBAR OVERLAY ================= -->
+<div
+  class="sidebar-overlay"
+  id="sidebarOverlay"
+  onclick="closeSidebar()"
+></div>
+
 <!-- ================= SIDEBAR ================= -->
 <aside
   class="sidebar"
@@ -101,7 +108,96 @@
 
     </a>
 
+    <a href="about.html">
+
+      <i class="fa-solid fa-circle-info"></i>
+
+      About
+
+    </a>
+
+    <a href="contact.html">
+
+      <i class="fa-solid fa-phone"></i>
+
+      Contact
+
+    </a>
+
   </nav>
+
+  <!-- CATEGORIES -->
+  <div class="sidebar-categories">
+
+    <h3>
+
+      <i class="fa-solid fa-folder-open"></i>
+
+      Categories
+
+    </h3>
+
+    <!-- SKINCARE -->
+    <div class="category-item">
+
+      <img
+        src="images/skincare.jpg"
+        alt="Skincare"
+        onerror="this.src='https://images.unsplash.com/photo-1556228578-8c89e6adf883?q=80&w=300';"
+      >
+
+      <span>
+        Skincare
+      </span>
+
+    </div>
+
+    <!-- PERFUME -->
+    <div class="category-item">
+
+      <img
+        src="images/perfume.jpg"
+        alt="Perfume"
+        onerror="this.src='https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=300';"
+      >
+
+      <span>
+        Perfume
+      </span>
+
+    </div>
+
+    <!-- HAIRCARE -->
+    <div class="category-item">
+
+      <img
+        src="images/haircare.jpg"
+        alt="Haircare"
+        onerror="this.src='https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?q=80&w=300';"
+      >
+
+      <span>
+        Haircare
+      </span>
+
+    </div>
+
+    <!-- BEAUTY -->
+    <div class="category-item">
+
+      <img
+        src="images/beauty.jpg"
+        alt="Beauty"
+        onerror="this.src='https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=300';"
+      >
+
+      <span>
+        Beauty
+      </span>
+
+    </div>
+
+  </div>
 
 </aside>
 
@@ -123,7 +219,11 @@
       class="cart-count"
     >
 
-      🛒 Cart (0)
+      🛒 Cart (
+      <span id="cartCount">
+        0
+      </span>
+      )
 
     </a>
 
@@ -134,10 +234,9 @@
 <!-- ================= CHECKOUT PAGE ================= -->
 <section class="checkout-page">
 
-  <!-- ================= LEFT ================= -->
+  <!-- LEFT -->
   <div class="checkout-left">
 
-    <!-- TITLE -->
     <div class="checkout-title">
 
       <h2>
@@ -150,7 +249,7 @@
 
     </div>
 
-    <!-- ================= FORM ================= -->
+    <!-- FORM -->
     <form
       class="checkout-form"
       id="checkoutForm"
@@ -160,9 +259,7 @@
       <div class="form-group">
 
         <label>
-
           Full Name
-
         </label>
 
         <input
@@ -177,9 +274,7 @@
       <div class="form-group">
 
         <label>
-
           Mobile Number
-
         </label>
 
         <input
@@ -194,9 +289,7 @@
       <div class="form-group">
 
         <label>
-
           Email Address
-
         </label>
 
         <input
@@ -211,9 +304,7 @@
       <div class="form-group">
 
         <label>
-
           Full Address
-
         </label>
 
         <textarea
@@ -223,15 +314,13 @@
 
       </div>
 
-      <!-- CITY -->
+      <!-- CITY + PINCODE -->
       <div class="form-row">
 
         <div class="form-group">
 
           <label>
-
             City
-
           </label>
 
           <input
@@ -242,13 +331,10 @@
 
         </div>
 
-        <!-- PINCODE -->
         <div class="form-group">
 
           <label>
-
             Pincode
-
           </label>
 
           <input
@@ -265,9 +351,7 @@
       <div class="form-group">
 
         <label>
-
           State
-
         </label>
 
         <input
@@ -278,14 +362,13 @@
 
       </div>
 
-      <!-- ================= PAYMENT ================= -->
+      <!-- PAYMENT -->
       <div class="payment-box">
 
         <h3>
           Select Payment Method 💳
         </h3>
 
-        <!-- COD -->
         <label class="payment-option">
 
           <input
@@ -298,7 +381,6 @@
 
         </label>
 
-        <!-- UPI -->
         <label class="payment-option">
 
           <input
@@ -310,7 +392,6 @@
 
         </label>
 
-        <!-- CARD -->
         <label class="payment-option">
 
           <input
@@ -322,7 +403,6 @@
 
         </label>
 
-        <!-- NET BANKING -->
         <label class="payment-option">
 
           <input
@@ -336,7 +416,7 @@
 
       </div>
 
-      <!-- ================= COUPON ================= -->
+      <!-- COUPON -->
       <div class="coupon-box">
 
         <input
@@ -356,7 +436,7 @@
 
       </div>
 
-      <!-- ================= PLACE ORDER ================= -->
+      <!-- PLACE ORDER -->
       <button
         type="submit"
         class="place-order-btn"
@@ -372,10 +452,9 @@
 
   </div>
 
-  <!-- ================= RIGHT ================= -->
+  <!-- RIGHT -->
   <div class="checkout-right">
 
-    <!-- SUMMARY -->
     <div class="summary-card">
 
       <h2>
@@ -386,13 +465,9 @@
       <div
         id="checkout-items"
         class="checkout-items"
-      >
+      ></div>
 
-        <!-- JS -->
-
-      </div>
-
-      <!-- PRICE -->
+      <!-- SUBTOTAL -->
       <div class="summary-row">
 
         <span>
@@ -400,13 +475,12 @@
         </span>
 
         <span id="subtotal">
-
           ₹0
-
         </span>
 
       </div>
 
+      <!-- DELIVERY -->
       <div class="summary-row">
 
         <span>
@@ -414,9 +488,7 @@
         </span>
 
         <span class="free">
-
           FREE
-
         </span>
 
       </div>
@@ -443,6 +515,7 @@
 
       </div>
 
+      <!-- TOTAL -->
       <div class="summary-total">
 
         <span>
@@ -450,14 +523,12 @@
         </span>
 
         <span id="finalTotal">
-
           ₹0
-
         </span>
 
       </div>
 
-      <!-- DELIVERY -->
+      <!-- DELIVERY INFO -->
       <div class="delivery-info">
 
         🚚 Estimated Delivery:
@@ -508,11 +579,118 @@
 
 </div>
 
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+
+  <div class="footer-links">
+
+    <a href="index.html">
+
+      <i class="fa-solid fa-house"></i>
+
+      <span>
+        Home
+      </span>
+
+    </a>
+
+    <a href="shop.html">
+
+      <i class="fa-solid fa-shop"></i>
+
+      <span>
+        Shop
+      </span>
+
+    </a>
+
+    <a href="wishlist.html">
+
+      <i class="fa-solid fa-heart"></i>
+
+      <span>
+        Wishlist
+      </span>
+
+    </a>
+
+    <a href="cart.html">
+
+      <i class="fa-solid fa-cart-shopping"></i>
+
+      <span>
+        Cart
+      </span>
+
+    </a>
+
+    <a href="checkout.html">
+
+      <i class="fa-solid fa-credit-card"></i>
+
+      <span>
+        Checkout
+      </span>
+
+    </a>
+
+    <a href="about.html">
+
+      <i class="fa-solid fa-circle-info"></i>
+
+      <span>
+        About
+      </span>
+
+    </a>
+
+    <a href="contact.html">
+
+      <i class="fa-solid fa-phone"></i>
+
+      <span>
+        Contact
+      </span>
+
+    </a>
+
+  </div>
+
+  <p>
+    © 2026 SAURVIA STORE <br>
+    All Rights Reserved
+  </p>
+
+</footer>
+
 <!-- ================= SCRIPT ================= -->
 <script src="script.js"></script>
 
 <!-- ================= CHECKOUT SCRIPT ================= -->
 <script>
+
+/* ================= SIDEBAR ================= */
+function toggleSidebar(){
+
+  document
+    .getElementById("sidebar")
+    .classList.toggle("active");
+
+  document
+    .getElementById("sidebarOverlay")
+    .classList.toggle("show");
+}
+
+function closeSidebar(){
+
+  document
+    .getElementById("sidebar")
+    .classList.remove("active");
+
+  document
+    .getElementById("sidebarOverlay")
+    .classList.remove("show");
+}
 
 /* ================= LOAD CART ================= */
 let checkoutCart =
@@ -522,7 +700,34 @@ let checkoutCart =
 
 let discount = 0;
 
-/* ================= UPDATE CART HEADER ================= */
+/* ================= UPDATE CART ================= */
+function updateCartCount(){
+
+  let cart =
+    JSON.parse(
+      localStorage.getItem("cart")
+    ) || [];
+
+  let totalQty = 0;
+
+  cart.forEach(item => {
+
+    totalQty += item.qty || 1;
+
+  });
+
+  let cartCount =
+    document.getElementById(
+      "cartCount"
+    );
+
+  if(cartCount){
+
+    cartCount.innerText =
+      totalQty;
+  }
+}
+
 updateCartCount();
 
 /* ================= RENDER CHECKOUT ================= */
@@ -646,7 +851,7 @@ function renderCheckout() {
   subtotal.innerText =
     `₹${total}`;
 
-  /* FINAL */
+  /* FINAL TOTAL */
   let final =
     total - discount;
 
@@ -775,12 +980,56 @@ function goHome() {
     "index.html";
 }
 
+/* ================= TOAST ================= */
+function showToast(message){
+
+  let toast =
+    document.createElement(
+      "div"
+    );
+
+  toast.className =
+    "toast";
+
+  toast.innerText =
+    message;
+
+  document.body.appendChild(
+    toast
+  );
+
+  setTimeout(() => {
+
+    toast.classList.add(
+      "show"
+    );
+
+  },100);
+
+  setTimeout(() => {
+
+    toast.classList.remove(
+      "show"
+    );
+
+    setTimeout(() => {
+
+      toast.remove();
+
+    },300);
+
+  },2500);
+
+}
+
 /* ================= INIT ================= */
 document.addEventListener(
   "DOMContentLoaded",
   () => {
 
     renderCheckout();
+
+    updateCartCount();
 
   }
 );
