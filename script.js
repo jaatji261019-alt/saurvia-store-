@@ -105,33 +105,39 @@ function showToast(message) {
   },2200);
 }
 
-/* ================= SIDEBAR ================= */
+/* ================= CLOSE SIDEBAR WHEN CLICK OUTSIDE ================= */
 
-function toggleSidebar() {
+document.addEventListener(
+  "click",
+  function(e){
 
-  let sidebar =
-    document.getElementById("sidebar");
+    let sidebar =
+      document.getElementById("sidebar");
 
-  if(sidebar){
+    let menuBtn =
+      document.querySelector(".menu-btn");
 
-    sidebar.classList.toggle("active");
+    let overlay =
+      document.getElementById("overlay");
 
+    if(
+      sidebar &&
+      !sidebar.contains(e.target) &&
+      menuBtn &&
+      !menuBtn.contains(e.target)
+    ){
+
+      sidebar.classList.remove("show-sidebar");
+      sidebar.classList.remove("active");
+
+      if(overlay){
+
+        overlay.classList.remove("show-overlay");
+
+      }
+    }
   }
-}
-
-/* ================= CATEGORY TOGGLE ================= */
-
-function toggleCategories() {
-
-  let menu =
-    document.getElementById("catMenu");
-
-  if(menu){
-
-    menu.classList.toggle("active");
-
-  }
-}
+);
 
 /* ================= ADD TO CART ================= */
 
