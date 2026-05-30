@@ -597,6 +597,25 @@
         "show-overlay"
       );
   }
+  /* ================= CATEGORY TOGGLE ================= */
+function toggleCategories(){
+
+  const menu =
+    document.getElementById("catMenu");
+
+  const arrow =
+    document.getElementById("catArrow");
+
+  if(menu){
+
+    menu.classList.toggle("active");
+  }
+
+  if(arrow){
+
+    arrow.classList.toggle("rotate");
+  }
+}
 
   /* ================= UPDATE COUNT ================= */
   function updateCartCount(){
