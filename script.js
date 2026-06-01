@@ -105,39 +105,33 @@ function showToast(message) {
   },2200);
 }
 
-/* ================= CLOSE SIDEBAR WHEN CLICK OUTSIDE ================= */
+/* ================= SIDEBAR ================= */
 
-document.addEventListener(
-  "click",
-  function(e){
+function toggleSidebar() {
 
-    let sidebar =
-      document.getElementById("sidebar");
+  let sidebar =
+    document.getElementById("sidebar");
 
-    let menuBtn =
-      document.querySelector(".menu-btn");
+  if(sidebar){
 
-    let overlay =
-      document.getElementById("overlay");
+    sidebar.classList.toggle("active");
 
-    if(
-      sidebar &&
-      !sidebar.contains(e.target) &&
-      menuBtn &&
-      !menuBtn.contains(e.target)
-    ){
-
-      sidebar.classList.remove("show-sidebar");
-      sidebar.classList.remove("active");
-
-      if(overlay){
-
-        overlay.classList.remove("show-overlay");
-
-      }
-    }
   }
-);
+}
+
+/* ================= CATEGORY TOGGLE ================= */
+
+function toggleCategories() {
+
+  let menu =
+    document.getElementById("catMenu");
+
+  if(menu){
+
+    menu.classList.toggle("active");
+
+  }
+}
 
 /* ================= ADD TO CART ================= */
 
@@ -1056,3 +1050,4 @@ document.addEventListener(
     }
   }
 );
+Bhai ye script.js code h to add code and rewrite full code 
