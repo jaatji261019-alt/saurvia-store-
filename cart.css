@@ -151,22 +151,20 @@ transform:rotate(180deg);
 
 /* ================= CATEGORY DROPDOWN ================= */
 .sidebar-categories{
-max-height:0;
-
-overflow:hidden;
-
-transition:max-height 0.4s ease;
-
 display:flex;
 flex-direction:column;
-
 gap:14px;
+
+max-height:0;
+overflow:hidden;
+
+transition:max-height .4s ease;
 
 margin-top:14px;
 }
 
 .sidebar-categories.show-categories{
-max-height:500px;
+max-height:600px;
 }
 
 /* ================= CATEGORY CARD ================= */
