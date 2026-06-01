@@ -1050,4 +1050,3 @@ document.addEventListener(
     }
   }
 );
-Bhai ye script.js code h to add code and rewrite full code 
