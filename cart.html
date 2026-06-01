@@ -377,24 +377,15 @@
 
   <!-- CATEGORY BUTTON -->
   <div
-  class="cat-toggle"
-  onclick="toggleCategories()"
->
-
-  <div>
+    class="cat-toggle"
+    onclick="toggleCategories()"
+  >
 
     <i class="fa-solid fa-folder-open"></i>
 
     Categories
 
   </div>
-
-  <i
-    class="fa-solid fa-chevron-down"
-    id="catArrow"
-  ></i>
-
-</div>
 
   <!-- CATEGORY MENU -->
   <div
@@ -583,36 +574,20 @@
 <script>
 
   /* ================= SIDEBAR ================= */
-  function toggleCategories(){
+  function toggleSidebar(){
 
-  document
-    .getElementById("catMenu")
-    .classList.toggle("show-categories");
+    document
+      .getElementById("sidebar")
+      .classList.toggle(
+        "show-sidebar"
+      );
 
-  document
-    .getElementById("catArrow")
-    .classList.toggle("rotate");
-
-}
-  /* ================= CATEGORY TOGGLE ================= */
-function toggleCategories(){
-
-  const menu =
-    document.getElementById("catMenu");
-
-  const arrow =
-    document.getElementById("catArrow");
-
-  if(menu){
-
-    menu.classList.toggle("active");
+    document
+      .getElementById("overlay")
+      .classList.toggle(
+        "show-overlay"
+      );
   }
-
-  if(arrow){
-
-    arrow.classList.toggle("rotate");
-  }
-}
 
   /* ================= UPDATE COUNT ================= */
   function updateCartCount(){
