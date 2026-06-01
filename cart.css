@@ -252,7 +252,9 @@ border-radius:30px;
 font-size:15px;
 }
 
-.cart-header a:hover
+.cart-header a:hover{
+color:#ff5722;
+}
 
 /* ================= MAIN ================= */
 .cart-main{
