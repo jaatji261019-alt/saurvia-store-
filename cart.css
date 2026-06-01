@@ -1,5 +1,5 @@
 /* ================= GOOGLE FONT ================= */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import url('[https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap](https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap)');
 
 /* ================= RESET ================= */
 *{
@@ -151,20 +151,22 @@ transform:rotate(180deg);
 
 /* ================= CATEGORY DROPDOWN ================= */
 .sidebar-categories{
-display:flex;
-flex-direction:column;
-gap:14px;
-
 max-height:0;
+
 overflow:hidden;
 
-transition:max-height .4s ease;
+transition:max-height 0.4s ease;
+
+display:flex;
+flex-direction:column;
+
+gap:14px;
 
 margin-top:14px;
 }
 
 .sidebar-categories.show-categories{
-max-height:600px;
+max-height:500px;
 }
 
 /* ================= CATEGORY CARD ================= */
@@ -252,9 +254,7 @@ border-radius:30px;
 font-size:15px;
 }
 
-.cart-header a:hover{
-color:#ff5722;
-}
+.cart-header a:hover
 
 /* ================= MAIN ================= */
 .cart-main{
@@ -546,3 +546,4 @@ padding:7px 10px;
 font-size:11px;
 }
 }
+Bhai ye cart.css h
