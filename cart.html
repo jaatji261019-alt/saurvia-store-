@@ -583,20 +583,17 @@
 <script>
 
   /* ================= SIDEBAR ================= */
-  function toggleSidebar(){
+  function toggleCategories(){
 
-    document
-      .getElementById("sidebar")
-      .classList.toggle(
-        "show-sidebar"
-      );
+  document
+    .getElementById("catMenu")
+    .classList.toggle("show-categories");
 
-    document
-      .getElementById("overlay")
-      .classList.toggle(
-        "show-overlay"
-      );
-  }
+  document
+    .getElementById("catArrow")
+    .classList.toggle("rotate");
+
+}
   /* ================= CATEGORY TOGGLE ================= */
 function toggleCategories(){
 
