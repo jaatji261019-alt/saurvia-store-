@@ -105,31 +105,22 @@ function showToast(message) {
   },2200);
 }
 
-/* ================= SIDEBAR ================= */
-
+/* ================= SIDEBAR + OVERLAY FIX ================= */
 function toggleSidebar() {
+  let sidebar = document.getElementById("sidebar");
+  let overlay = document.getElementById("overlay");
 
-  let sidebar =
-    document.getElementById("sidebar");
+  if (sidebar) sidebar.classList.toggle("active");
 
-  if(sidebar){
-
-    sidebar.classList.toggle("active");
-
-  }
+  if (overlay) overlay.classList.toggle("show-overlay");
 }
 
 /* ================= CATEGORY TOGGLE ================= */
-
 function toggleCategories() {
+  let menu = document.getElementById("catMenu");
 
-  let menu =
-    document.getElementById("catMenu");
-
-  if(menu){
-
+  if (menu) {
     menu.classList.toggle("active");
-
   }
 }
 
