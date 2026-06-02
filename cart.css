@@ -40,8 +40,8 @@ overflow-y:auto;
 transition:0.35s ease;
 }
 
-.sidebar.show-sidebar{
-left:0;
+.sidebar.active{
+  left:0;
 }
 
 /* ================= SIDEBAR LOGO ================= */
@@ -165,8 +165,8 @@ gap:14px;
 margin-top:14px;
 }
 
-.sidebar-categories.show-categories{
-max-height:500px;
+.sidebar-categories.active{
+  max-height:500px;
 }
 
 /* ================= CATEGORY CARD ================= */
