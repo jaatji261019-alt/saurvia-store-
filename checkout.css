@@ -480,3 +480,18 @@
     font-size:24px;
   }
 }
+/* ================= SIDEBAR CATEGORY FIX ================= */
+
+/* HIDDEN STATE */
+.sidebar-categories{
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+/* OPEN STATE */
+.sidebar-categories.active{
+  max-height: 500px;
+  opacity: 1;
+}
+
