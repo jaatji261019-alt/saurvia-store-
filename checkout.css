@@ -480,18 +480,47 @@
     font-size:24px;
   }
 }
+
 /* ================= SIDEBAR CATEGORY FIX ================= */
 
-/* HIDDEN STATE */
 .sidebar-categories{
   max-height: 0;
+  opacity: 0;
   overflow: hidden;
   transition: all 0.4s ease;
 }
 
-/* OPEN STATE */
 .sidebar-categories.active{
   max-height: 500px;
   opacity: 1;
 }
 
+.sidebar-overlay{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.45);
+  opacity:0;
+  visibility:hidden;
+  transition:0.3s;
+  z-index:9997;
+}
+
+.sidebar-overlay.show{
+  opacity:1;
+  visibility:visible;
+}
+
+.sidebar.active{
+  left:0;
+}
+
+.cat-toggle i{
+  transition:0.3s;
+}
+
+.cat-toggle.active i:last-child{
+  transform:rotate(180deg);
+}
