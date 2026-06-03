@@ -491,7 +491,7 @@
 }
 
 .sidebar-categories.active{
-  max-height: 500px;
+  max-height: 50px;
   opacity: 1;
 }
 
