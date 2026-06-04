@@ -116,12 +116,14 @@ function toggleSidebar() {
 }
 
 /* ================= CATEGORY TOGGLE ================= */
-function toggleCategories() {
-  let menu = document.getElementById("catMenu");
+function toggleCategories(){
 
-  if (menu) {
-    menu.classList.toggle("active");
-  }
+  let menu = document.getElementById("catMenu");
+  let arrow = document.querySelector(".cat-toggle i:last-child");
+
+  menu.classList.toggle("active");
+
+  arrow.classList.toggle("rotate");
 }
 
 /* ================= ADD TO CART ================= */
