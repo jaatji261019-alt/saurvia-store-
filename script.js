@@ -661,23 +661,6 @@ function loadWishlistButtons() {
   });
 }
 
-/* ================= RENDER WISHLIST ================= */
-
-function renderWishlist() {
-
-  let container =
-
-    document.getElementById(
-      "wishlistContainer"
-    ) ||
-
-    document.getElementById(
-      "wishlist-items"
-    );
-
-  if(!container) return;
-
-  container.innerHTML = "";
 
   /* EMPTY */
 
