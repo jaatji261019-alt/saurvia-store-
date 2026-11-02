@@ -4,15 +4,23 @@
 
 /* ================= LOAD STORAGE ================= */
 
-let cart =
-  JSON.parse(
-    localStorage.getItem("cart")
-  ) || [];
+function loadList(key){
+  try{
+    let data = JSON.parse(localStorage.getItem(key));
+    return Array.isArray(data) ? data : [];
+  }catch(e){
+    return [];
+  }
+}
 
-let wishlist =
-  JSON.parse(
-    localStorage.getItem("wishlist")
-  ) || [];
+function esc(text){
+  return String(text ?? "").replace(/[&<>"']/g, c => (
+    {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]
+  ));
+}
+
+let cart = loadList("cart");
+let wishlist = loadList("wishlist");
 
 /* ================= SAVE FUNCTIONS ================= */
 
@@ -117,13 +125,10 @@ function toggleSidebar() {
 
 /* ================= CATEGORY TOGGLE ================= */
 function toggleCategories(){
-
   let menu = document.getElementById("catMenu");
   let arrow = document.querySelector(".cat-toggle i:last-child");
-
-  menu.classList.toggle("active");
-
-  arrow.classList.toggle("rotate");
+  if(menu) menu.classList.toggle("active");
+  if(arrow) arrow.classList.toggle("rotate");
 }
 
 /* ================= ADD TO CART ================= */
@@ -364,7 +369,7 @@ function renderCart() {
       <div class="cart-info">
 
         <h3>
-          ${item.name}
+          ${esc(item.name)}
         </h3>
 
         <p class="cart-price">
@@ -685,7 +690,7 @@ function renderWishlist() {
 
     container.innerHTML = `
 
-      <div class="empty-cart">
+      <div class="empty-wishlist">
 
         <img
           src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png"
@@ -736,16 +741,13 @@ function renderWishlist() {
       <div class="wishlist-info">
 
         <h3>
-          ${item.name}
+          ${esc(item.name)}
         </h3>
 
         <p class="wishlist-price">
           ₹${item.price}
         </p>
 
-        <div class="wishlist-rating">
-          ⭐⭐⭐⭐⭐ (4.9)
-        </div>
 
         <div class="wishlist-buttons">
 
